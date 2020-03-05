@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>PGP - My Notes</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "PGP";
+    var mkdocs_page_input_path = "pgp.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> My Notes</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">PGP</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#generatecreate-gpgpgp-key">Generate/Create GPG/PGP Key:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#send-key-to-default-key-server">Send key to default key server:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#to-send-your-public-key-to-a-keyserver">To send your public key to a keyserver:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#to-receive-a-public-key-from-a-keyserver">To receive a public key from a keyserver:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#export-ascii-armored-key">Export ascii armored key:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#encrypt-a-message-to-standard-output">Encrypt a message to standard output:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#signing-verifying">Signing / Verifying:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#make-a-clear-text-signature">Make a clear text signature.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#make-a-detached-signature">Make a detached signature.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#verify-a-signature-file-without-generating-any-output">Verify a signature file without generating any output.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#options">Options</a></li>
+    
+
+    <li class="toctree-l2"><a href="#create-ascii-armored-output">Create ASCII armored output.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#groups">Groups</a></li>
+    
+
+    <li class="toctree-l2"><a href="#comments-versions">Comments &amp; Versions</a></li>
+    
+
+    <li class="toctree-l2"><a href="#special-for-your-eyes-only">Special "for your eyes only"</a></li>
+    
+
+    <li class="toctree-l2"><a href="#revoke-a-key">Revoke a Key.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#removerevoke-a-specific-email-address-from-your-key">Remove/Revoke a specific email address from your key.</a></li>
+    
+
+    <li class="toctree-l2"><a href="#key-administration">Key Administration:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#list-all-the-keys">List all the keys:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#source">Source:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#pgp-function">PGP Function:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#view-your-trust-database">View your trust database:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#gpg-privacy-assistant-gpa">GPG Privacy Assistant (GPA):</a></li>
+    
+
+    <li class="toctree-l2"><a href="#passphrase-cache-timeout">Passphrase cache timeout:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#gpgconf">gpgconf:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#reload-the-gpg-agent">Reload the gpg agent:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#restart-the-gpg-agent">Restart the gpg agent:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#list-pgpgpg-directories">List PGP/GPG directories:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#miscellaneous">Miscellaneous:</a></li>
+    
+
+    <li class="toctree-l2"><a href="#pinentry">Pinentry</a></li>
+    
+
+    <li class="toctree-l2"><a href="#keybase-error-adding-pgpgpg-key">Keybase error adding PGP/GPG key:</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../git/">GiT</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../sql/">SQL</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">My Notes</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>PGP</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>The GNU Privacy Handbook - https://www.gnupg.org/gph/en/manual/book1.html
+Archlinux Wiki GnuPG - https://wiki.archlinux.org/index.php/GnuPG
+GnuPG Website - https://www.gnupg.org</p>
+<p>Youtube Videos:
+  GnuPG Part One https://www.youtube.com/watch?v=IF-MchgZ2Os
+  GnuPG Part Two https://www.youtube.com/watch?v=R-Dw7UXH00c
+  GnuPG Part Three https://www.youtube.com/watch?v=JOBJPwyByyI
+  NITC-GnuPG Part 3 https://www.youtube.com/watch?v=xAGfWyNgi2Q</p>
+<h4 id="generatecreate-gpgpgp-key">Generate/Create GPG/PGP Key:</h4>
+<pre><code>gpg2 --full-gen-key
+gpg --gen-key
+</code></pre>
+<h4 id="send-key-to-default-key-server">Send key to default key server:</h4>
+<pre><code>  gpg --send-key KEYNAME
+
+    You can upload your key to this PGP site: https://keyserver.pgp.com
+    You can check if your key is on the PGP website here: https://keyserver.pgp.com
+</code></pre>
+<h4 id="to-send-your-public-key-to-a-keyserver">To send your public key to a keyserver:</h4>
+<pre><code>gpg --keyserver the.keyserver.name.com --send-keys YOURKEYID
+Example: gpg --keyserver keyserver.ubuntu.com --send-keys 5DD98B3E
+Example: gpg --keyserver hkp://pgp.mit.edu --send-keys YOURKEYID
+Example: gpg --keyserver hkps.pool.sks-keyservers.net --send-keys YOURKEYID
+</code></pre>
+<h4 id="to-receive-a-public-key-from-a-keyserver">To receive a public key from a keyserver:</h4>
+<pre><code>gpg --keyserver the.keyserver.name.com --recv-keys THEKEYID
+Example: gpg --keyserver keyserver.ubuntu.com --recv-keys 5DD98B3E
+</code></pre>
+<h4 id="export-ascii-armored-key">Export ascii armored key:</h4>
+<pre><code>  gpg --export --armor jqdoe@example.com &gt; jqdoe-pubkey.asc
+  gpg --export-secret-keys --armor jqdoe@example.com &gt; jqdoe-privkey.asc
+  Use a double greater than symbol to export both public and private to the same file "&gt;&gt;".
+</code></pre>
+<h4 id="encrypt-a-message-to-standard-output">Encrypt a message to standard output:</h4>
+<pre><code>    gpg -ea
+</code></pre>
+<p>Enter your recipients and end with an empty line.
+  Type your message that you want to encrypt.
+  Press Control+D and your encrypted message will appear onscreen.</p>
+<p>If you want to encrypt the above message to a file you can type: </p>
+<pre><code>gpg -ea &gt; filename.txt
+</code></pre>
+<p>then do the steps above.
+  Enter your recipients and end with an empty line.
+  Type your message that you want to encrypt.
+  Press Control+D and your encrypted message will be sent to filename.txt.</p>
+<p>Encrypt a single file (creates a binary file). This option may be combined with --sign.</p>
+<pre><code>gpg -e filename
+
+or
+
+gpg --encrypt filename
+</code></pre>
+<p>Encrypt a single file (creates an ASCII file). This option may be combined with --sign.</p>
+<pre><code>gpg -a -e filename
+
+or
+
+gpg --armor --encrypt filename
+
+or
+
+gpg -ea filename
+</code></pre>
+<p>This is a special version of the --encrypt command. The command expects the files to be encrypted either on the command line or reads the filenames from stdin; each name must be on separate line. The command is intended for a quick encryption of multiple files.
+Encrypt multiple files. This option may be combined with --sign.</p>
+<pre><code>gpg --encrypt-files file1 file2 file3
+</code></pre>
+<p>Encrypt with symmetric cipher only. This command asks for a passphrase. (May also be combined with --sign -- see GnuPG 1.0.7 released.)</p>
+<pre><code>gpg -c filename
+
+or
+
+gpg --symmetric filename
+</code></pre>
+<p>Encrypt to a recipient.</p>
+<pre><code>gpg -e -r recipient filename
+
+or
+
+gpg --encrypt -r recipient filename
+
+or encrypt and sign.
+
+gpg -e -r recipient -s filename
+</code></pre>
+<p>Use -u to specify the secret key to be used, and -r to specify the public key of the recipient.
+**Note: This doesn't seem to work when you have a default sender and recipient key established in gpg.conf.</p>
+<pre><code>gpg -e -u "Sender User Name" -r "Receiver User Name" somefile
+Example 1: gpg -e -u "me@example.com" -r "you@example.com" -r "them@example.com" somefile
+
+Example 2:
+gpg -e -u "Billy Bob" -r "Nancy Bob" mydata.tar
+
+Example 3:
+gpg -s --default-key ABCD1234 -ea yyy.txt
+</code></pre>
+<p>Password encrypt and sign a file:</p>
+<pre><code>gpg -c -s filename
+</code></pre>
+<p>Password encrypt and sign a message that can be decrypted by passphrase or secret key:</p>
+<pre><code>gpg -c --sign --encrypt filename
+
+or
+
+gpg -c -s -e filename
+</code></pre>
+<p>UUEncode a file before ascii encrypting:</p>
+<pre><code>uuencode filename filename &gt; filename.uue
+gpg -a -e filename.uue
+</code></pre>
+<p>UUEncode a file before normal encrypting:</p>
+<pre><code>uuencode filename filename &gt; filename.uue
+gpg --encrypt filename.uue
+</code></pre>
+<p>Decrypt UUEncoded file with normal encryption then UUDecode it:</p>
+<pre><code>gpg --decrypt filename &gt; filename.uue
+uudecode filename.uue
+</code></pre>
+<p>Decrypt a message in standard out (stout) type:</p>
+<p>gpg</p>
+<p>You will see a message similar to this: gpg: Go ahead and type your message ...
+  At this point you can paste in the encrypted text and you will be prompted for your passphrase.
+  Once you enter your passphrase, press Control+D to see the decrypted message.</p>
+<p>Decrypt file (or stdin if no file is specified) and write it to stdout (or the file specified with --output). If the decrypted file is signed, the signature is also verified. This command differs from the default operation, as it never writes to the filename which is included in the file and it rejects files which don't begin with an encrypted message.</p>
+<pre><code>gpg --decrypt filenames
+</code></pre>
+<p>Decrypt a file that has been binary or ascii encrypted and output the decrypted content to a file:</p>
+<pre><code>gpg --output decrypted.txt --decrypt encrypted.txt.gpg
+
+or
+
+gpg -o decrypted.txt -d encrypted.txt.gpg
+</code></pre>
+<p>This is a special version of the --decrypt command. The command expects the files to be decrypted either on the command line or reads the filenames from stdin; each name must be on separate line. The command is intended for a quick decryption of multiple files.</p>
+<pre><code>gpg --decrypt-files file1 file2 file3
+</code></pre>
+<p>Multiple Private Keys.</p>
+<p>When encrypting or decrypting it is possible to have more than one private key in use. To use a different private key other than the default use the option -u UID or use the option --local-user UID. This causes the default key used to be replaced by the wanted key.</p>
+<pre><code>gpg -u &lt;KEY ID&gt; -r recipient --armor --sign --encrypt filename
+
+or
+
+gpg -u &lt;KEY ID&gt; -r recipient -a -s -e filename
+
+or (this should prompt you for recipients)
+
+gpg -u nameofprivatekey -a -s -e filename
+</code></pre>
+<h4 id="signing-verifying">Signing / Verifying:</h4>
+<p>Make a signature. This command may be combined with --encrypt. (May also be combined with --symmetric (see GnuPG 1.0.7 released.)</p>
+<pre><code>gpg -s filename
+
+or
+
+gpg --sign filename
+</code></pre>
+<p>Both -s and --sign make an illegible signature that you can't read. This is OK because GPG/PGP can still read it (not humans).</p>
+<h4 id="make-a-clear-text-signature">Make a clear text signature.</h4>
+<pre><code>gpg --clearsign filename
+</code></pre>
+<h4 id="make-a-detached-signature">Make a detached signature.</h4>
+<pre><code>gpg -b filename
+
+or
+
+gpg --detach-sign filename
+</code></pre>
+<h4 id="verify-a-signature-file-without-generating-any-output">Verify a signature file without generating any output.</h4>
+<p>With no arguments, the signature packet is read from stdin. If only a sigfile is given, it may be a complete signature or a detached signature, in which case the signed stuff is expected in a file without the ".sig" or ".asc" extension. With more than 1 argument, the first should be a detached signature and the remaining files are the signed stuff. To read the signed stuff from stdin, use - as the second filename. For security reasons a detached signature cannot read the signed material from stdin without denoting it in the above way.</p>
+<pre><code>gpg --verify sigfile signed_files
+</code></pre>
+<p>This is a special version of the --verify command which does not work with detached signatures. The command expects the files to be verified either on the command line or reads the filenames from stdin; each name must be on separate line. The command is intended for quick checking of many files.</p>
+<pre><code>gpg --verify-files filenames
+</code></pre>
+<h4 id="options">Options</h4>
+<p>Starting with GnuPG 1.1.92 (incl. GnuPG 1.2.1, 1.2.0 and 1.1.92), long options can be put in an options file (default "~/.gnupg/gpg.conf"). In GnuPG versions up through GnuPG 1.1.91 (incl. 1.0.6, 1.0.7, and 1.1.91), long options can be put in an "old style" configuration file (default "~/.gnupg/options").
+Short option names will not work -- for example, armor is a valid option for the options file, while a is not. Do not write the 2 dashes, but simply the name of the option and any required arguments. Lines with a hash as the first non-white-space character are ignored. Commands may be put in this file too, but that does not make sense.</p>
+<h4 id="create-ascii-armored-output">Create ASCII armored output.</h4>
+<pre><code>gpg -a -e filename
+
+or
+
+gpg --armor -e filename
+</code></pre>
+<p>Assume the input data is not in ASCII armored format.</p>
+<pre><code>gpg --no-armor
+</code></pre>
+<p>Use canonical text mode. If -t (but not --textmode) is used together with armoring and signing, this enables clearsigned messages. This kludge is needed for PGP compatibility; normally you would use --sign or --clearsign to selected the type of the signature.</p>
+<pre><code>gpg -t
+
+or
+
+gpg --textmode
+</code></pre>
+<p>Encrypt for user id name. If this option is not specified, GnuPG asks for the user-id unless --default-recipient is given.</p>
+<pre><code>gpg -r nameofkey
+
+or
+
+gpg --recipient nameofkey
+</code></pre>
+<h4 id="groups">Groups</h4>
+<p>Set up a name group, which is similar to aliases in email programs. Any time the group name is a receipient (-r or --recipient), it will be expanded to the values specified.
+The values are key IDs or fingerprints, but any key description is accepted. Note that a value with spaces in it will be treated as two different values. Note also there is only one level of expansion -- you cannot make a group that points to another group.</p>
+<pre><code>gpg --group name=value
+</code></pre>
+<p>Use name as default recipient if option --recipient is not used and don't ask if this is a valid one. name must be non-empty.</p>
+<pre><code>gpg --default-recipient nameofkey
+</code></pre>
+<p>Use the default key as default recipient if option --recipient is not used and don't ask if this is a valid one. The default key is the first one from the secret keyring or the one set with --default-key.</p>
+<pre><code>gpg --default-recipient-self
+</code></pre>
+<p>Reset --default-recipient and --default-recipient-self.</p>
+<pre><code>gpg --no-default-recipient
+</code></pre>
+<p>Use name as default user ID for signatures. If this is not used the default user ID is the first user ID found in the secret keyring.</p>
+<pre><code>gpg --default-key nameofkey
+</code></pre>
+<p>Same as --recipient but this one is intended for use in the options file and may be used with your own user-id as an "encrypt-to-self." These keys are only used when there are other recipients given either by use of --recipient or by the asked user id. No trust checking is performed for these user ids and even disabled keys can be used.</p>
+<pre><code>gpg --encrypt-to name
+</code></pre>
+<p>Disable the use of all --encrypt-to keys.</p>
+<pre><code>gpg --no-encrypt-to
+</code></pre>
+<h4 id="comments-versions">Comments &amp; Versions</h4>
+<p>Use string as comment string in clear text signatures. The default is not to write a comment string.</p>
+<pre><code>gpg --comment string
+</code></pre>
+<p>Force to write the standard comment string in clear text signatures. Use this to overwrite a --comment from a config file. This option is now obsolete because there is no default comment string anymore.</p>
+<pre><code>gpg --default-comment
+</code></pre>
+<p>Omit the version string in clear text signatures.</p>
+<pre><code>gpg --no-version
+</code></pre>
+<p>Force to write the version string in clear text signatures. Use this to overwrite a previous --no-version from a config file.</p>
+<pre><code>gpg --emit-version
+</code></pre>
+<h4 id="special-for-your-eyes-only">Special "for your eyes only"</h4>
+<p>Set the "for your eyes only" flag in the message. This causes GnuPG to refuse to save the file unless the --output option is given, and PGP to use the "secure viewer" with a Tempest-resistant font to display the message. This option overrides --set-filename.</p>
+<pre><code>--for-your-eyes-only
+</code></pre>
+<p>Resets the --for-your-eyes-only flag.</p>
+<pre><code>--no-for-your-eyes-only
+</code></pre>
+<p>Set compression level to n. A value of 0 for n disables compression. Default is to use the default compression level of zlib (normally 6).</p>
+<pre><code>-z n, --compress n
+</code></pre>
+<p>Skip the signature verification step. This may be used to make the decryption faster if the signature verification is not needed.</p>
+<pre><code>--skip-verify
+</code></pre>
+<p>When making a data signature, prompt for an expiration time. If this option is not specified, the expiration time is "never."</p>
+<pre><code>gpg --ask-sig-expire
+</code></pre>
+<p>Resets the --ask-sig-expire option.</p>
+<pre><code>gpg --no-ask-sig-expire
+</code></pre>
+<p>Do not put the keyid into encrypted packets. This option hides the receiver of the message and is a countermeasure against traffic analysis. It may slow down the decryption process because all available secret keys are tried.</p>
+<pre><code>gpg --throw-keyid
+</code></pre>
+<p>Don't look at the key ID as stored in the message but try all secret keys in turn to find the right decryption key. This option forces the behaviour as used by anonymous recipients (created by using --throw-keyid) and might come handy in case where an encrypted message contains a bogus key ID.</p>
+<pre><code>gpg --try-all-secrets
+</code></pre>
+<p>Put the name value pair into the signature as notation data. Name must consist only of alphanumeric characters, digits or the underscore; the first character must not be a digit. Value may be any printable string; it will be encoded in UTF8, so you should check that your --charset is set correctly. If you prefix name with an exclamation mark, the notation data will be flagged as critical (rfc2440:5.2.3.15).</p>
+<pre><code>gpg -N
+gpg --notation-data name=value
+</code></pre>
+<p>This option changes the behavior of cleartext signatures so that they can be used for patch files. You should not send such an armored file via email because all spaces and line endings are hashed too. You can not use this option for data which has 5 dashes at the beginning of a line, patch files don't have this. A special armor header line tells GnuPG about this cleartext signature option.</p>
+<pre><code>gpg --not-dash-escaped
+</code></pre>
+<p>Because some mailers change lines starting with "From " to "&lt;From " it is good to handle such lines in a special way when creating cleartext signatures. All other PGP versions do it this way too. This option is not enabled by default because it would violate rfc2440.</p>
+<pre><code>gpg --escape-from-lines
+</code></pre>
+<p>Use string as the name of file which is stored in messages.</p>
+<pre><code>gpg --set-filename string
+</code></pre>
+<p>Try to create a file with a name as embedded in the data. This can be a dangerous option as it allows to overwrite files.</p>
+<pre><code>gpg --use-embedded-filename
+</code></pre>
+<p>This option enables a mode in which filenames of the form "-&amp;n," where n is a non-negative decimal number, refer to the file descriptor n and not to a file with that name.</p>
+<pre><code>gpg --enable-special-filenames
+</code></pre>
+<h4 id="revoke-a-key">Revoke a Key.</h4>
+<pre><code>gpg --gen-revoke THEKEYID &gt; revoked.key
+</code></pre>
+<p>This creates a revocation certificate. To be able to do this, you need a secret key, otherwise anyone could revoke your certificate. This has one disadvantage. If you do not know the passphrase for the secret key, the revocation key will become useless and you cannot revoke the secret key! To overcome this problem it is wise to create a revoke license when you create a key pair. And if you do so, keep it safe! This can be on disk, paper, etc. Make sure that this certificate will not fall into wrong hands!!!! If you don't someone else can issue the revoke certificate for your key and make it useless.</p>
+<p>You will need to enter the revoke reason for the key and an optional comment.</p>
+<p>Once you have the revocation certificate, you will need to import it so that the key will get revoked.</p>
+<pre><code>gpg --import revoked.key
+Type: gpg --list-keys and you will see that the key has been revoked.
+</code></pre>
+<p>Next, you will have to send the revoked key to the key server. This is the same method as sending a normal key except this one has been revoked. When the server receives the revoked key, it will be removed from the server.</p>
+<h4 id="removerevoke-a-specific-email-address-from-your-key">Remove/Revoke a specific email address from your key.</h4>
+<pre><code>gpg --edit-key 01234567
+uid 4 (This is the uid of the email address that you want to revoke).
+revuid
+
+    Really revoke this user ID? (y/N) y
+    Please select the reason for the revocation:
+0 = No reason specified
+4 = User ID is no longer valid
+Q = Cancel
+    (Probably you want to select 4 here)
+    Your decision? 4
+    Enter an optional description; end it with an empty line:
+    &gt;
+    Reason for revocation: User ID is no longer valid
+    (No description given)
+    Is this okay? (y/N) y
+
+    You need a passphrase to unlock the secret key for user: "John Doe &lt;john@doe.tld&gt;"
+    [ultimate] (1). John Doe &lt;john@doe.tld&gt;
+    [ revoked] (2)  John Doe (Corp) &lt;john.doe@corp.tld&gt;
+
+    gpg&gt; save
+</code></pre>
+<p>Next, send your updated key to the keyservers.</p>
+<pre><code>gpg --send-keys 01234567
+
+gpg: sending key 01234567 to hkp server keys.gnupg.net
+</code></pre>
+<h4 id="key-administration">Key Administration:</h4>
+<p>With the GnuPG system comes a file that acts as some kind of database. In this file all data regarding keys with the information that comes with the keys is stored.</p>
+<h4 id="list-all-the-keys">List all the keys:</h4>
+<p>This will show you the key IDs and other information:</p>
+<pre><code>gpg --list-keys
+</code></pre>
+<p>To show the "Short Key" ID:</p>
+<pre><code>gpg -K --with-fingerprint --with-colons | grep "sec" | cut -f5 -d ':'
+</code></pre>
+<p>To show the "HEX Key" ID (last 16 characters with 0x prepended):</p>
+<pre><code>gpg -K --with-fingerprint --with-colons | grep "sec" | cut -f5 -d ':'|awk '{print "0x" $1}'
+</code></pre>
+<p>List all the keys and see the signatures as well type:</p>
+<pre><code>gpg --list-sigs
+</code></pre>
+<p>To see the fingerprints type:</p>
+<pre><code>gpg --fingerprint
+
+You want to see "Fingerprints" to ensure that somebody is really the person they claim (like in a telephone call). This command will result in a list of relatively small numbers.
+</code></pre>
+<p>To list the secret keys you type:</p>
+<pre><code>gpg --list-secret-keys
+</code></pre>
+<p>Note that listing fingerprints and signatures from private keys has no use whatsoever.</p>
+<p>To delete a public key you type:</p>
+<pre><code>gpg --delete-key UID
+</code></pre>
+<p>To delete a secret key you type:</p>
+<pre><code>gpg --delete-secret-key  
+(You have to delete the private key before deleting the public key)
+</code></pre>
+<p>There is one more important command that is relevant for working with keys.</p>
+<pre><code>gpg --edit-key &lt;HEX KEY ID&gt;
+
+Using this you can edit (among other things) the expiration date, add a fingerprint and sign your key. When in this mode you can press the question mark key to see the options available to you.
+</code></pre>
+<p>Import a key:</p>
+<pre><code>gpg --import filename
+</code></pre>
+<p>You might get an error with the newer version of GPG (gpg: error building skey array: Permission denied)</p>
+<pre><code>Try using (--batch):
+gpg --batch --import your.secret.key.asc
+</code></pre>
+<p>Export your key:</p>
+<pre><code>Export public key in binary format:
+gpg --export &lt;KEY ID&gt;
+
+Export public key in ascii format:
+gpg --export -a &lt;KEY ID&gt;
+
+Export secret key in binary format:
+gpg --export-secret-key &lt;KEY ID&gt;
+
+Export secret key in ascii format:
+gpg --export-secret-key -a &lt;KEY ID&gt;
+</code></pre>
+<h4 id="source">Source:</h4>
+<p>https://www.gnupg.org/gph/en/manual/x110.html
+http://www.dewinter.com/gnupg_howto/english/GPGMiniHowto-3.html#ss3.5
+https://www.gnupg.org/documentation/howtos.html
+https://github.com/rldutch1/pgp/blob/master/commandline_switches.html</p>
+<h4 id="pgp-function">PGP Function:</h4>
+<p>Here is a PGP function that I have created and use on my Mac and Linux computers (it works on Windows too with Git or Cygwin installed). I named it "pgp" so that it is different from gpg on Linux/Mac and will not conflict.</p>
+<pre><code>pgp(){
+clear
+case $1 in
+      ascii)
+      echo "ASCII Encrypting... " $2
+      gpg -a -e $2
+      echo "..." &gt;&gt; $2;rm -f $2
+      echo $2 " has been deleted!"
+      ;;
+      clearsign)
+      echo "Signing..." $2
+      gpg --clearsign $2
+      echo $2 " has an associated signature file!"
+      ;;
+      decrypt)
+      if [ ! $3 ]; then
+      echo "Syntax: pgp decrypt outputfile.txt encryptedfile.txt.asc"
+      else
+      gpg --output $2 --decrypt $3
+      fi
+      ;;
+      delete-keys)
+      echo "Deleting..." $2
+      gpg --delete-keys $2
+      gpg --list-keys
+      ;;
+      encrypt)
+      echo "Encrypting..." $2
+      gpg --encrypt $2
+      echo "..." &gt; $2;rm -f $2
+      echo $2 " has been deleted!"
+      ;;
+      exportpublic)
+      echo "Exporting Public Key..." $2
+      gpg --export --armor $2 &gt; $2.asc
+      ;;
+      exportprivate)
+      echo "Exporting PRIVATE KEY..." $2
+      gpg --export --armor $2 &gt; $2.asc
+      gpg --export-secret-keys --armor $2 &gt;&gt; $2.asc
+      ;;
+      fingerprint)
+      gpg --fingerprint $2
+      ;;
+      fingerprint_from_file)
+      gpg --with-fingerprint $2
+      ;;
+      import)
+      echo "Importing..." $2
+      gpg --import $2
+      echo $2 " has been imported!"
+      ;;
+      list)
+      gpg --list-keys
+      ;;
+      message)
+      cd ~/Documents/PGP/messages
+      xyzrh1=message.`date +"%Y%m%d%H%M%S%Z"`
+      vi $xyzrh1.txt; pgp ascii $xyzrh1.txt
+      ;;
+      passencrypt)
+      echo "Encrypting..." $2
+      gpg -c -s $2
+      echo $2 " has been password encrypted!"
+      ;;
+      releasecache)
+      gpgconf --kill gpg-agent;gpgconf --launch gpg-agent
+      ;;
+      receivekeys)
+      gpg --keyserver $2 --recv-keys $3
+      ;;
+      sign)
+      echo "Signing..." $2
+      gpg --sign $2
+      echo $2 " has been signed!"
+      ;;
+      sendkeys)
+      if [ ! $2 ]; then
+      echo "Example: gpg --keyserver hkp://pgp.mit.edu --send-keys 6EE89C2D"
+      else
+      gpg --keyserver $2 --send-keys $3
+      fi
+      ;;
+      update)
+      gpg --update-trustdb
+      ;;
+      uue)
+      echo "UUEncoding..." $2
+      uuencode $2 $2 &gt; $2.uue
+      echo "ASCII Encrypting..." $2.uue
+      gpg -a -e $2.uue
+      echo "..." &gt; $2.uue;rm -f $2 $2.uue
+      echo $2 " has been deleted!"
+      ;;
+      uuegpg)
+      echo "UUEncoding..." $2
+      uuencode $2 $2 &gt; $2.uue
+      echo "Encrypting..." $2.uue
+      gpg --encrypt $2.uue
+      echo "..." &gt; $2.uue;rm -f $2 $2.uue
+      echo $2 " has been deleted!"
+      ;;
+      uuedecrypt)
+      #echo "Decrypting..." $2
+      gpg --decrypt $2 &gt; $2.uue
+      echo "Decoding..." $2
+      uudecode $2.uue;
+      echo "..." &gt; $2.uue;rm -f $2.uue
+      echo $2 " has been decoded!"
+      ;;
+      verify)
+      echo "Signing..." $2
+      gpg --verify $2
+      echo $2 " verify status!"
+      ;;
+      *)
+      message00="gpg --edit-key 5DD98B3E"
+        message01="pgp ascii textfile  (gpg -a -e thefilename)"
+        message02="pgp clearsign textfile  (gpg --clearsign thefilename)"
+        message03="pgp decrypt encryptedfile.tar.gpg  (gpg -o outputfile -d encryptedfile)"
+        message04="pgp decrypto outputfile.tar encryptedfile.tar.gpg  (gpg -o outputfile -d encryptedfile)"
+        message05="pgp delete-keys 5DD98B3E  (gpg --delete-keys keyname)"
+        message06="pgp encrypt filename  (gpg --encrypt thefilename)"
+        message07="pgp exportpublic keyname  (gpg --export --armor thekeyname)"
+        message08="pgp exportprivate keyname  (gpg --export-secret-keys --armor ABCD1234 &gt;&gt; ABCD1234.asc)"
+        message09="pgp fingerprint 5DD98B3E  (gpg --fingerprint key)"
+        message10="pgp fingerprint_from_file file_with_key  (gpg --with-fingerprint thefilename)"
+        message11="pgp import filename.asc  (gpg --import keyfile)"
+        message12="pgp list  (gpg --list-keys)"
+        message13="pgp message"
+        message14="pgp passencrypt textfile  (gpg -c -s thefilename)"
+        message15="pgp receivekeys theservername thekeyname (gpg --keyserver keyserver.ubuntu.com --recv-keys 6EE89C2D)"
+        message16="pgp releasecache (gpgconf --kill gpg-agent;gpgconf --launch gpg-agent)"
+        message17="pgp sendkeys theservername thekeyname  (gpg --keyserver hkp://pgp.mit.edu --send-keys 6EE89C2D)"
+        message18="pgp sign textfile  (gpg --sign thefilename)"
+        message19="pgp update (gpg --update-trustdb)"
+        message20="pgp uue filename (uuencode thefilename thefilename &gt; thefilename.uue;gpg -a -e thefilename.uue)"
+        message21="pgp uuedecrypt filename  (gpg --decrypt thefilename &gt; thefilename.uue;uudecode thefilename.uue)"
+        message22="pgp uuegpg filename (uuencode thefilename thefilename &gt; thefilename.uue;gpg --encrypt thefilename.uue)"
+        message23="pgp verify filename  (gpg --verify signaturefile)"
+      echo $message00
+      echo $message01
+      echo $message02
+      echo $message03
+      echo $message04
+      echo $message05
+      echo $message06
+      echo $message07
+      echo $message08
+      echo $message09
+      echo $message10
+      echo $message11
+      echo $message12
+      echo $message13
+      echo $message14
+      echo $message15
+      echo $message16
+      echo $message17
+      echo $message18
+      echo $message19
+      echo $message20
+      echo $message21
+      echo $message22
+      echo $message23
+      echo " "
+    ;;
+esac
+}
+</code></pre>
+<h4 id="view-your-trust-database">View your trust database:</h4>
+<p>View your trust database and see the marginal and other trust information type:
+    gpg --update-trustdb</p>
+<p>Before a key can be trusted it must be signed and the trust level applied by the key owner. Marginally (Marginal) trusted keys can also be trusted if 3 or more people you trust have chosen to trust the same key that you have marginally trusted. Or if 3 or more marginally trusted people marginally trust the same key then it will be considered trusted by your key.</p>
+<h4 id="gpg-privacy-assistant-gpa">GPG Privacy Assistant (GPA):</h4>
+<p>Graphical user interface for GnuPG called GPG Privacy Assistant (GPA). It can be installed by typing:</p>
+<pre><code>sudo apt-get -y install gpa
+sudo dnf -y install gpa
+</code></pre>
+<h4 id="passphrase-cache-timeout">Passphrase cache timeout:</h4>
+<p>On Fedora Linux, the passphrase cache timeout was 300 seconds (5 minutes). I couldn't find where I could change that setting. I ended up installing dconf-editor and I was able to change the passphrase cache. I added screenshots (dconf-editor_settings##.png.</p>
+<p>I installed Open GnuPG on my Mac using: sudo port install gnupg2
+I like it a lot better thant the GPG Suite that I was previously using because I can encrypt and decrypt from an SSH session without the GUI password prompt preventing me from decrypting something. I have also discovered that I no longer seem to be able to use the command 'gpg &lt; encryptedfile'. I get a message that says it doesn't understand what I am trying to do. I actually have to paste in the encrypted content and press control+d.</p>
+<h4 id="gpgconf">gpgconf:</h4>
+<pre><code>gpgconf --kill gpg-agent
+gpgconf --launch gpg-agent
+
+gnome-keyring-daemon -r
+
+gpg-connect-agent
+</code></pre>
+<p>How can I force the system to ask the passphrase every time?
+https://security.stackexchange.com/questions/103034/gnupg-decryption-not-asking-for-passphrase</p>
+<p>Old versions of GnuPG uses the gpg-agent, which caches the passphrase for a given time. Use the option --no-use-agent or add a line no-use-agent to ~/.gnupg/gpg.conf to prevent using the agent.</p>
+<p>Note: --no-use-agent is obsolete in gpg2 and has no effect.</p>
+<p>Removing the passphrase cacheing and setting it to 1 second. I haven't tried this but it has a green checkmark on stackexchange.</p>
+<p>Edit: ~/.gnupg/gpg-agent.conf</p>
+<pre><code>Add: 
+    default-cache-ttl 1
+    max-cache-ttl 1
+</code></pre>
+<h4 id="reload-the-gpg-agent">Reload the gpg agent:</h4>
+<pre><code>echo RELOADAGENT | gpg-connect-agent
+
+or
+
+Type:
+
+gpg-connect-agent
+
+At the prompt type: RELOADAGENT
+
+Response should be: OK
+
+At the prompt type: BYE
+Reponse should be: OK closing connection
+</code></pre>
+<h4 id="restart-the-gpg-agent">Restart the gpg agent:</h4>
+<pre><code>Type: gpg-connect-agent
+
+At the prompt type: KILLAGENT
+
+Reponse should be: OK closing connection
+</code></pre>
+<h4 id="list-pgpgpg-directories">List PGP/GPG directories:</h4>
+<pre><code>gpgconf --list-dirs
+</code></pre>
+<h4 id="miscellaneous">Miscellaneous:</h4>
+<p>gpg options --debug-level guru --debug-all --verbose</p>
+<p>gpg --debug-level guru --debug-all --verbose</p>
+<p>I was having trouble importing my private key because it was in an older version of GPG. 
+I was getting the following errors:</p>
+<pre><code>gpg: error building skey array: No such file or directory
+gpg import error sending to agent no such file or directory
+gpg: error building skey array: permission denied
+gpg: decryption failed: no secret key
+</code></pre>
+<p>I had to decrypt my passphrase encrypted key using a user that did not have GPG enabled (root).
+I also renamed my .gnupg directory and ran gpg again so that a new .gnupg folder would get created. Inside that 
+directory I had to manually create the private-keys-v1.d directory so the "No such file or directory" error would
+go away.</p>
+<p>I was still having issues and kept seeing a message telling me no private key present whenever I tried to decrypt something.
+I ended up restoring the .gnupg folder from a backup and restarting the gpg agent. </p>
+<h4 id="pinentry">Pinentry</h4>
+<p>Running gpg through SSH session sometimes will error when performing tasks. When I used the pinentry-mode, the password was cached but I was able to decrypt. </p>
+<pre><code>gpg --decrypt --pinentry-mode=loopback &lt;file&gt;
+gpg -c -s --pinentry-mode=loopback &lt;file&gt;
+</code></pre>
+<h4 id="keybase-error-adding-pgpgpg-key">Keybase error adding PGP/GPG key:</h4>
+<pre><code>https://github.com/keybase/client/issues/22458
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../git/" class="btn btn-neutral float-right" title="GiT">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../git/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
