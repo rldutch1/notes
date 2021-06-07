@@ -1028,9 +1028,158 @@ Typically the MySQL database files are located in /usr/local/mysql/data/database
 ###### File locations:
     SELECT TABLESPACE_NAME, FILE_NAME FROM INFORMATION_SCHEMA.FILES \G
 
+#### Natural Sorting of Numbers:
+	https://stackoverflow.com/questions/8557172/mysql-order-by-sorting-alphanumeric-correctly
+	https://www.copterlabs.com/natural-sorting-in-mysql/
+	
+    select lastname, firstname, salary, jobtitle, hiredate from payback order by cast(salary as unsigned), salary;
+
 #### Output to a file:
 
+###### From the mysql command prompt: 
+```
+You can create an output file formatted with comma delimiters and fields enclosed by quotes. The mysql user must have privileges to the output file location.
+select * into
+outfile 'outputfilename.txt'
+fields terminated by ','
+optionally enclosed by '"'
+lines terminated by '\n'
+from yourtablename
+where columnname = 'whatever';
 
+If no path is specified, the file will be located in the default database folder. In my case (Fedora 12) it was located in /var/lib/mysql/play/filename.txt.
+```
+```
+-- You can specify where the output file will go:
+SELECT id,
+   client,
+   project,
+   task,
+   description,
+   time,
+   date
+  INTO OUTFILE '/path/to/file.csv' --mysql user must have privileges to the location.
+  FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
+  LINES TERMINATED BY '\n'
+  FROM ts
+```
+
+From outside of the mysql command prompt (ie. the command line) you can also run a query and create an output file with the results of that query. Create a query that you want to run and save it as an .sql file. Example: test.sql
+
+```
+The content of the test.sql file looks like this:
+				select * from tablename;
+```
+
+To run test.sql type one of the following:
+
+-- If you want tab delimited output format (default):
+```
+mysql databasename -u username -p < test.sql > output.tab
+```
+-- XML output format:
+```
+mysql databasename -u username -p --xml < test.sql > output.xml
+```
+-- If you don't want to create the test.sql file and just want to run everything from one commandline statement and get XML output:
+```
+mysql -u username -p --xml -e 'use databasename; select * from tablename' > output.xml
+```
+-- You can also put the db_name in your script to avoid typing it on the command line (see below).
+```
+mysql -u username -p --xml < test.sql > output.xml
+```
+-- You can create a bash script named getdata and put the following in it.
+```
+mysql -u username -p < test.sql > test.tab
+
+-- Then chmod +x getdata. then run it from the commandline: sh getdata.
+-- You will be prompted for your password and the data will get dumped to test.tab.
+```
+
+-- Connect to a remote database server and directly to a database on that server.
+```
+mysql -h hostname -u databaseuser -p -D databasename
+```
+
+-- To Dump a database to a file and generate full insert statments:
+```
+mysqldump -p -c -e databasename > DatabaseName.sql
+```
+
+-- To dump a table from a database and generate full insert statements:
+```
+mysqldump -p -c -e databasename tablename > TableName.sql
+```
+
+-- To dump all databases on the database server:
+```
+mysqldump -p -c -e --all-databases > AllDatabases.sql
+```
+
+-- To dump all databases on the database server without the data (just a skeleton).
+```
+mysqldump -p -c -e --no-data --all-databases > AllDatabases_Skeleton.sql
+```
+
+-- To dump a database from a remote server:
+```
+mysqldump -h hostname -u username -p -c -e databasename > NameOfDatabaseDumpFile.sql
+```
+
+-- To dump a table from a database on a remote server:
+```
+mysqldump -h hostname -u username -p -c -e databasename tablename > NameOfTableDumpFile.sql
+```
+
+-- To dump all databases on a remote server:
+```
+mysqldump -h hostname -u username -p -c -e --all-databases > NameOfEntireDatabaseDumpFile.sql
+```
+
+-- The contents of test.sql without the database name.
+```
+select * from tablename order by columnName;
+```
+-- The contents of test.sql with the database name.
+```
+use database;
+select * from tablename order by columnName;
+```
+
+#### Padding numbers with zeros:
+###### Number padding
+    -- Prepend zeros to numbers. There are some links that I saw that said you will need to convert the column to non-numerical to get this to work but I did it on an integer field and it worked.
+    
+    -- The 8 means to pad up to 8 characters, the zero is the character you want to pad with.
+    SELECT LPAD('1234567', 8, '0');
+
+#### Password Change:
+
+    use mysql;
+    -- Method 1 (Deprecated):
+    update mysql.user set password('thepassword') where user = 'root';
+    FLUSH PRIVILEGES;
+    
+    -- Method 2 (MySQL 5.7+):
+    update mysql.user set authentication_string=PASSWORD('thepassword') where user='root';
+    FLUSH PRIVILEGES;
+    
+    -- Method 3 (Preferred method for current user.):
+    alter user set password = 'thepassword';
+    FLUSH PRIVILEGES;
+    
+    -- MySQL 5.7:
+    alter user 'root'@'localhost' identified by 'thepassword';
+    alter user 'root'@'%' identified by 'thepassword';
+    
+    -- Method 4 (Preferred method for another user.):
+    alter user set password for 'root'@'localhost' = 'thepassword';
+    FLUSH PRIVILEGES;
+    
+    -- Remote user password change:
+    alter user set password for 'root'@'%' = 'thepassword';
+    FLUSH PRIVILEGES;
 
 #### Path to MySQL files:
     On my MAC:
@@ -1157,6 +1306,65 @@ Change the default mysql> prompt to something functional and useful.
     
     Syntax:
   	mysql -h RemoteServerName -u myusername -p
+
+  	Connect to a remote database server and directly to a database on that server.
+		mysql -h hostname -u databaseuser -p -D databasename
+
+#### Rename a Database
+    The normal way to rename a database is to dump it then import the data to a new database name. Make sure you check the definer for any views that were created in the database.
+    
+    To rename a table type:
+    	RENAME TABLE tb1 TO tb2;
+    
+    Another way to rename a table;
+    ALTER TABLE exampletable RENAME TO new_table_name;
+    
+    The commands below are what I copied from a Stack Exchange article but they did not work for me. I am only leaving them here so that I can study them at some other time.
+    
+    /*
+    mysql -e "CREATE DATABASE \`new_database\`;"
+    for table in `mysql -B -N -e "SHOW TABLES;" old_database`
+    do
+      mysql -e "RENAME TABLE \`old_database\`.\`$table\` to \`new_database\`.\`$table\`"
+    done
+    mysql -e "DROP DATABASE \`old_database\`;"
+    */
+    mysql -u robertme -p
+    mysql -e "CREATE DATABASE \`united_states\`;"
+    for table in `mysql -B -N -e "SHOW TABLES;" test`
+    do
+      mysql -e "RENAME TABLE \`test\`.\`$table\` to \`united_states\`.\`$table\`"
+    done
+    mysql -e "DROP DATABASE \`test\`;"
+
+#### Select:
+###### Select across databases;
+		select mysql.user.user from mysql.user;
+
+		-- Example on https://stackoverflow.com/questions/674115/select-columns-across-different-databases
+		SELECT
+    	mydatabase1.tblUsers.UserID,
+    	mydatabse2.tblUsers.UserID
+		FROM
+   		mydatabase1.tblUsers
+		INNER JOIN mydatabase2.tblUsers
+		ON mydatabase1.tblUsers.UserID = mydatabase2.tblUsers.UserID
+
+###### Select Blobdata:
+		SELECT SUBSTRING(<BLOB COLUMN_NAME>,1,2500) FROM <Table_name>;
+
+###### Null and Not NULL:
+    Show what IS NOT NULL:
+    SELECT * 
+    FROM table 
+    WHERE YourColumn IS NOT NULL;
+    
+    This seems to show what IS NULL:
+    SELECT *
+    FROM table 
+    WHERE NOT (YourColumn <=> NULL);
+    
+    http://stackoverflow.com/questions/5285448/mysql-select-only-not-null-values
 
 #### Service (MySQL):
 ###### Linux and/or MAC:
