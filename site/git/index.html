@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>GiT - My Notes</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "GiT";
+    var mkdocs_page_input_path = "git.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> My Notes</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../pgp/">PGP</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">GiT</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#for-all-users-on-the-system">For all users on the system:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#for-user-level">For user level:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#set-username-and-email-address">Set username and email address:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#set-the-colors-for-git">Set the colors for git:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#set-the-pager-for-git-diff">Set the pager for git diff:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reset-author">Reset author:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#view-git-configuration">View git configuration:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#view-git-username-and-email-address">View git username and email address:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#to-configure-the-preferred-editor">To configure the preferred editor:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exploring-git-auto-completion">Exploring Git Auto-completion:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#push-an-existing-repository-from-the-command-line">Push an existing repository from the command line:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#git-checkout">Git checkout:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#branching">Branching:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#track-a-branch">Track a branch</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#merge-branch">Merge branch:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#to-back-out-of-a-merge-conflict-type">To back out of a merge conflict type:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#to-update-a-branch-with-the-latest-changes-from-master">To update a branch with the latest changes from master:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#if-you-want-to-change-or-revert-the-master-branch-to-the-previous-commit">If you want to change or revert the master branch to the previous commit:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#if-you-want-to-see-all-of-the-branches">If you want to see all of the branches:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#if-you-want-to-see-only-the-remote-branches">If you want to see only the remote branches:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#if-you-want-to-see-only-local-branches">If you want to see only local branches:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#if-you-want-to-see-the-branches-along-with-the-latest-commit-message">If you want to see the branches along with the latest commit message:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-find-out-if-one-branch-has-all-of-the-commits-of-another-branch">How to find out if one branch has all of the commits of another branch.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#git-diff">Git diff</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#word-wrap">Word Wrap</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#git-blame">Git blame:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#commits">Commits</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#to-see-the-commits-for-only-one-file">To see the commits for only one file:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#undo-changes-in-the-staging-area">Undo changes in the staging area:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#amending-commits">Amending Commits:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#add-a-sign-off-to-the-commit-type">Add a "Sign-off" to the commit type:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#to-use-gpgpgp-to-sign-a-commit-you-must-first-configure-git-with-your-gpgpgp-key-so-that-it-can-be-used">To use GPG/PGP to sign a commit you must first configure Git with your GPG/PGP key so that it can be used.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#to-gpgpgp-sign-a-commit-type">To GPG/PGP sign a commit type:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#git-revert">Git Revert:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#git-clean">Git clean:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#git-ignore">Git Ignore</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#global-ignore">Global Ignore</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#comparing-branches">Comparing Branches:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rename-branches">Rename branches:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-fast-forward-vs-true-merge">Using fast-forward vs true merge:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rebase">Rebase:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#stashstashing">Stash/Stashing</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#remote-branches">Remote Branches:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#changeupdate-url">Change/Update URL:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#clone">Clone:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#push">Push:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#log">Log:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#search">Search:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#patch">Patch:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#git-fetch">Git Fetch</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuring-git-aliases">Configuring Git Aliases</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#setup-two-factor-authentication">Setup Two-Factor Authentication:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#on-a-mac">On a MAC:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#on-windows">On Windows:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#merging-git-repositories">Merging Git Repositories:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#list-of-gui-interfaces-for-git-can-be-found-on-the-git-wiki">List of Gui Interfaces for Git can be found on the Git Wiki:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#git-hosting">Git Hosting</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#popular-git-hosting-companies-are">Popular Git hosting companies are:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#self-hosting">Self-Hosting:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#git-tutorials">Git Tutorials</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ubuntu-server-configuration">Ubuntu Server Configuration:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#on-the-server-create-a-git-repository">On the Server, create a git repository:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#on-the-client-create-a-repository">On the client, create a repository:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#push-your-files">Push your files:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#methods-to-push-all-branches">Methods to push all branches:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#to-automatically-push-all-branches-to-their-matching-branch">To automatically push all branches to their matching branch:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#to-only-push-the-current-branch-to-its-matching-branch">To only push the current branch to its matching branch:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#to-generate-the-ssh-keys">To generate the SSH keys:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#change-the-permissions-to-700">Change the permissions to 700.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#point-repository-to-a-different-server-and-keep-the-history">Point repository to a different server and keep the history:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#github-desktop-git-shell">GitHub Desktop (Git Shell):</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mingw32-git-bash">MINGW32 (Git Bash):</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#making-git-auto-commit">Making Git auto-commit:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-indexlock-issue">The index.lock issue:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instaweb">Instaweb:</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../mysql/">MySQL</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">My Notes</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>GiT</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="configuring-git">Configuring git:</h2>
+<h4 id="for-all-users-on-the-system">For all users on the system:</h4>
+<pre><code>git --config system
+</code></pre>
+<h4 id="for-user-level">For user level:</h4>
+<pre><code>git --config global
+</code></pre>
+<h4 id="set-username-and-email-address">Set username and email address:</h4>
+<pre><code>git config --global user.name "Robert Holland"
+git config --global user.email rob@example.com
+</code></pre>
+<h4 id="set-the-colors-for-git">Set the colors for git:</h4>
+<pre><code>git config --global color.ui auto
+git config --global color.ui true
+</code></pre>
+<h4 id="set-the-pager-for-git-diff">Set the pager for git diff:</h4>
+<pre><code>git config --global core.pager 'less -R'
+</code></pre>
+<p>The git config --global command is also used to create aliases.</p>
+<h4 id="reset-author">Reset author:</h4>
+<p>After updating my username and email address I had to reset the author by typing:</p>
+<pre><code>git commit --amend --reset-author
+(can use this to reset the author for the latest commit)
+</code></pre>
+<h4 id="view-git-configuration">View git configuration:</h4>
+<p>If you want to see what is already configured:</p>
+<pre><code>git config --list
+</code></pre>
+<h4 id="view-git-username-and-email-address">View git username and email address:</h4>
+<p>If you want to see the username or email address:</p>
+<pre><code>git config user.name
+git config user.email
+</code></pre>
+<h4 id="to-configure-the-preferred-editor">To configure the preferred editor:</h4>
+<pre><code>git config --global core.editor "EditorNameHere"
+git config --global core.editor "mate -wl1" (wait for textmate to finish and put the cursor on line one).
+git config --system color.ui true
+</code></pre>
+<h4 id="exploring-git-auto-completion">Exploring Git Auto-completion:</h4>
+<p>Download git-completion.bash and rename it to .git-completion.bash.</p>
+<p>Download it from here:</p>
+<pre><code>curl -OL https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
+</code></pre>
+<p>Rename the file to .git-completion.bash (notice the leading dot (.):</p>
+<pre><code>mv git-completion.bash .git-completion.bash
+</code></pre>
+<p>Enter this in the .bash_profile or equivalent:
+    #Git configuration file:
+        if [ -f ~/.git-completion.bash ]; then
+        source ~/.git-completion.bash
+        fi</p>
+<p>Create a new repository on the command line make a new directory then type:</p>
+<pre><code>touch README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/username/reponame.git
+git push -u origin master  //Only need to do this the first time you push to the server so that the upstream branch gets set.
+</code></pre>
+<h4 id="push-an-existing-repository-from-the-command-line">Push an existing repository from the command line:</h4>
+<pre><code>git remote add origin https://github.com/username/reponame.git
+git push -u origin master  //Only need to do this the first time you push to the server so that the upstream branch gets set.
+</code></pre>
+<h4 id="git-checkout">Git checkout:</h4>
+<p>Undo changes to the git repository:
+I changed a file and saved it but I have not staged (git add) it yet. Git status shows what was changed and I want to undo my changes. To replace the file in the local directory with a copy of what you have in the working area type:</p>
+<pre><code>git checkout -- filename
+This will replace the file that you changed with an original version before the change. If you only use git checkout filename (without the dashes), you may accidentally checkout a branch that has the same name as the file you are trying to restore (unlikely because branches don't have extensions). The double dashes -- tells git to stay in the current branch and look for the file you want to restore.
+</code></pre>
+<h4 id="branching">Branching:</h4>
+<p>If you want to make another version of your files just make a branch.
+To create a new branch type:
+    git branch newbranchname
+Git will automatically copy the master repo into your new branch.
+Change into the new branch by typing:</p>
+<pre><code>git checkout newbranchname
+
+git checkout -b newbranchname : Will create the new branch and change into it.
+</code></pre>
+<p>You can make changes without disturbing the master
+files. If all goes well you can merge your changes into the master branch.</p>
+<h4 id="track-a-branch">Track a branch</h4>
+<p>If you have a branch that is not tracking you can add it to be tracked by typing:</p>
+<pre><code>    git config branch.branchname.remote origin
+    or
+    git config branch.branchname.merge refs/heads/master
+    or
+    git branch --set-upstream branchname origin/branchname (This works with version 1.7 and later).
+    or
+    git branch --set-upstream-to=origin/&lt;branch&gt; master
+</code></pre>
+<h4 id="merge-branch">Merge branch:</h4>
+<p>To merge your new branch into master, first go to the master branch
+by typing: </p>
+<pre><code>git checkout master
+</code></pre>
+<p>then type:</p>
+<pre><code>git merge branchname
+</code></pre>
+<p>The master branch will now have the same changes as branchname</p>
+<h4 id="to-back-out-of-a-merge-conflict-type">To back out of a merge conflict type:</h4>
+<pre><code>git merge --abort
+This will leave your changes alone and not do the merge.
+</code></pre>
+<h4 id="to-update-a-branch-with-the-latest-changes-from-master">To update a branch with the latest changes from master:</h4>
+<p>You have two options:
+    The first is a merge, but this creates an extra commit for the merge.
+    Checkout each branch:</p>
+<pre><code>    git checkout branch1
+
+Then merge:
+
+    git merge origin/master
+
+Then push:
+    git push origin branch1
+</code></pre>
+<p>Alternatively, you can do a rebase (easier):</p>
+<pre><code>git fetch
+git rebase origin/master
+</code></pre>
+<h4 id="if-you-want-to-change-or-revert-the-master-branch-to-the-previous-commit">If you want to change or revert the master branch to the previous commit:</h4>
+<pre><code>Checkout previous commit on master
+
+    git checkout abc123...
+
+While in the abc123... detached branch, create branch for new master
+
+    git checkout -b new_master
+
+Delete old master
+
+    git branch -D master
+
+Make new_master master
+
+    git branch -mv new_master master
+
+Alternatively you can reset current branch to one commit ago on master
+
+    git reset --hard abc123...
+
+Then you will have to force push to the repository:
+
+    git push --force origin master
+
+Try this if you get an error force pushing "error: denying non-fast forward refs/heads/master (you should pull first)" and you have access to the remote git server in ssh, you can go into the git remote directory and set:
+
+    git config receive.denyNonFastforwards false
+
+If all fails or you don't have access to the remote repository, just make an update commit correcting the error.
+</code></pre>
+<p>If you want to delete the branch (make sure you are on the master branch) type:</p>
+<pre><code>git branch -D branchname
+</code></pre>
+<h4 id="if-you-want-to-see-all-of-the-branches">If you want to see all of the branches:</h4>
+<pre><code>git branch -a
+git branch show-all &lt;-- Doesn't seem to show all branches unless you have checked them out at some point.
+</code></pre>
+<h4 id="if-you-want-to-see-only-the-remote-branches">If you want to see only the remote branches:</h4>
+<pre><code>git branch -r
+</code></pre>
+<h4 id="if-you-want-to-see-only-local-branches">If you want to see only local branches:</h4>
+<pre><code>git branch
+</code></pre>
+<h4 id="if-you-want-to-see-the-branches-along-with-the-latest-commit-message">If you want to see the branches along with the latest commit message:</h4>
+<pre><code>git branch -v
+</code></pre>
+<h4 id="how-to-find-out-if-one-branch-has-all-of-the-commits-of-another-branch">How to find out if one branch has all of the commits of another branch.</h4>
+<pre><code>git branch --merged
+(This will show a list of all of the branches that contain what is in your current branch. This will allow you to delete the other matching branches without causing any harm).
+</code></pre>
+<h4 id="git-diff">Git diff</h4>
+<p>To see all of the changes made to the files type:</p>
+<pre><code>git diff
+</code></pre>
+<p>You can see a line by line difference between what is in the repository or staging area compared to what is in the working area. If you just want to see what is in a single file type:</p>
+<pre><code>git diff singlefilename
+</code></pre>
+<p>If you have already staged a file and want to see the differences between that staged file and what you have in the repository then type:</p>
+<pre><code>git diff --staged
+</code></pre>
+<p>diff between two different commits in the same branch, you can put the SHA of the oldest commit first then the SHA of the latest commit last to see what is not in (or missing) from the first file.</p>
+<pre><code>git diff d861a745:/path/to/filename.txt 118192cf:/path/to/filename.txt
+</code></pre>
+<p>diff between two different commits in the same branch, you can put the SHA of the latest commit first then the SHA of the older commit last to see what was added to the file.</p>
+<pre><code>git diff 118192cf:/path/to/filename.txt d861a745:/path/to/filename.txt
+</code></pre>
+<h4 id="word-wrap">Word Wrap</h4>
+<p>When you are in the diff view you can use the (minus sign + shift + S) to word wrap the long lines. Repeat the same key combination to undo the word wrap. Also you can see the changes side by side by typing:</p>
+<pre><code>git diff --color-words filename
+</code></pre>
+<h4 id="git-blame">Git blame:</h4>
+<p>To see all the changes line by line in a file and who made the change over time type:</p>
+<pre><code>git blame -w filename
+The -w does not show differences in whitespace.
+</code></pre>
+<h4 id="commits">Commits</h4>
+<p>If you want to commit a file and add a message:</p>
+<pre><code>commit --message="This is my message." "filename.txt"
+</code></pre>
+<p>If you want to see a particular commit type:</p>
+<pre><code>git show [SHA Key]
+</code></pre>
+<h4 id="to-see-the-commits-for-only-one-file">To see the commits for only one file:</h4>
+<pre><code>git log --follow filename
+</code></pre>
+<h4 id="undo-changes-in-the-staging-area">Undo changes in the staging area:</h4>
+<p>I have made a change to a file and it shows up as changed in the working area. I used git add filename to add the file to the staging area. Now I want to take the file out of the staging area and put it back in the working area.</p>
+<pre><code>git reset HEAD filename
+You will see an "M" next to the file that indicates that the staging area was modified.
+</code></pre>
+<p>The -a option sends the commit directly to the repository skipping the staging area:</p>
+<pre><code>git commit -am "Message"
+</code></pre>
+<p>You cannot use the "-am" option when committing modified files individually. This is used in situations where you have multiple files that have been modified but you only want to commit some of them. The "-a" will have to be left out, only use "-m".
+Example:</p>
+<pre><code>git commit -m "Commit message" "File1.txt" "File2.txt"
+</code></pre>
+<h4 id="amending-commits">Amending Commits:</h4>
+<p>You can only amend the last commit because it doesn't have any more commits after it. Once you have added another commit you can't amend a previous commit. If you need to change previous commit just make a new commit with the changes that you need.
+I have already committed a file and then I make another change to the file and add it to the staging area. I want to commit the additional change into the previous commit:</p>
+<pre><code>git commit --amend -m "Same message or different one."
+</code></pre>
+<h4 id="add-a-sign-off-to-the-commit-type">Add a "Sign-off" to the commit type:</h4>
+<pre><code>git commit -s -am "Message"
+</code></pre>
+<h4 id="to-use-gpgpgp-to-sign-a-commit-you-must-first-configure-git-with-your-gpgpgp-key-so-that-it-can-be-used">To use GPG/PGP to sign a commit you must first configure Git with your GPG/PGP key so that it can be used.</h4>
+<pre><code>git config user.signingkey &lt;HEX KEY ID&gt;
+
+or for global setting using the same key for every repository.
+
+git config --global user.signingkey &lt;HEX KEY ID&gt;
+</code></pre>
+<h4 id="to-gpgpgp-sign-a-commit-type">To GPG/PGP sign a commit type:</h4>
+<pre><code>git commit -S -am "Message" &lt;--(Uppercase S for GPG signed commits).
+</code></pre>
+<p>Can use the same command to change the commit message.
+You can amend a commit that is previous to the most recent commit. You will have to use git to checkout the commit using the SHA hash and then re-commit it with the new changes.</p>
+<pre><code>git checkout 2d2323d23423d -- filename
+</code></pre>
+<p>This will put the file in the staging area and not the working area. When you checkout a file from the staging area it will go to the working area. (git diff --staged)</p>
+<h4 id="git-revert">Git Revert:</h4>
+<p>Undo the changes made by a commit. It will take all of the changes and add everything that was deleted and delete everything that was added.</p>
+<pre><code>git revert SHA
+</code></pre>
+<p>Git reset:
+Moves the HEAD pointer. Similar to making a recording on a tape then rewinding 10 seconds and recording again.</p>
+<p>Has 3 options.</p>
+<pre><code>git reset --soft sha
+Does not change the staging index or working directory. Only the repository is set back to an earlier version.
+
+git reset --mixed sha (default)
+Changes the staging index to match the repository. Does not change the working directory.
+--mixed is almost as safe as --soft.
+
+git reset --hard sha
+changes staging index and working directory to match the repository. (Rewinding 10 seconds and pressing record.) It removes every change that was made before the commit that you select.
+</code></pre>
+<h4 id="git-clean">Git clean:</h4>
+<p>Remove unwanted files from your git directory.</p>
+<pre><code>git clean -n (does a dry run)
+
+git clean -f (permanently deletes the untracked files from your directory)
+(see cached option under git ignore below for how to remove files that have been previously tracked but you don't want to track them anymore.
+</code></pre>
+<h4 id="git-ignore">Git Ignore</h4>
+<p>Create a file in the root directory called .gitignore and place files and extensions in .gitignore that you want git to ignore.</p>
+<pre><code>Can use regular expressions: * ? [aeiou] [0-9]
+
+Negate expressions with !
+    Example: !index.php tells git to not ignore index.php.
+
+Ignore all files in a directory with a trailing slash.
+    DirectoryName/DirectoryName/
+
+Comment with #
+</code></pre>
+<h4 id="global-ignore">Global Ignore</h4>
+<p>Put all of your git ignore commands in one file and point git to it using: </p>
+<pre><code>git config --global
+</code></pre>
+<p>The file can be named anything you want. You just have to tell git where it is.</p>
+<pre><code>git config --global core.excludesfile path/to/filename (Ex: .ignore_global)
+</code></pre>
+<p>Ignore files that have been previously tracked but you don't want to track them anymore. You can use the git rm command to delete the file from your directory and git will automatically remove it from being tracked by the repository. If you want to keep the file but remove it from being tracked you can use:</p>
+<pre><code>git rm --cached filename
+</code></pre>
+<p>This removes the file from being tracked by git. If you do a git status it will show as "deleted" but it really isn't. It is just no longer being tracked.</p>
+<p>Git does not track empty directories. If you want to track a directory you will have to put a file in it. Most commonly people put a file named .gitkeep or placeholder.txt inside the directory so that git will watch the directory.</p>
+<h4 id="comparing-branches">Comparing Branches:</h4>
+<pre><code>git diff master..newbranch 
+The branch listed second in your command is the "b" branch in the diff output.
+</code></pre>
+<p>A different view for diff:</p>
+<pre><code>git diff --color-words newbranch..master
+</code></pre>
+<p>If you want to compare two branches but not the latest commit of one branch (the previous commit):</p>
+<pre><code>git --color-words master..newbranch^
+</code></pre>
+<p>If you want to compare a file from the most recent commit on the master branch to the most recent commit on the 32a79a7 branch (the number 0 is the most recent commit of that branch, 1 would be the second most commit):</p>
+<pre><code>git diff master~0 32a79a7~0 php/update_cal.php
+</code></pre>
+<p>If you wanted to compare the same file between two different branches. *The branch listed second is the "b" branch in the diff output:</p>
+<pre><code>git diff master newtest -- testing.txt
+</code></pre>
+<h4 id="rename-branches">Rename branches:</h4>
+<p>Switch to the branch that you want to rename.</p>
+<pre><code>git branch -m oldbranchname newbranchname
+
+git branch --move oldbranchname newbranchname
+</code></pre>
+<h4 id="using-fast-forward-vs-true-merge">Using fast-forward vs true merge:</h4>
+<pre><code>Example: If you make a new branch from master and make changes to the new branch without making any changes to master, then merge the new changes into master, you are doing a fast forward merge. No new commit will need to be made because you are just adding more or to "updating" master.
+
+If you make a new branch and make changes to the new branch and also make changes to master and do a merge then you are doing a true merge and you will have a merge conflict and will need to specify the differences that you want to keep or discard.
+</code></pre>
+<p>If you want to specify a merge tool to use when merging files you can do so by typing:</p>
+<pre><code>git mergetool --tool=NameOfMergeTool
+</code></pre>
+<h4 id="rebase">Rebase:</h4>
+<p>Process Tracking (rebase)
+    Process tracking is when you merge the master branch into your working branch to update your working branch with new stuff from the master branch. This helps you reduce the number of merge conflicts that occur when you finally have to merge your changes back into master.</p>
+<h4 id="stashstashing">Stash/Stashing</h4>
+<p>A stash is not a commit and they do not have a SHA associated with them. You use "stash" when you are in one branch then try to checkout another branch without first saving the changes for the branch you are in. You will get a message telling you that you will lose the changes that you have already made. You can save them by stashing them and then continue to checkout the other branch.</p>
+<pre><code>To stash type:
+
+git stash save "Message for stash."
+</code></pre>
+<p>If you want to see a list of items in the stash type:</p>
+<pre><code>git stash list
+
+You will see stash{0}, stash{1}, etc. It doesn't matter which branch you are on, you will still be able to see the stash and pull it out of the stash. This is helpful if you realize you are making changes to the wrong branch. Just stash the changes and checkout the branch you need to apply the changes to and apply the stash.
+
+If you want to see a particular stash, you will have to reference it by its number. For example: If I wanted to see what was in stash{0} I would type:
+
+    git stash show stash@{0}
+
+To see the stash in a more detailed way (diff), you will have to use the "Patch" option. Type:
+
+    git stash show -p stash@{0}
+</code></pre>
+<p>To take the stash out of the stash repository you can use two commands:</p>
+<pre><code>git stash pop
+git stash apply
+
+The difference is that git stash pop will remove the stash from the stash repository and git stash apply will leave a copy in the stash repository.
+</code></pre>
+<p>Delete single items that are in the stash type:</p>
+<pre><code>git stash drop 0
+</code></pre>
+<p>Delete all items in the stash by typing:</p>
+<pre><code>git stash clear
+</code></pre>
+<h4 id="remote-branches">Remote Branches:</h4>
+<p>If you want to see all of the branches on the remote type:</p>
+<pre><code>git remote
+git remote -v (more verbose information)
+</code></pre>
+<p>If you want to add a remote repository type:</p>
+<pre><code>git remote add &lt;alias&gt; &lt;url&gt;
+Example: git remote add origin https://github.com/rlholland/reponame.git
+You don't have to use the name "origin" you can change it to anything you want.
+</code></pre>
+<p>You can clone a repository that you don't own and make changes to it then push your changes to your own repository.
+Just use git remote add and create another path to your repository.</p>
+<pre><code>Example:
+    git remote add new-origin path-to-new-repository
+    Now you can push-pull to the new-origin and also pull updates from the old origin that you don't own.
+</code></pre>
+<h4 id="changeupdate-url">Change/Update URL:</h4>
+<p>If you want to change/update the URL in .git/config to point to a different repository:</p>
+<pre><code>git remote set-url &lt;alias&gt; &lt;url&gt;
+Example:
+git remote set-url origin B:/Millennium/mPage/gitrepositories/azb_custom_components.git
+</code></pre>
+<p>This method defaults to SSH.</p>
+<pre><code>git remote set-url origin git@github.com:rlholland/remoterepositoryname.git
+</code></pre>
+<p>This method specifically uses SSH.</p>
+<pre><code>git remote add origin ssh://username@servername/path/to/repository.git
+</code></pre>
+<p>If you want to remove a remote repository type:</p>
+<pre><code>git remote rm remoterepositoryname
+Example:
+git remote rm origin
+</code></pre>
+<p>If you want to look at the remote SHA you can type:</p>
+<pre><code>cat .git/refs/remotes/origin/master
+This will show you the latest SHA on the remote
+</code></pre>
+<h4 id="clone">Clone:</h4>
+<p>If you want to clone a remote repository into a folder that you name type:</p>
+<pre><code>git clone https://github.com/rlholland/reponame.git newlocalfoldername
+</code></pre>
+<p>You can also clone a specific branch by using the -b option.</p>
+<pre><code>Example:
+git clone -b &lt;branch&gt; &lt;remote_repo&gt;
+git clone -b thebranchname git@github.com:user/myproject.git
+</code></pre>
+<p>If you want to clone using SSH:</p>
+<pre><code>git clone ssh://username@servername/absolute/path/to/git/repo.git
+</code></pre>
+<h4 id="push">Push:</h4>
+<p>If you want to push all changes:</p>
+<pre><code>git push --all "https://github.com/rlholland/reponame.git"
+</code></pre>
+<h4 id="log">Log:</h4>
+<p>If you want to see the commits that were made to the git repo, type:</p>
+<pre><code>git log
+</code></pre>
+<p>This will show you all of the commits and the messages that were entered when the commit was made. If you want to limit the display of message to a certain number then type:</p>
+<pre><code>git log -n 10
+This will limit the number of messages displayed on the screen to 10.
+</code></pre>
+<p>If you want to see all of the commits from the beginning up to a certain date type:</p>
+<pre><code>git log --until=2014-05-25
+</code></pre>
+<p>If you want to see all of the commits since a certain date to the present type:</p>
+<pre><code>git log --since=2014-05-25
+</code></pre>
+<p>You can use both commands together to see commits between two dates.</p>
+<pre><code>git log --since="two weeks ago" --until="3 days ago"
+git log --since="two.weeks" --until="3.days"
+</code></pre>
+<p>You can see commits made by a specific person (author) by typing:</p>
+<pre><code>git log --author="Robert" (can use quotes if search term has a space).
+</code></pre>
+<p>You can search the commit messages for an expression by using grep (Global Regular Expression). Type:</p>
+<pre><code>git log --grep="Text you are looking for" (this is case sensitive).
+</code></pre>
+<p>You can ignore case with:</p>
+<pre><code>git log --grep="Text you are looking for" -i  (the dash "i" will ignore case).
+</code></pre>
+<p>You can show the log file by SHA:</p>
+<pre><code>git log SHA1..SHA2
+Example: git log 23fadf323..938533arad --oneline
+
+The --oneline shows part of the SHA and the commit on one line.
+git log --format=oneline shows the complete SHA and message on one line.
+</code></pre>
+<p>You can show the log on just one file from a certain point and view the changes.</p>
+<pre><code>git log -p SHA.. index.html
+git log -p --since="2014-04-01" index.html (The -p shows the differences)
+</code></pre>
+<p>To see the status or summary of the commits you can use:</p>
+<pre><code>git log --stat
+git log --summary
+git log --stat --summary
+</code></pre>
+<p>Git can search diffs with the -S option (it's called pickaxe in the docs)
+    http://stackoverflow.com/questions/4468361/search-all-of-git-history-for-a-string</p>
+<h4 id="search">Search:</h4>
+<p>It's also possible to search for commits that introduce or remove a particular line of source code. This is called a pickaxe, and it takes the form of -S"<string>". For example, if you want to know when the string Hello, World! was added to any file in the project, you would use the following command:</p>
+<pre><code>git log -S"Hello, World!"
+</code></pre>
+<p>Find any commit that added or removed the string password.</p>
+<pre><code>git log -Spassword
+</code></pre>
+<h4 id="patch">Patch:</h4>
+<pre><code>git log -p will show the diffs. If you provide a file (-p file), it will generate a patch for you.
+
+
+git log -G looks for differences whose added or removed line matches the given regexp, as opposed to -S, which "looks for differences that introduce or remove an instance of string".
+
+git log --all searches over all branches and tags; alternatively, use --branches[=&lt;pattern&gt;] or --tags[=&lt;pattern&gt;]
+</code></pre>
+<p>If you want to search using a regular expression instead of a string, you can use the -G"<regex>" flag instead. This is a very powerful debugging tool, as it lets you locate all of the commits that affect a particular line of code. It can even show you when a line was copied or moved to another file.</p>
+<p>To see a GPG signature:</p>
+<pre><code>git log --show-signature
+</code></pre>
+<p>A good Git log command to show a lot of detail is:</p>
+<pre><code>git log --graph --oneline --decorate --all
+</code></pre>
+<p>If you want to see the log for a specific branch type:</p>
+<pre><code>git log specificbranch --oneline -3 (the -3 shows the latest 3 logs)
+</code></pre>
+<p>If you want to see the log differences in patch mode type:</p>
+<pre><code>git log -p branchname..origin/branchname
+</code></pre>
+<p>If you only want to see the log entries for particurlar files type:</p>
+<pre><code>git log -- foo.txt bar.txt
+</code></pre>
+<h4 id="git-fetch">Git Fetch</h4>
+<p>This synchronizes any remote branches we don't have locally so when you type git branch it will show you all of the branches.</p>
+<p>If you want to fetch type:</p>
+<pre><code>git fetch origin
+If you are tracking you don't need to type the "origin" just type:
+git fetch
+</code></pre>
+<p>Three basic guidelines:</p>
+<pre><code>Always fetch before you work.
+Fetch before you push
+Fetch often
+You can also use "git pull"
+</code></pre>
+<p>Git Pull
+    git pull does the same thing as git fetch except it automatically does the merge.
+    git pull = git fetch + git merge</p>
+<p>Checkout Remote Branches
+These commands will checkout the branch and track them:</p>
+<pre><code>git branch newbranchname HEAD
+git branch newbranchname anycommitSHA
+git branch newbranchname origin/branchname
+</code></pre>
+<p>To delete a remote branch use a colon:</p>
+<pre><code>git push origin :branchname
+</code></pre>
+<p>A little information history on the git push command. It used to be done like this:</p>
+<pre><code>    git push origin branchname:branchname. 
+    The colon between them means that you are telling git to push to origin the local branchname to the remote branchname. If you don't specify the colon and you only have one branchname, git assumes they are the same.
+</code></pre>
+<p>So the git push origin :branchname means to push to origin nothing locally to the remote branchname. The remote branchname is now getting nothing pushed to it and is deleted.</p>
+<p>The new way to delete a branch is:</p>
+<pre><code>    git push origin --delete branchname
+</code></pre>
+<p>If you want to modify someones elses code that you find on GitHub, you will have to "Fork" it then make your changes. Once you are done with your changes, you can create a "Pull Request" so that the original owner can look at your code and decide to incorporate it into theirs.</p>
+<p>Configure the prompt to show the git branch when in a git repo:</p>
+<p>Edit the .bashrc file and enter below</p>
+<pre><code>BEGIN:
+# Git specific environment and startup programs
+    if [ -f ~/.git-prompt.sh ]; then
+          source ~/.git-prompt.sh
+    fi
+
+#Git Prompt
+  PS1="[\u:\w]\$(__git_ps1)$ "  #&lt;-- On Fedora Linux
+    export PS1='\W$(__git_ps1 "(%s)") &gt; '  #&lt;-- On Mac OSX
+END:
+</code></pre>
+<p>If the shell does not load the .git_prompt.sh file you may see the following error on the command line.</p>
+<pre><code>__git_ps1: command not found
+
+If you want to see the current prompt string "PS1" settings type "echo $PS1"
+</code></pre>
+<h4 id="configuring-git-aliases">Configuring Git Aliases</h4>
+<p>You can create aliases for Git in the .gitconfig file two ways. You can edit the file directly or you can use the git config --global command.</p>
+<pre><code>For example:
+I didn't want to type the entire log line below so I created a shortcut for it in the .gitconfig file by using the git config --global command.
+    git log --graph --oneline --decorate --all
+
+I created an alias for it named "logg" by typing:
+    git config --global alias.logg "log --graph --oneline --decorate --all"
+
+Now I only have to enter "git logg" to get the same output.
+</code></pre>
+<p>Re-install Git icons on Windows
+    github --reinstall-shortcuts</p>
+<p>Here are some more common Git aliases:</p>
+<pre><code>git config --global alias.co checkout
+git config --global alias.cm commit
+git config --global alias.br branch
+git config --global alias.dfs "diff --staged"
+git config --global alias.logg "log --graph --oneline --decorate --all"
+</code></pre>
+<h4 id="setup-two-factor-authentication">Setup Two-Factor Authentication:</h4>
+<p>Git credentials:
+Immediately stop the credential manager on a Mac if you have your password stored/cached for a specific amount of time.</p>
+<pre><code>git credential-cache exit
+</code></pre>
+<h4 id="on-a-mac">On a MAC:</h4>
+<p>To remove your credentials from the OSX Keychain and configure for two-factor authentication, type the following at the command prompt:</p>
+<pre><code>git credential-osxkeychain erase
+    protocol=https
+    host=github.com (press enter twice to finish)
+</code></pre>
+<p>You now need to get a personal access token from Github.
+Log into Github and select "Security" and enable two-factor authentication.
+Click on "Developer settings" then "Personal Access Token" and click the "Generate New Token" button. If you use more than one computer, it is a good idea to include the name of your computer in the name of the token so that you can revoke it if necessary.
+Copy the token and paste it in when you are prompted for your password during a commit.</p>
+<h4 id="on-windows">On Windows:</h4>
+<p>You have to install Github Desktop which has the two-factor authentication built in (just sign in with your Github.com account and that should get two-factor setup for the GUI part. If you want to use the same two-factor from the command line, you will have to install "Git for Windows (https://git-scm.com/download/win)". Once that is installed, go to Github desktop and click the "Repository" dropdown and depending on which shell you have configured under "Options" --&gt; "Advanced", either select "Open Git Command Prompt", "Open Git Powershell", or "Open Git in Bash".</p>
+<pre><code>(If you try to push without the correct configuration in the .gitconfig file, you may see a message similar to the one below:
+
+    fatal: unable to access 'https://github.com/rlholland/gitnotes.git/': SSL certificate problem: unable to get local issuer certificate)
+
+Once you have your favorite command prompt open, edit the .gitconfig file (located in the root of your profile directory and/or in your home folder if you are on a network with an automatically mapped home directory) and enter the following so that you can push from the command line using two-factor authentication.
+
+[http]
+sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+sslbackend=schannel
+</code></pre>
+<p>(Check for the correct path to ca-bundle.crt if you are using 32bit Windows).</p>
+<p>After the .gitconfig file has been modified and saved, do a push from your repository and you should not get prompted for a password. Your two-factor authentication is setup for your computer. If you lose your computer or misplace it, you can always log into Github and revoke your Personal Access Token for that computer.</p>
+<h4 id="merging-git-repositories">Merging Git Repositories:</h4>
+<pre><code>http://blog.caplin.com/2013/09/18/merging-two-git-repositories/
+</code></pre>
+<h4 id="list-of-gui-interfaces-for-git-can-be-found-on-the-git-wiki">List of Gui Interfaces for Git can be found on the Git Wiki:</h4>
+<pre><code>https://git.wiki.kernel.org/index.php/InterfacesFrontendsAndTools
+</code></pre>
+<h4 id="git-hosting">Git Hosting</h4>
+<p>There are two ways to host, Use a hosting company or host yourself.</p>
+<h4 id="popular-git-hosting-companies-are">Popular Git hosting companies are:</h4>
+<pre><code>    http://github.com
+    http://bitbucket.org
+    http://gitorious.org
+</code></pre>
+<h4 id="self-hosting">Self-Hosting:</h4>
+<pre><code>    Gitosis - http://github.com/tv42/gitosis (development for this stopped a few years ago)
+    Gitolite - http://github.com/sitaramc/gitolite
+</code></pre>
+<h4 id="git-tutorials">Git Tutorials</h4>
+<pre><code>Michael's Git Tutorial - Setting Up a Git Server https://www.youtube.com/watch?v=SyMkLQLC3Kg
+How to Setup a Git SSH Server and Client on Ubuntu https://www.youtube.com/watch?v=lXSZUuDW4nY
+Creating a Git Server on a Windows OS https://www.youtube.com/watch?v=w3eRlEhzAZk&amp;ebc=ANyPxKpNRpbhQZ_nlL7IxaYeM_5rOLOI2RPJi2kv1jJuw6DUEEe14nsBvDRHvBjQKmO7DIvaOUzprWUCtFUXdcO9X-cLOpYrHg
+</code></pre>
+<p>Pushing to GitHub with HTTPS and 2-Factor authentication https://www.youtube.com/watch?v=hJLaXNMz8zw
+    http://www.linux-magazine.com/Online/Features/Install-Your-Own-Git-Server
+    http://studyhat.blogspot.com/2010/10/install-your-own-git-server-on-cent-os.html
+    http://fedoracoreproject.blogspot.com/2010/02/how-to-install-vnc-server-on-fedora.html
+    GitHub Instructions - http://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols
+    GitHub Instructions - http://git-scm.com/book/ch4-7.html
+    Installing on AIX, HP-UX, Solaris - http://blog.boreas.ro/2008/03/porting-git-to-hp-ux-pa-risc-and-aix.html</p>
+<h4 id="ubuntu-server-configuration">Ubuntu Server Configuration:</h4>
+<p>To find the Gateway: route -n</p>
+<pre><code>On the server:
+
+    sudo vi /etc/network/interfaces (Set the eth0 interface to a static IP address)
+    auto lo
+    iface lo inet loopback
+    auto eth0
+    iface eth0 inet static
+    address 192.168.1.2
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+
+From the client:
+    sudo vi /etc/hosts (enter the Git Server's information)
+    sudo vi /etc/ssh/sshd_config (Configure SSH to accept access by SHA key instead of tunnelled clear text passwords)
+    #Find the line that says: PasswordAuthentication yes
+    #and change it to read: PasswordAuthentication no
+    #uncomment the line.
+
+    sudo restart ssh
+</code></pre>
+<p>If you want to use the Git user:</p>
+<pre><code>sudo adduser git
+su - git
+mkdir .ssh
+chmod 700 .ssh
+touch .ssh/authorized_keys
+chmod 600 .ssh/authorized_keys (Make sure only the owner has access rights)
+</code></pre>
+<p>Create an RSA key on the client and copy it to the server.</p>
+<pre><code>ssh-keygen -t rsa
+ssh-keygen -t rsa -b 4096
+(See below to copy the public key to the git user authorized_keys file on the server.) This method will allow ssh://git@servername/path/to/repo.git to be used for push pull operations.
+</code></pre>
+<p>Another method using openssl:</p>
+<pre><code>openssl genrsa -out id_rsa 4096
+openssl rsa -in id_rsa -pubout &gt; id_rsa.pub
+</code></pre>
+<p>Send your "public" key to the server:</p>
+<pre><code>cat ~/.ssh/id_rsa.pub | ssh user@remote-server "mkdir -p ~/.ssh &amp;&amp; cat &gt;&gt;  ~/.ssh/authorized_keys"
+</code></pre>
+<p>Install Git on the server (if it isn't installed already):</p>
+<pre><code>sudo apt-get -y install git
+</code></pre>
+<p>Find out what shells are currently in use:</p>
+<pre><code>cat /etc/shells
+</code></pre>
+<p>Find out which shell git is using:</p>
+<pre><code>From the git user login type:
+which git-shell
+</code></pre>
+<p>Add the information from 'which git-shell' command to the list of valid shells in the /etc/shells file.</p>
+<pre><code>Example /etc/shells file content:
+    /bin/sh
+    /bin/bash
+    /bin/rbash
+    /bin/dash
+    /usr/bin/git-shell
+</code></pre>
+<p>On Fedora 24 and 25, the chsh command is used to change the shell. It may not exist by default. </p>
+<pre><code>Install the package that contains chsh: 
+    dnf install util-linux-user
+</code></pre>
+<p>Change the git user login shell to git-shell:</p>
+<pre><code>sudo chsh git
+Enter: /usr/bin/git-shell
+</code></pre>
+<p>If you try to log into the git user from the command line after the git shell is enabled, you will see a message similar to this:</p>
+<pre><code>fatal: Interactive git shell is not enabled.
+hint: ~/git-shell-commands should exist and have read and execute access.
+</code></pre>
+<h4 id="on-the-server-create-a-git-repository">On the Server, create a git repository:</h4>
+<pre><code>mkdir -p /opt/git
+</code></pre>
+<p>Give the git user access to the git folder where the repositories will live.
+Use with caution! This will overwrite group shared repositories if they already exist within the git repository.</p>
+<pre><code>sudo chown -R git:git /opt/git
+</code></pre>
+<p>Create a git repository and a project:</p>
+<pre><code>mkdir -p /opt/git/project-name.git
+cd /opt/git/project-name.git
+git init --bare
+git init --bare --shared (if the repository will be shared by a group)
+</code></pre>
+<p>If your repository is only going to be used by one user then you can just use the git user for simplicity.
+Change the owner of theprojectname.git to the git user and group.</p>
+<pre><code>sudo chown -R git:git /opt/git/theprojectname.git
+sudo chmod o-rwx /opt/git/theprojectname.git (remove access to anyone else).
+</code></pre>
+<p>If your repository will be used by multiple people, create a group for the Git repository.</p>
+<p>To create a group:</p>
+<pre><code>sudo groupadd thegroupname
+or
+sudo addgroup thegroupname
+</code></pre>
+<p>To add a user to the group:</p>
+<pre><code>sudo usermod -a -G thegroupname theusername
+or
+sudo useradd -G thegroupname theusername
+</code></pre>
+<p>To remove a user from a group (Remove the user billybob from the group hillbilly):</p>
+<pre><code>gpasswd -d billybob hillbilly
+</code></pre>
+<p>Make sure the group has access to the repository:</p>
+<pre><code>sudo chgrp -R thegroupname thereponame.git (-R set the group ownership recursively).
+sudo chmod g+rws thereponame.git (set the sticky bit so changes are owned by the group).
+sudo chmod o-rwx thereponame.git (remove access for "other" so only group members can clone).
+</code></pre>
+<h4 id="on-the-client-create-a-repository">On the client, create a repository:</h4>
+<p>Configure the git username and email from the instructions above.</p>
+<pre><code>Create a local git repo called project-name
+    mkdir -p project-name
+
+Initialize the git repo
+    git init
+
+Add some files and commit them:
+    git add .
+    git commit -m "initial commit"
+</code></pre>
+<p>Link your local repository to the server.
+If you are using the git user (before pushing commits see generating SSH keys below):</p>
+<pre><code>git remote add origin git@gitserver/opt/git/project-name.git
+</code></pre>
+<p>If you are using your own username that is a member of the group that has access to theprojectname.git:</p>
+<pre><code>git remote add origin ssh://username@servername/opt/git/theprojectname.git
+</code></pre>
+<h4 id="push-your-files">Push your files:</h4>
+<pre><code>git push origin master
+</code></pre>
+<p>After the initial push you only need to type:</p>
+<pre><code>git push
+</code></pre>
+<h4 id="methods-to-push-all-branches">Methods to push all branches:</h4>
+<pre><code>git push origin '*:*'
+git push origin --all
+git push REMOTE '*:*'
+git push REMOTE --all
+</code></pre>
+<h4 id="to-automatically-push-all-branches-to-their-matching-branch">To automatically push all branches to their matching branch:</h4>
+<pre><code>git config --global push.default matching
+</code></pre>
+<h4 id="to-only-push-the-current-branch-to-its-matching-branch">To only push the current branch to its matching branch:</h4>
+<pre><code>git config --global push.default simple
+</code></pre>
+<p>If you are using the git user you will need to generate a public and private SSH key for authentication (unless you know the password for the git user).</p>
+<h4 id="to-generate-the-ssh-keys">To generate the SSH keys:</h4>
+<p>If there is no .ssh directory in your home directory you will have to create one.</p>
+<pre><code>mkdir .ssh
+</code></pre>
+<h4 id="change-the-permissions-to-700">Change the permissions to 700.</h4>
+<pre><code>chmod -R 700 .ssh
+
+cd ~/.ssh
+ssh-keygen -t rsa
+    -Accept the default name.
+    -You can enter a password if you like. If you do not, you can take advantage of automatic authentication using your public SSH key (id_rsa.pub) amd private SSH key (id_rsa) pair.
+</code></pre>
+<p>Add the contents of your public key to the git users authorized_keys file. Do not overwrite the git users authorized_keys file because anyone else using it will not be able to log in.</p>
+<h4 id="point-repository-to-a-different-server-and-keep-the-history">Point repository to a different server and keep the history:</h4>
+<p>If you want to change your repository to point to a different server and still keep the history.
+    Pull everything from your soon-to-be-old-server into your local repository.
+    Create the new repository on the new server.
+    In your local repository update the URL path to the new server (git remote set-url origin ...). See above for example.
+    "git push origin master" to the new location.
+    The Git log should still show the history and all of your data will be on the new server.</p>
+<p>I installed GitExtensions on my Windows laptop and it would not push to a UNC path until I pointed it to GitHub Desktop.</p>
+<h4 id="github-desktop-git-shell">GitHub Desktop (Git Shell):</h4>
+<p>C:\Users\rlholland\AppData\Local\GitHub\PortableGit_d7effa1a4a322478cd29c826b52a0c118ad3db11\usr\bin
+C:\Users\rlholland\AppData\Local\GitHub\GitHub.appref-ms --open-shell</p>
+<h4 id="mingw32-git-bash">MINGW32 (Git Bash):</h4>
+<p>C:\Program Files\Git\usr\bin
+"C:\Program Files\Git\git-bash.exe" --cd-to-home</p>
+<h4 id="making-git-auto-commit">Making Git auto-commit:</h4>
+<p>I'd like to use git to record all the changes to a file.</p>
+<p>Is there a way I can turn git 'commit' on to automatically happen every time a file is updated - so there is a new commit for every change to a file?</p>
+<p>Ideally I'd like my users to not even know that git is running behind the scenes. A user could then potentially "undo" changes to a file - and this could be achieved by pulling a previous version out of git.</p>
+<p>On Linux you could use inotifywait to automatically execute a command every time a file's content is changed.
+Edit: the following command commits file.txt as soon as it is saved:</p>
+<pre><code>inotifywait -q -m -e CLOSE_WRITE --format="git commit -m 'autocommit on change' %w" file.txt | sh
+</code></pre>
+<p>The earlier inotifywait answer is great, but it isn't quite a complete solution. As written, it is a one shot commit for a one time change in a file. It does not work for the common case where editing a file creates a new inode with the original name. inotifywait -m apparently follows files by inode, not by name. Also, after the file has changed, it is not staged for git commit without git add or git commit -a. Making some adjustments, here is what I am using on Debian to track all changes to my calendar file:</p>
+<pre><code>/etc/rc.local:
+
+su -c /home/&lt;username&gt;/bin/gitwait -l &lt;username&gt;
+
+/home/&lt;username&gt;/bin/gitwait:
+#!/bin/bash
+#
+# gitwait - watch file and git commit all changes as they happen
+#
+
+while true; do
+
+inotifywait -qq -e CLOSE_WRITE ~/.calendar/calendar
+
+cd ~/.calendar; git commit -a -m 'autocommit on change'
+
+done
+</code></pre>
+<p>This could be generalized to wait on a list of files and/or directories, and the corresponding inotifywait processes, and restart each inotifywait as a file is changed.</p>
+<p>Use the -r flag to inotifywait, but note that the kernel has a limit on the number of inotifywait watches it can set up. man inotifywait will tell you more.</p>
+<p>This Github repository was recommended: </p>
+<pre><code>https://github.com/nevik/gitwatch.git. I have cloned it in my personal repository.
+Source: http://stackoverflow.com/questions/420143/making-git-auto-commit.
+</code></pre>
+<h4 id="the-indexlock-issue">The index.lock issue:</h4>
+<pre><code>I was getting an error when I made a commit. I can't remember what the error was but I had a choice to answer "Y" or "N" to retry. I selected "N" and then was taken back to the command prompt. I looked on StackOverflow.com and saw a post that someone had submitted about creating the .git/index.lock file and trying the commit again and if it didn't work. Delete the index.lock file which seemed to work for the person that made the post. I tried it and it worked for me.
+</code></pre>
+<p>Index.lock issue cannot write to index:
+While the prompt is still showing "Do you want to retry Y/N", open another command prompt and go into the .git directory and copy the index.lock file to index.lock.bak.</p>
+<pre><code>On Windows:
+type index.lock &gt; index.lock.bak
+
+On Linux:
+cat index.lock &gt; index.lock.bak
+</code></pre>
+<p>Go back to the original command prompt and type "N" to not retry. Go back to the other command prompt and copy index.lock.bak into index.</p>
+<pre><code>type index.lock.bak &gt; index
+cat index.lock.bak &gt; index
+
+del index.lock
+rm index.lock
+
+Type: git status log to see the changes.
+</code></pre>
+<p>Websites:
+    https://gist.github.com/hofmannsven/6814451 --&gt; Someones Git notes I found on Github.</p>
+<h4 id="instaweb">Instaweb:</h4>
+<p>Git local repository web server (GitWeb):
+If you want to check out what GitWeb would look like for your project, Git comes with a command to fire up a temporary instance if you have a lightweight web server on your system like lighttpd or webrick. On Linux machines, lighttpd is often installed, so you may be able to get it to run by typing git instaweb in your project directory. If you’re running a Mac, Leopard comes preinstalled with Ruby, so webrick may be your best bet. To start instaweb with a non-lighttpd handler, you can run it with the --httpd option.</p>
+<pre><code>$ git instaweb --httpd=webrick
+[2009-02-21 10:02:21] INFO  WEBrick 1.3.1
+[2009-02-21 10:02:21] INFO  ruby 1.8.6 (2008-03-03) [universal-darwin9.0]
+</code></pre>
+<p>That starts up an HTTPD server on port 1234 and then automatically starts a web browser that opens on that page. It’s pretty easy on your part. When you’re done and want to shut down the server, you can run the same command with the --stop option:</p>
+<pre><code>$ git instaweb --httpd=webrick --stop
+
+Example:
+cd reponame
+git instaweb --httpd=apache2
+git instaweb --httpd=apache2 --stop
+</code></pre>
+<p>GitWeb source: https://git-scm.com/book/en/v2/Git-on-the-Server-GitWeb</p>
+<p>Transferring repositories. 
+    I transferred 3 repositories and for some reason, when I got the confirmation link in my email in Chrome, the transfer link didn't work.
+    I had to open my email in Firefox and click on the confirmation link and the transfer worked.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../mysql/" class="btn btn-neutral float-right" title="MySQL">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../pgp/" class="btn btn-neutral" title="PGP"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../pgp/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../mysql/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
