@@ -4,4 +4,5 @@ nav:
     - PGP: pgp.md
     - GiT: git.md
     - MySQL: mysql.md
+    - Markdown: markdown.md
 theme: readthedocs
