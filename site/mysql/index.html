@@ -170,6 +170,8 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#generated-columns">Generated Columns</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#grant">Grant:</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#grant-privileges">Grant privileges.</a>
@@ -1025,6 +1027,35 @@ SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS;
 select * from information_schema.referential_constraints where constraint_schema = 'thedatabasename';
 </code></pre>
 <p>Source: https://www.youtube.com/watch?v=UQK9_gKQHZg</p>
+<h4 id="generated-columns">Generated Columns</h4>
+<pre><code>The syntax for defining a generated column is as follows:
+
+   column_name data_type [GENERATED ALWAYS] AS (expression)
+      [VIRTUAL | STORED] [UNIQUE [KEY]]
+</code></pre>
+<p>First, specify the column name and its data type.</p>
+<p>Next, add the GENERATED ALWAYS clause to indicate that the column is a generated column.</p>
+<p>Then, indicate whether the type of the generated column by using the corresponding option: VIRTUAL or STORED. By default, MySQL uses VIRTUAL if you dont specify explicitly the type of the generated column.</p>
+<p>After that, specify the expression within the braces after the AS keyword. The expression can contain literals, built-in functions with no parameters, operators, or references to any column within the same table. If you use a function, it must be scalar and deterministic.</p>
+<p>Finally, if the generated column is stored, you can define a unique constraint for it.</p>
+<p>Generated column: 
+Columns are generated because the data in these columns are computed based on predefined expressions. Basically, the columns are generated on the fly based on the data that already exists in the table.</p>
+<p>Virtual Column:
+  The "fullname" column is Virtual by default because the generated column type was not specified.</p>
+<pre><code>DROP TABLE IF EXISTS contacts;
+CREATE TABLE contacts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    fullname varchar(101) GENERATED ALWAYS AS (CONCAT(first_name,' ',last_name)),
+    email VARCHAR(100) NOT NULL
+);
+</code></pre>
+<p>MySQL provides two types of generated columns: stored and virtual. The virtual columns are calculated on the fly each time data is read whereas the stored column are calculated and stored physically when the data is updated.</p>
+<p>Based on this definition, the fullname column in the example above is a virtual column.</p>
+<p>Stored Column: (If the generated column is stored, you can define a unique constraint for it.)</p>
+<pre><code>ALTER TABLE products ADD COLUMN stockValue DOUBLE GENERATED ALWAYS AS (buyprice*quantityinstock) STORED;
+</code></pre>
 <h4 id="grant">Grant:</h4>
 <h6 id="grant-privileges">Grant privileges.</h6>
 <pre><code>            grant all on *.* to 'rob'@'localhost';
