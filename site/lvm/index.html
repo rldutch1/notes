@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>LVM - My Notes</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "LVM";
+    var mkdocs_page_input_path = "lvm.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> My Notes</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../git/">GiT</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">LVM</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#volumegroup-commands">Volumegroup commands</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#check-information-about-storage-devices">Check information about storage devices:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#any-time-you-can-see-all-block-devices-that-may-be-used-as-a-pv-use-the-command">Any time you can see all block devices that may be used as a PV, use the command:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#once-the-physical-volume-is-created-you-need-to-add-it-to-a-volume-group">Once the physical volume is created you need to add it to a Volume Group:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#to-see-information-about-the-volume-group">To see information about the volume group:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#if-you-add-another-physical-device-you-can-add-it-to-a-volume-group">If you add another physical device you can add it to a volume group:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#check-for-volume-groups">Check for volume groups:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#split-volume-group">Split Volume Group:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mergeadd-a-volume-back-to-a-volume-group">Merge/Add a volume back to a Volume Group:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rename-a-volume-group">Rename a Volume Group:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create-a-logical-volume-inside-of-a-volume-group">Create a logical volume inside of a Volume group:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adjust-lvs-logical-volume-show-output">Adjust LVS (Logical Volume Show) output:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adjust-the-pvs-physical-volume-show-output">Adjust the PVS (Physical Volume Show) output:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adjust-the-vgs-volume-groups-show-output">Adjust the VGS (Volume Groups Show) output:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#after-i-created-the-logical-volume-on-ubuntu-i-formatted-them-using-ext4">After I created the logical volume on Ubuntu I formatted them using ext4:</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#i-found-the-format-path-by-typing-sudo-lvdisplay-which-showed-me-the-lv-path-below">I found the format path by typing "sudo lvdisplay" which showed me the LV path below:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#show-the-filesystem-type-and-other-df-information">Show the filesystem type and other df information:</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../mysql/">MySQL</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../pgp/">PGP</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../markdown/">Markdown</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">My Notes</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>LVM</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="volume-group-quick-info">Volume Group Quick Info:</h2>
+<h4 id="volumegroup-commands">Volumegroup commands</h4>
+<pre><code>sudo vgs - Show volume groups and information about them.
+sudo vgscan - Show any volume group that is found. Encrypted volume groups will not show unless open by luks.
+sudo vgscan --mknodes (checks the LVM special files in /dev that are needed for active LVs and creates any missing ones and removes unused ones.)
+sudo vgdisplay - Show more detailed information about each volume group. (-v will show more verbose, -vv even more).
+sudo vgchange -ay  (VG change active yes)
+sudo pvs - Show information about the physical volumes.
+sudo pvscan - Show information about the physical volumes.
+sudo pvdisplay - Show more detailed information about each physical volume. (-v will show more verbose, -vv even more).
+sudo lvs - Show information about logical volumes.
+sudo lvscan - Show active/inactive logical volumes.
+sudo lvdisplay - Show detailed information about the logical volumes. (-v will show more verbose, -vv even more).
+sudo lvdisplay|grep "LV Path" 
+sudo lsblk -a  Show volumes and where they are mounted.
+gnome-disks --block-device=/dev/sdX - Opens the disk manager for the volume specified.
+sudo blkid |grep crypto - Show the encrypted volume IDs.
+sudo cryptsetup luksOpen /dev/sdX TheUUIDofTheDevice - Open the encrypted volume.
+sudo udisksctl dump - Show an insane amount of information about the volumes.
+
+Examples: 
+sudo mount /dev/volumegroupname/logicalvolumename /mnt/mountpoint 
+sudo mount /dev/vg_data/lv_data2 /mnt/data2
+sudo mount -a #Mount everything in /etc/fstab.
+https://github.com/rlholland/miscellaneous/blob/master/Linux/Logical_Volume_Manager.txt.
+https://evilshit.wordpress.com/2012/10/29/how-to-mount-luks-encrypted-partitions-manually..
+</code></pre>
+<h4 id="check-information-about-storage-devices">Check information about storage devices:</h4>
+<p>Run fdisk -l to see information about storage devices.
+The ones that show "Linux LVM" are logical volumes that haven't been created into physical volumes using (pvcreate).</p>
+<pre><code>Type: pvcreate /dev/sda2 (Use -v to see verbose information. The more -v's the more information you will see.)
+Type: pvs to see the volume that was just created.
+Type: pvremove /dev/sda2
+</code></pre>
+<h4 id="any-time-you-can-see-all-block-devices-that-may-be-used-as-a-pv-use-the-command">Any time you can see all block devices that may be used as a PV, use the command:</h4>
+<pre><code>Type: lvmdiskscan
+This will show you the devices that "pvcreate" has been used on (LVM physical volume) and can be used as a physical volume. It also shows devices that pvcreate has not been used on (do not show up as LVM physical volume).
+</code></pre>
+<h4 id="once-the-physical-volume-is-created-you-need-to-add-it-to-a-volume-group">Once the physical volume is created you need to add it to a Volume Group:</h4>
+<pre><code>Create the volume group and add the PV to it in one command:
+Type: vgcreate vgVolume_Group_Name /dev/sda2
+EX: vgcreate onevg /dev/sda2
+If you want more than one PV in your VG:
+EX: vgcreate onevg /dev/sda2 /dev/sda3
+Type: vgremove to delete it. Make sure there are no LV and no data before removing VG.
+EX: vgremove onevg
+</code></pre>
+<h4 id="to-see-information-about-the-volume-group">To see information about the volume group:</h4>
+<pre><code>Type: pvs (Physical Volume Show)
+This will show you the physical volume(s), the volume group, format, physical size, and physical free
+
+You can also use another command to see information about the volume group:
+Type: vgs (Volume Group Show)
+EX: vgs -vv
+This will show you the attributes, extent size, physical volumes, logical volumes, serial number, volume size, volume free
+
+Display information about the physical volumes:
+Type: pvdisplay
+</code></pre>
+<h4 id="if-you-add-another-physical-device-you-can-add-it-to-a-volume-group">If you add another physical device you can add it to a volume group:</h4>
+<pre><code>Type: vgextend TheVolumeGroupName /dev/sda2
+EX: vgextend onevg /dev/sda2
+Type: vgreduce TheVolumeGroupName /dev/sda2 to remove it from the VG.
+EX: vgreduce onevg /dev/sda2
+</code></pre>
+<h4 id="check-for-volume-groups">Check for volume groups:</h4>
+<pre><code>Type: vgscan
+This command is run automatically when the system starts up.
+</code></pre>
+<h4 id="split-volume-group">Split Volume Group:</h4>
+<pre><code>Type: vgsplit OriginalNamed_VG NewNamed_VG /dev/sda2
+EX: vgsplit onevg newvg /dev/sda2
+This command removes the physical volume named /dev/sda2 from the volume group onevg and adds it to a new volume group called newvg.
+</code></pre>
+<h4 id="mergeadd-a-volume-back-to-a-volume-group">Merge/Add a volume back to a Volume Group:</h4>
+<pre><code>Type: vgmerge -v VolumeGroupYouWantToKeep VolumeGroupYouWantToMerge
+This command merges VolumeGroupYouWantToMerge into VolumeGroupYouWantToKeep
+</code></pre>
+<h4 id="rename-a-volume-group">Rename a Volume Group:</h4>
+<pre><code>Type: vgrename OldVGName NewVGName
+EX: vgrename onevg newvg
+</code></pre>
+<h4 id="create-a-logical-volume-inside-of-a-volume-group">Create a logical volume inside of a Volume group:</h4>
+<pre><code>Type: lvcreate -L 500M -n TheNameOfLV TheNameOfVGTheLVWillBeCreatedIn
+EX: lvcreate -L 500M -n lvone onevg
+This command creates a physical volume named TheNameOfLV inside the volume group named TheNameOfVGTheLVWillBeCreatedIn
+
+Method 2 (example 1):
+Type: lvcreate -l 50%VG -n TheNameOfLV TheNameOfVGTheLVWillBeCreatedIn
+EX: lvcreate -l 50%VG -n lvtwo VGOne
+This command will use up 50% of the volume group to create a new logical volume named lvtwo
+
+Method 2 (example 2):
+Type: lvcreate -l 100%FREE -n TheNameOfLV TheNameOfVGTheLVWillBeCreatedIn
+EX: lvcreate -l 100%FREE -n lvthree onevg (This worked on Ubuntu)
+
+Remove the physical volume:
+Type: lvremove /dev/TheNameOfVG/TheNameOfPVlv
+EX: lvremove /dev/onevg/lvthree
+
+Method 3 (Create LV using Extents):
+Type: lvcreate -l 444 TheNameOfVG -n TheNameOfPV
+EX: lvcreate -l 444 onevg -n lvfour
+This command creates a physical volume of 444 extents named lvfour.
+
+Volume Groups are linear, meaning that if you have multiple PV's inside of your VG and you create an LV of any size, the first PV will be used by default then the second, third, etc.
+To change this behavior, you can create an LV on a PV that you specify.
+
+Type: lvcreate -L 500M -n NewNameOfLV TheNameOfVG /Name/of/PV
+EX: lvcreate -L 500M -n lvnew onevg /dev/sda9
+
+Method 4 (Create LV using Extents from two different PV's)
+Create a logical volume of 50 extents using 25 extents from two separate PV's:
+Type: lvcreate -l 50 -n lvone onevg /dev/sda6:0-25 /dev/sda7:0-25
+
+Method 5 (Create LV using non-contiguous Extents from one PV). Skipping using some Extents, skipping a few, and using the rest.
+Type: lvcreate -l 50 -n lvone onvg /dev/sda6:0-20:40-
+To remove two extents from the 50:
+Type: lvreduce -l -2 /dev/onevg/lvone
+
+This command creates the logical volume of 50 extents using the first 20 Extents then skipping to 40 and using everything after.
+
+Make the LV read only:
+Type: lvchange -pr /dev/onevg/lvone &lt;--(The p means "permissions" and the r means "Read Only")
+Type: lvdisplay
+
+Grow an LV.
+Type: lvextend -L1g &lt;--(Grow the logical volume by to 1G)
+Type: lvs to see the change.
+Type: lvextend -L+20M &lt;--(grow the logical volume by 20 MB)
+Type: lvextend -l +100%FREE /dev/onevg/lvone &lt;--(Use up all the free space)
+</code></pre>
+<h4 id="adjust-lvs-logical-volume-show-output">Adjust LVS (Logical Volume Show) output:</h4>
+<pre><code>lvs -v --segments  &lt;--(will show linear, stripe, mirror, etc)
+</code></pre>
+<h4 id="adjust-the-pvs-physical-volume-show-output">Adjust the PVS (Physical Volume Show) output:</h4>
+<pre><code>pvs --separator =   &lt;--(Use an = sign as the delimiter)
+pvs --separator = --aligned  &lt;--(Make it neater looking)
+pvs -a  &lt;--(Shows all devices so you can see what PV's are attached to VG's)
+pvs -o pv_name,pv_size,pv_free  &lt;--(Shows the PV name, PV size, and PV free)
+pvs -o pv_name,pv_size,pv_free +O -pv_size  &lt;--(sort by pv_size. Uppercase Letter +O)
+pvs -o pv_name,pv_size,pv_free -O -pv_size  &lt;--(sort by pv_size. Uppercase Letter -O)
+pvs --units m  &lt;--(Megabytes)
+pvs --units G  &lt;--(Gigabytes)
+</code></pre>
+<h4 id="adjust-the-vgs-volume-groups-show-output">Adjust the VGS (Volume Groups Show) output:</h4>
+<pre><code>    vgs -o +pv_name  &lt;--(Shows the PV and the VG)
+</code></pre>
+<h4 id="after-i-created-the-logical-volume-on-ubuntu-i-formatted-them-using-ext4">After I created the logical volume on Ubuntu I formatted them using ext4:</h4>
+<h6 id="i-found-the-format-path-by-typing-sudo-lvdisplay-which-showed-me-the-lv-path-below">I found the format path by typing "sudo lvdisplay" which showed me the LV path below:</h6>
+<pre><code>    sudo mkfs.ext4 /dev/vg_data/lv_data1
+    sudo mkfs.ext4 /dev/vg_data/lv_data2
+</code></pre>
+<h4 id="show-the-filesystem-type-and-other-df-information">Show the filesystem type and other df information:</h4>
+<pre><code>        df -Th
+</code></pre>
+<p>http://superuser.com/questions/116617/how-to-mount-an-lvm-volume
+Find the logical volume that has your Fedora root filesystem (mine proved to be LogVol00):</p>
+<pre><code>$ sudo lvs
+Create a mount point for that volume:
+
+$ sudo mkdir /mnt/fcroot
+Mount it:
+
+$ sudo mount /dev/VolGroup00/LogVol00 /mnt/fcroot -o ro,user
+You're done, navigate to /mnt/fcroot and copy the files and paste somewhere else.
+
+I changed the permissions on the new volume so that anyone in the sambashare group could read/write to it.
+    sudo chown -R root:sambashare /mnt/data1
+    sudo chmod o-rwx /mnt/data1 (remove access to anyone else).
+
+Make sure the group has access to the repository:
+    sudo chgrp -R sambashare /mnt/data1 (-R set the group ownership recursively).
+    sudo chmod g+rws /mnt/data1 (set the sticky bit so changes are owned by the group).
+    sudo chmod o-rwx /mnt/data1 (remove access for "other" so only group members can clone).
+</code></pre>
+<p>https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/High_Availability_Add-On_Administration/s1-LVMsetupnfs-HAAA.html</p>
+<pre><code>Create the physical volume:
+    sudo pvcreate /dev/sdb1
+
+Create the volume group and add the physical volume to it:
+    sudo vgcreate my_vg /dev/sdb1
+
+Create 450MB logical volume in my_lv inside volume group my_vg:
+    sudo lvcreate -L450 -n my_lv my_vg
+
+Show the logical volumes:
+    sudo lvs
+
+Format the logical volume "my_lv" inside volume group "my_vg" with ext4 filesystem:
+    sudo mkfs.ext4 /dev/my_vg/my_lv
+
+
+I have extended the root filesystem from 15GB to 500GB using lvextend, however I cannot use the extra space because the file system is still formatted for 15GB. I have to use:
+resize2fs /dev/fedora/root to increase the size but the file system has to be unmounted for me to run resize2fs.
+</code></pre>
+<p>Ubuntu Link: https://help.ubuntu.com/community/UbuntuDesktopLVM</p>
+<p>HTTP Links:
+http://unix.stackexchange.com/questions/12040/what-mount-points-exist-on-a-typical-linux-system (Information)
+https://help.1and1.com/servers-c37684/dedicated-server-linux-c37687/administration-c37694/increase-the-size-of-the-logical-volume-a756168.html (Guide)
+http://www.computerhope.com/unix/umount.htm (Information)
+https://www.ibm.com/support/knowledgecenter/SSNW54_1.1.1/com.ibm.kvm.v111.admin/resizingapartitionusingfdisk.htm (Guide)
+https://www.youtube.com/watch?v=N22fweQjyQE (Logical Volume Manager - Deep Inside)
+http://superuser.com/questions/116617/how-to-mount-an-lvm-volume</p>
+<p>https://www.youtube.com/watch?v=SvOec_4QewE
+https://www.youtube.com/watch?v=BysRGDgqtwY (Managing Storage with the Linux Logical Volume Manager (LVM))
+http://www.microhowto.info/howto/increase_the_size_of_an_ext2_ext3_or_ext4_filesystem.html</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../mysql/" class="btn btn-neutral float-right" title="MySQL">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../git/" class="btn btn-neutral" title="GiT"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../git/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../mysql/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
