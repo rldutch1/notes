@@ -1,8 +1,9 @@
 site_name: My Notes
 nav:
     - Home: index.md
-    - PGP: pgp.md
     - GiT: git.md
+    - LVM: lvm.md
     - MySQL: mysql.md
+    - PGP: pgp.md
     - Markdown: markdown.md
 theme: readthedocs
