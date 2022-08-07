@@ -200,16 +200,27 @@ https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Hi
     I have extended the root filesystem from 15GB to 500GB using lvextend, however I cannot use the extra space because the file system is still formatted for 15GB. I have to use:
     resize2fs /dev/fedora/root to increase the size but the file system has to be unmounted for me to run resize2fs.
 
-Ubuntu Link: https://help.ubuntu.com/community/UbuntuDesktopLVM
+Ubuntu Link: [https://help.ubuntu.com/community/UbuntuDesktopLVM](https://help.ubuntu.com/community/UbuntuDesktopLVM "https://help.ubuntu.com/community/UbuntuDesktopLVM")
 
-HTTP Links:
-http://unix.stackexchange.com/questions/12040/what-mount-points-exist-on-a-typical-linux-system (Information)
-https://help.1and1.com/servers-c37684/dedicated-server-linux-c37687/administration-c37694/increase-the-size-of-the-logical-volume-a756168.html (Guide)
-http://www.computerhope.com/unix/umount.htm (Information)
-https://www.ibm.com/support/knowledgecenter/SSNW54_1.1.1/com.ibm.kvm.v111.admin/resizingapartitionusingfdisk.htm (Guide)
-https://www.youtube.com/watch?v=N22fweQjyQE (Logical Volume Manager - Deep Inside)
-http://superuser.com/questions/116617/how-to-mount-an-lvm-volume
+Helpful HTTP Links:
 
-https://www.youtube.com/watch?v=SvOec_4QewE
-https://www.youtube.com/watch?v=BysRGDgqtwY (Managing Storage with the Linux Logical Volume Manager (LVM))
-http://www.microhowto.info/howto/increase_the_size_of_an_ext2_ext3_or_ext4_filesystem.html
+[What mount points exist on a typical Linux system](http://unix.stackexchange.com/questions/12040/what-mount-points-exist-on-a-typical-linux-system "http://unix.stackexchange.com/questions/12040/what-mount-points-exist-on-a-typical-linux-system")
+
+[Increase the size of the logical volume](https://help.1and1.com/servers-c37684/dedicated-server-linux-c37687/administration-c37694/increase-the-size-of-the-logical-volume-a756168.html "https://help.1and1.com/servers-c37684/dedicated-server-linux-c37687/administration-c37694/increase-the-size-of-the-logical-volume-a756168.html")
+
+[UMount](http://www.computerhope.com/unix/umount.htm "http://www.computerhope.com/unix/umount.htm")
+
+[Resizing partitions using FDISK](https://www.ibm.com/support/knowledgecenter/SSNW54_1.1.1/com.ibm.kvm.v111.admin/resizingapartitionusingfdisk.htm "https://www.ibm.com/support/knowledgecenter/SSNW54_1.1.1/com.ibm.kvm.v111.admin/resizingapartitionusingfdisk.htm")
+
+[Logical Volume Manager - Deep Inside](https://www.youtube.com/watch?v=N22fweQjyQE "https://www.youtube.com/watch?v=N22fweQjyQE")
+
+[How to mount an LVM volume](http://superuser.com/questions/116617/how-to-mount-an-lvm-volume "http://superuser.com/questions/116617/how-to-mount-an-lvm-volume")
+
+[How to partition hard drive on CentOS Linux using fdisk](https://www.youtube.com/watch?v=SvOec_4QewE "https://www.youtube.com/watch?v=SvOec_4QewE")
+
+[Managing Storage with the Linux Logical Volume Manager (LVM)](https://www.youtube.com/watch?v=BysRGDgqtwY "https://www.youtube.com/watch?v=BysRGDgqtwY")
+
+[Increase the size of an EXT2, EXT3, EXT4 filesystem](http://www.microhowto.info/howto/increase_the_size_of_an_ext2_ext3_or_ext4_filesystem.html "http://www.microhowto.info/howto/increase_the_size_of_an_ext2_ext3_or_ext4_filesystem.html")
+
+[link]( "")
+[link]( "")

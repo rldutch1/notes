@@ -59,6 +59,10 @@
                     <li class="toctree-l1"><a class="reference internal" href="../lvm/">LVM</a>
                     </li>
                 </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../markdown/">Markdown</a>
+                    </li>
+                </ul>
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">MySQL</a>
     <ul class="current">
@@ -307,10 +311,6 @@
                 </ul>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../pgp/">PGP</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../markdown/">Markdown</a>
                     </li>
                 </ul>
       </div>
@@ -968,7 +968,6 @@ Instead, you can create a cron job or if you want to keep it all in MySQL use th
     DO
     DELETE FROM MyTable Where Expired&lt; NOW();
 </code></pre>
-
 <p>Example updates the state column to 1 if it is older than 24 hours.</p>
 <pre><code>    Check a table every hour and update a column that is 24 hours old:
     CREATE EVENT reset
@@ -980,10 +979,8 @@ Instead, you can create a cron job or if you want to keep it all in MySQL use th
     where time &lt; date_sub(now(),interval 24 hour) 
       and (state=0 or state=2) ;
 </code></pre>
-
 <pre><code>    CREATE EVENT reset ON SCHEDULE EVERY 1 HOUR DO update test set state=1 where time &lt; date_sub(now(),interval 24 hour) and (state=0 or state=2);
 </code></pre>
-
 <p>Create Event Source: https://dba.stackexchange.com/questions/56424/column-auto-updated-after-24-hours-in-mysql</p>
 <h4 id="foreign-keys">Foreign Keys:</h4>
 <h6 id="add-foreign-key">Add foreign key:</h6>
@@ -1409,7 +1406,6 @@ where columnname = 'whatever';
 
 If no path is specified, the file will be located in the default database folder. In my case (Fedora 12) it was located in /var/lib/mysql/play/filename.txt.
 </code></pre>
-
 <pre><code>-- You can specify where the output file will go:
 SELECT id,
    client,
@@ -1423,77 +1419,60 @@ SELECT id,
   LINES TERMINATED BY '\n'
   FROM ts
 </code></pre>
-
 <p>From outside of the mysql command prompt (ie. the command line) you can also run a query and create an output file with the results of that query. Create a query that you want to run and save it as an .sql file. Example: test.sql</p>
 <pre><code>The content of the test.sql file looks like this:
                 select * from tablename;
 </code></pre>
-
 <p>To run test.sql type one of the following:</p>
 <p>-- If you want tab delimited output format (default):</p>
 <pre><code>mysql databasename -u username -p &lt; test.sql &gt; output.tab
 </code></pre>
-
 <p>-- XML output format:</p>
 <pre><code>mysql databasename -u username -p --xml &lt; test.sql &gt; output.xml
 </code></pre>
-
 <p>-- If you don't want to create the test.sql file and just want to run everything from one commandline statement and get XML output:</p>
 <pre><code>mysql -u username -p --xml -e 'use databasename; select * from tablename' &gt; output.xml
 </code></pre>
-
 <p>-- You can also put the db_name in your script to avoid typing it on the command line (see below).</p>
 <pre><code>mysql -u username -p --xml &lt; test.sql &gt; output.xml
 </code></pre>
-
 <p>-- You can create a bash script named getdata and put the following in it.</p>
 <pre><code>mysql -u username -p &lt; test.sql &gt; test.tab
 
 -- Then chmod +x getdata. then run it from the commandline: sh getdata.
 -- You will be prompted for your password and the data will get dumped to test.tab.
 </code></pre>
-
 <p>-- Connect to a remote database server and directly to a database on that server.</p>
 <pre><code>mysql -h hostname -u databaseuser -p -D databasename
 </code></pre>
-
 <p>-- To Dump a database to a file and generate full insert statments:</p>
 <pre><code>mysqldump -p -c -e databasename &gt; DatabaseName.sql
 </code></pre>
-
 <p>-- To dump a table from a database and generate full insert statements:</p>
 <pre><code>mysqldump -p -c -e databasename tablename &gt; TableName.sql
 </code></pre>
-
 <p>-- To dump all databases on the database server:</p>
 <pre><code>mysqldump -p -c -e --all-databases &gt; AllDatabases.sql
 </code></pre>
-
 <p>-- To dump all databases on the database server without the data (just a skeleton).</p>
 <pre><code>mysqldump -p -c -e --no-data --all-databases &gt; AllDatabases_Skeleton.sql
 </code></pre>
-
 <p>-- To dump a database from a remote server:</p>
 <pre><code>mysqldump -h hostname -u username -p -c -e databasename &gt; NameOfDatabaseDumpFile.sql
 </code></pre>
-
 <p>-- To dump a table from a database on a remote server:</p>
 <pre><code>mysqldump -h hostname -u username -p -c -e databasename tablename &gt; NameOfTableDumpFile.sql
 </code></pre>
-
 <p>-- To dump all databases on a remote server:</p>
 <pre><code>mysqldump -h hostname -u username -p -c -e --all-databases &gt; NameOfEntireDatabaseDumpFile.sql
 </code></pre>
-
 <p>-- The contents of test.sql without the database name.</p>
 <pre><code>select * from tablename order by columnName;
 </code></pre>
-
 <p>-- The contents of test.sql with the database name.</p>
 <pre><code>use database;
 select * from tablename order by columnName;
 </code></pre>
-
 <h4 id="padding-numbers-with-zeros">Padding numbers with zeros:</h4>
 <h6 id="number-padding">Number padding</h6>
 <pre><code>-- Prepend zeros to numbers. There are some links that I saw that said you will need to convert the column to non-numerical to get this to work but I did it on an integer field and it worked.
@@ -1558,7 +1537,6 @@ The MYSQL_PS1 in this example displays the following three information in the pr
 
     root@dev-db [sugarcrm]&gt;
 </code></pre>
-
 <pre><code>2. Change the mysql&gt; prompt interactively
 
 You can also change the mysql&gt; prompt interactively from inside the mysql as shown below.
@@ -1570,7 +1548,6 @@ You can also change the mysql&gt; prompt interactively from inside the mysql as 
 
     root@dev-db [sugarcrm]&gt;
 </code></pre>
-
 <pre><code>3. Change the mysql&gt; prompt from mysql command line
 
 Instead of using the MYSQL_PS1 variable, you can also pass the prompt as an argument to the mysql command line as shown below.
@@ -1579,7 +1556,6 @@ Instead of using the MYSQL_PS1 variable, you can also pass the prompt as an argu
 
     root@dev-db [sugarcrm]&gt;
 </code></pre>
-
 <pre><code>4. Display Current Time in the mysql&gt; prompt
 
 Use \D to display full date in the mysql prompt as shown below.
@@ -1590,7 +1566,6 @@ Use \D to display full date in the mysql prompt as shown below.
 
     root@dev-db [Sat Dec 26 19:56:33 2009]&gt;
 </code></pre>
-
 <pre><code>5. Change the mysql&gt; prompt using /etc/my.cnf or .my.cnf file
 
 You can also use either the global /etc/my.cnf (or) your local ~/.my.cnf file to set the prompt as shown below.
@@ -1604,7 +1579,6 @@ You can also use either the global /etc/my.cnf (or) your local ~/.my.cnf file to
 
     root@dev-db [sugarcrm]&gt;
 </code></pre>
-
 <pre><code>6. Customize mysql&gt; prompt any way you want it
 
 Use the following variables and customize the mysql prompt as you see fit. These variables are somewhat similar to the Unix PS1 variables (but not exactly the same).
@@ -1650,7 +1624,6 @@ Use the following variables and customize the mysql prompt as you see fit. These
 
     mysql -h localhost -u rob_com1 -p -D robcom1
 </code></pre>
-
 <h4 id="remote-connection-from-commandline">Remote connection from commandline:</h4>
 <h6 id="you-should-only-use-this-command-on-a-secure-ssh-connection">You should only use this command on a secure SSH connection.</h6>
 <pre><code>Syntax:
@@ -1748,7 +1721,6 @@ http://stackoverflow.com/questions/5285448/mysql-select-only-not-null-values
      sudo /usr/local/mysql/support-files/mysql.server restart
 
 </code></pre>
-
 <h4 id="statements-and-clauses-mysql">Statements and Clauses (MySQL):</h4>
 <h6 id="mysql-statements-and-clauses">MYSQL Statements and clauses</h6>
 <p>ALTER DATABASE</p>
@@ -2161,7 +2133,7 @@ You need to have the timezones loaded. See below if you don't have the timezones
         <a href="../pgp/" class="btn btn-neutral float-right" title="PGP">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../lvm/" class="btn btn-neutral" title="LVM"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../markdown/" class="btn btn-neutral" title="Markdown"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -2187,7 +2159,7 @@ You need to have the timezones loaded. See below if you don't have the timezones
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../lvm/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../markdown/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../pgp/" style="color: #fcfcfc">Next &raquo;</a></span>

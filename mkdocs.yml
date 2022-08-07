@@ -3,7 +3,7 @@ nav:
     - Home: index.md
     - GiT: git.md
     - LVM: lvm.md
+    - Markdown: markdown.md
     - MySQL: mysql.md
     - PGP: pgp.md
-    - Markdown: markdown.md
 theme: readthedocs
