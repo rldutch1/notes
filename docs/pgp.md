@@ -40,7 +40,7 @@ Youtube Videos:
 
 #### Export ascii armored key:
 	  gpg --export --armor jqdoe@example.com > jqdoe-pubkey.asc
-	  gpg --export-secret-keys --armor jqdoe@example.com > jqdoe-privkey.asc
+	  gpg --export-secret-keys --armor jqdoe@example.com >> jqdoe-privkey.asc
 	  Use a double greater than symbol to export both public and private to the same file ">>".
 
 #### Encrypt a message to standard output:
