@@ -168,7 +168,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#foreign-keys">Foreign Keys:</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#add-foreign-key">Add foreign key:</a>
+    <li class="toctree-l3"><a class="reference internal" href="#add-foreign-key-constraint">Add foreign key constraint:</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#display-foreign-key-references">Display Foreign Key References:</a>
     </li>
@@ -983,8 +983,13 @@ Instead, you can create a cron job or if you want to keep it all in MySQL use th
 </code></pre>
 <p>Create Event Source: https://dba.stackexchange.com/questions/56424/column-auto-updated-after-24-hours-in-mysql</p>
 <h4 id="foreign-keys">Foreign Keys:</h4>
-<h6 id="add-foreign-key">Add foreign key:</h6>
-<pre><code>alter table TableName add constraint TheConstraintName foreign key (TableNameID) references ForeignTable(id) on update cascade on delete restrict;
+<h6 id="add-foreign-key-constraint">Add foreign key constraint:</h6>
+<pre><code>    alter table TableName 
+    add constraint TheConstraintName 
+    foreign key (CurrentTableColumnName) references ForeignTable(ColumnName) 
+    on update cascade on delete restrict;
+
+    *If you do not give the constraint a name, then one will be automatically generated.
 
 Casecade only works if foreign_key_checks is ON. To see this information type:
     show variables like 'foreign_key_checks';

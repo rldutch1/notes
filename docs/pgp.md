@@ -11,6 +11,14 @@ Youtube Videos:
 #### Generate/Create GPG/PGP Key:
 	gpg2 --full-gen-key
 	gpg --gen-key
+	
+	Versions older than 2.1.17 use: 
+	gpg --default-new-key-algo rsa4096 --gen-key
+
+#### Change your password if you want to:
+	gpg --edit-key YourKeyID
+	Then type: passwd
+	
 
 #### Send key to default key server:
 	  gpg --send-key KEYNAME

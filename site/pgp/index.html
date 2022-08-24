@@ -116,6 +116,13 @@ GnuPG Website - https://www.gnupg.org</p>
 <h4 id="generatecreate-gpgpgp-key">Generate/Create GPG/PGP Key:</h4>
 <pre><code>gpg2 --full-gen-key
 gpg --gen-key
+
+Versions older than 2.1.17 use: 
+gpg --default-new-key-algo rsa4096 --gen-key
+</code></pre>
+<h4 id="change-your-password-if-you-want-to">Change your password if you want to:</h4>
+<pre><code>gpg --edit-key YourKeyID
+Then type: passwd
 </code></pre>
 <h4 id="send-key-to-default-key-server">Send key to default key server:</h4>
 <pre><code>  gpg --send-key KEYNAME

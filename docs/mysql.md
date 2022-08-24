@@ -608,8 +608,14 @@ Create Event Source: https://dba.stackexchange.com/questions/56424/column-auto-u
 
 
 #### Foreign Keys:
-###### Add foreign key:
-    alter table TableName add constraint TheConstraintName foreign key (TableNameID) references ForeignTable(id) on update cascade on delete restrict;
+###### Add foreign key constraint:
+
+		alter table TableName 
+    	add constraint TheConstraintName 
+    	foreign key (CurrentTableColumnName) references ForeignTable(ColumnName) 
+    	on update cascade on delete restrict;
+    	
+    	*If you do not give the constraint a name, then one will be automatically generated.
     
     Casecade only works if foreign_key_checks is ON. To see this information type:
     	show variables like 'foreign_key_checks';
