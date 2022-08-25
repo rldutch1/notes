@@ -1079,7 +1079,7 @@ CREATE TABLE contacts (
 <p>The IF statement takes three arguments; the conditional, the true value, and the false value. False and true values may be static values or column values. For example:</p>
 <pre><code>    SELECT IF(score &gt;= 100, "Good Job", score) AS score FROM exam_results;
 </code></pre>
-<p>this will check if the value in the score column is 100 then print "Good Job". IF statements can also be nested:</p>
+<p>this will check if the value in the score column is 100 then print "Good Job" otherwise print the value of score. IF statements can also be nested:</p>
 <pre><code>    SELECT IF(score &gt;= 100, "Good Job", IF(score &lt; 100, "You Failed!", score)) score FROM exam_results;
 </code></pre>
 <h6 id="case-statements-switch-statements-for-those-c-programmers-are-much-like-if-statements-for-example">CASE statements (switch statements for those C programmers) are much like if statements. For example:</h6>
