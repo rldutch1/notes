@@ -720,7 +720,7 @@ The IF statement takes three arguments; the conditional, the true value, and the
 
 		SELECT IF(score >= 100, "Good Job", score) AS score FROM exam_results;
 
-this will check if the value in the score column is 100 then print "Good Job". IF statements can also be nested:
+this will check if the value in the score column is 100 then print "Good Job" otherwise print the value of score. IF statements can also be nested:
 
 		SELECT IF(score >= 100, "Good Job", IF(score < 100, "You Failed!", score)) score FROM exam_results;
 
