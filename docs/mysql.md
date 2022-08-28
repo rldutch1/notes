@@ -520,14 +520,60 @@ For scripting in a shell, you can use either of the following:
     ********************
     select concat("ALTER DEFINER=`rlholland1`@`localhost` VIEW ", weapons, " AS " , view_definition, ";") FROM information_schema.views where table_schema="hillc1";
 
+#### DROP
+###### Drop a database:
+
+				drop database `TheDataBaseName`;
+				
+###### Drop a table;
+
+				drop table `TheTablename`;
+
+###### Drop an index:
+
+				alter TheTableName drop `TheIndexName`;
+
+######** In MySQL, theres no DROP CONSTRAINT, you have to use DROP FOREIGN KEY instead:
+
+		ALTER TABLE `table_name`
+		DROP FOREIGN KEY `id_name_fk`;
+		You might have to drop the index too because simply removing the foreign key does not remove the index.
+
+		ALTER TABLE `table_name` 
+		DROP INDEX  `id_name_fk`;
+		An alternative to temporarily disable all the foreign keys:
+
+		SET FOREIGN_KEY_CHECKS=0;
+		When you need to turn it on:
+
+		SET FOREIGN_KEY_CHECKS=1;
+
 #### Dump a Database:
-Dump and rename:
+###### Dump and rename:
 
 	mysqldump -R old_db | mysql new_db
  	
- 	or just dump the database
+ 	or just dump the database and import the file into a new database name:
 	
-	mysqldump -p -c -e theDBName > DBDump.theDBName.sql
+	mysqldump -p -c -e TheNameOfTheDatabase > The_Name_of_the_Dump.sql
+	
+	To import from the MySQL command prompt type: source The_Name_of_the_Dump.sql
+	
+	or
+	
+	\. The_Name_of_the_Dump.sql
+
+###### Dump a Table:
+	
+	mysqldump -p -c -e TheNameOfTheDatabase TheNameOfTheTable > The_Name_of_the_Dump.sql
+
+###### Dump a single Database:
+
+	mysqldump -p -c -e TheNameOfTheDatabase > The_Name_of_the_Dump.sql
+	
+###### Dump All Databases on the Server to a file:
+	
+	mysqldump -p -c -e --all-databases > The_Name_of_the_Dump.sql
 
 #### Duplicate Data:
 ###### Find duplicate data in a column.
@@ -1410,6 +1456,12 @@ Change the default mysql> prompt to something functional and useful.
     
     http://stackoverflow.com/questions/5285448/mysql-select-only-not-null-values
 
+#### Shell Commands:
+If you want to run shell commands from within the MySQL command prompt use a backslash and exclaimation mark:
+	
+	Example:
+	\! ls -al
+
 #### Service (MySQL):
 ###### Linux and/or MAC:
 ```
@@ -1421,7 +1473,7 @@ Change the default mysql> prompt to something functional and useful.
      /etc/init.d/mysqld start
      /etc/init.d/mysqld stop
      /etc/init.d/mysqld restart
-    Some Linux flavours offer the service command too
+    Some Linux flavors offer the service command too
     
      service mysqld start
      service mysqld stop
@@ -1444,6 +1496,17 @@ Change the default mysql> prompt to something functional and useful.
      sudo /usr/local/mysql/support-files/mysql.server restart
 
 ```
+
+####Source:
+Use "source" to run a query from outside the database command prompt window. Example: if you have a query file
+named "bigdata.sql" that contains valid MySQL statements that you want to run.
+		
+		Example:
+		source bigdata.sql;
+		
+		or
+		
+		\. bigdata.sql 
 
 #### Statements and Clauses (MySQL):
 ###### MYSQL Statements and clauses
