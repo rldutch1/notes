@@ -1660,8 +1660,6 @@ named "bigdata.sql" that contains valid MySQL statements that you want to run.
   SHOW TABLE STATUS
   
   SHOW TABLES
-	
-	show tables like 'abc%';
   
   SHOW VARIABLES
   
