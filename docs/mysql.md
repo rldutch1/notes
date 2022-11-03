@@ -890,13 +890,13 @@ Example:
     It's a common source of confusion for MySQL users to see INT(20) and assume it's a size limit, something analogous to CHAR(20).
 
 #### Joins:
-**<img src="/img/joins1_left1.png" /> Left Inner Join**<br />
-**<img src="/img/joins2_left1.png" /> Left Join**<br />
-**<img src="/img/joins3_inner1.png" />Inner Join**<br />
-**<img src="/img/joins4_right1.png" />Right Inner Join**<br />
-**<img src="/img/joins5_right1.png" />Right Join**<br />
-**<img src="/img/joins6_full_outer1.png" />Full Outer Join**<br />
-**<img src="/img/joins7_full_outer1.png" />Full Inner Join**<br />
+**<img src="http://localhost/~rob/mkdocs/production/docs/img/joins1_left1.png" /> Left Inner Join**<br />
+**<img src="http://localhost/~rob/mkdocs/production/docs/img//joins2_left1.png" /> Left Join**<br />
+**<img src="http://localhost/~rob/mkdocs/production/docs/img//joins3_inner1.png" />Inner Join**<br />
+**<img src="http://localhost/~rob/mkdocs/production/docs/img//joins4_right1.png" />Right Inner Join**<br />
+**<img src="http://localhost/~rob/mkdocs/production/docs/img//joins5_right1.png" />Right Join**<br />
+**<img src="http://localhost/~rob/mkdocs/production/docs/img//joins6_full_outer1.png" />Full Outer Join**<br />
+**<img src="http://localhost/~rob/mkdocs/production/docs/img//joins7_full_outer1.png" />Full Inner Join**<br />
 
 ###### Join with no where clause:
   I have two tables I want to join.
