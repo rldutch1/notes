@@ -11,18 +11,18 @@ Youtube Videos:
 #### Generate/Create GPG/PGP Key:
 	gpg2 --full-gen-key
 	gpg --gen-key
-	
-	Versions older than 2.1.17 use: 
+
+	Versions older than 2.1.17 use:
 	gpg --default-new-key-algo rsa4096 --gen-key
 
 #### Change your password if you want to:
 	gpg --edit-key YourKeyID
 	Then type: passwd
-	
+
 
 #### Send key to default key server:
 	  gpg --send-key KEYNAME
-	  
+
 	 	You can upload your key to this PGP site: https://keyserver.pgp.com
 	 	You can check if your key is on the PGP website here: https://keyserver.pgp.com
 
@@ -49,10 +49,10 @@ Youtube Videos:
   Type your message that you want to encrypt.
   Press Control+D and your encrypted message will appear onscreen.
 
-  If you want to encrypt the above message to a file you can type: 
-  
+  If you want to encrypt the above message to a file you can type:
+
 	gpg -ea > filename.txt
-  
+
   then do the steps above.
   Enter your recipients and end with an empty line.
   Type your message that you want to encrypt.
@@ -81,7 +81,11 @@ Encrypt a single file (creates an ASCII file). This option may be combined with 
 This is a special version of the --encrypt command. The command expects the files to be encrypted either on the command line or reads the filenames from stdin; each name must be on separate line. The command is intended for a quick encryption of multiple files.
 Encrypt multiple files. This option may be combined with --sign.
 
+	This will prompt you for your password for each file.
  	gpg --encrypt-files file1 file2 file3
+
+ 	or add a recipient (your own key) to not be prompted.
+	gpg --encrypt-files -r A1B2C3D4E5F6 *.txt
 
 Encrypt with symmetric cipher only. This command asks for a passphrase. (May also be combined with --sign -- see GnuPG 1.0.7 released.)
 
@@ -90,6 +94,16 @@ Encrypt with symmetric cipher only. This command asks for a passphrase. (May als
  	or
 
  	gpg --symmetric filename
+
+Batch Encrypt multiple files to specified recipients (encrypt.sh). Make sure your $file variable is surrounded by quotes so that files with spaces in their names will get picked up.
+
+	for file in *.txt
+
+	do
+
+		gpg --encrypt -r A1B2C3D4E5F6G7H8 -r I1J2K3L4M5N6O7P8 "$file"
+
+	done
 
 Encrypt to a recipient.
 
@@ -105,16 +119,16 @@ Encrypt to a recipient.
 
 Use -u to specify the secret key to be used, and -r to specify the public key of the recipient.
 **Note: This doesn't seem to work when you have a default sender and recipient key established in gpg.conf.
-    
+
     gpg -e -u "Sender User Name" -r "Receiver User Name" somefile
     Example 1: gpg -e -u "me@example.com" -r "you@example.com" -r "them@example.com" somefile
-    
+
     Example 2:
     gpg -e -u "Billy Bob" -r "Nancy Bob" mydata.tar
-    
+
     Example 3:
     gpg -s --default-key ABCD1234 -ea yyy.txt
-		
+
 Password encrypt and sign a file:
 
 	gpg -c -s filename
@@ -145,7 +159,7 @@ Decrypt UUEncoded file with normal encryption then UUDecode it:
 Decrypt a message in standard out (stout) type:
 
   gpg
-  
+
 You will see a message similar to this: gpg: Go ahead and type your message ...
   At this point you can paste in the encrypted text and you will be prompted for your passphrase.
   Once you enter your passphrase, press Control+D to see the decrypted message.
@@ -185,11 +199,11 @@ When encrypting or decrypting it is possible to have more than one private key i
 Make a signature. This command may be combined with --encrypt. (May also be combined with --symmetric (see GnuPG 1.0.7 released.)
 
  	gpg -s filename
- 	
+
  	or
- 	
+
  	gpg --sign filename
-  
+
   Both -s and --sign make an illegible signature that you can't read. This is OK because GPG/PGP can still read it (not humans).
 
 #### Make a clear text signature.
@@ -204,7 +218,7 @@ Make a signature. This command may be combined with --encrypt. (May also be comb
 
  	gpg --detach-sign filename
 
-#### Verify a signature file without generating any output. 
+#### Verify a signature file without generating any output.
 With no arguments, the signature packet is read from stdin. If only a sigfile is given, it may be a complete signature or a detached signature, in which case the signed stuff is expected in a file without the ".sig" or ".asc" extension. With more than 1 argument, the first should be a detached signature and the remaining files are the signed stuff. To read the signed stuff from stdin, use - as the second filename. For security reasons a detached signature cannot read the signed material from stdin without denoting it in the above way.
 
  	gpg --verify sigfile signed_files
@@ -373,7 +387,7 @@ Next, you will have to send the revoked key to the key server. This is the same 
 	gpg --edit-key 01234567
 	uid 4 (This is the uid of the email address that you want to revoke).
 	revuid
-	
+
 		Really revoke this user ID? (y/N) y
 		Please select the reason for the revocation:
   	0 = No reason specified
@@ -395,7 +409,7 @@ Next, you will have to send the revoked key to the key server. This is the same 
 Next, send your updated key to the keyservers.
 
 	gpg --send-keys 01234567
-	
+
 	gpg: sending key 01234567 to hkp server keys.gnupg.net
 
 #### Key Administration:
@@ -404,7 +418,7 @@ With the GnuPG system comes a file that acts as some kind of database. In this f
 #### List all the keys:
 
 This will show you the key IDs and other information:
-	
+
 	gpg --list-keys
 
 To show the "Short Key" ID:
@@ -437,7 +451,7 @@ To delete a public key you type:
 
 To delete a secret key you type:
 
-	gpg --delete-secret-key  
+	gpg --delete-secret-key
 	(You have to delete the private key before deleting the public key)
 
 There is one more important command that is relevant for working with keys.
@@ -451,7 +465,7 @@ Import a key:
 	gpg --import filename
 
 You might get an error with the newer version of GPG (gpg: error building skey array: Permission denied)
-	
+
 	Try using (--batch):
 	gpg --batch --import your.secret.key.asc
 
@@ -685,16 +699,16 @@ Removing the passphrase cacheing and setting it to 1 second. I haven't tried thi
 
 Edit: ~/.gnupg/gpg-agent.conf
 
-	Add: 
+	Add:
 		default-cache-ttl 1
 		max-cache-ttl 1
 
-#### Reload the gpg agent: 
+#### Reload the gpg agent:
 	echo RELOADAGENT | gpg-connect-agent
 
 	or
 
-	Type: 
+	Type:
 
 	gpg-connect-agent
 
@@ -718,34 +732,34 @@ Edit: ~/.gnupg/gpg-agent.conf
 	gpgconf --list-dirs
 
 #### Miscellaneous:
-	
+
 gpg options --debug-level guru --debug-all --verbose
 
 gpg --debug-level guru --debug-all --verbose
 
 
-I was having trouble importing my private key because it was in an older version of GPG. 
+I was having trouble importing my private key because it was in an older version of GPG.
 I was getting the following errors:
- 
+
 	gpg: error building skey array: No such file or directory
 	gpg import error sending to agent no such file or directory
 	gpg: error building skey array: permission denied
 	gpg: decryption failed: no secret key
-	
+
 I had to decrypt my passphrase encrypted key using a user that did not have GPG enabled (root).
-I also renamed my .gnupg directory and ran gpg again so that a new .gnupg folder would get created. Inside that 
+I also renamed my .gnupg directory and ran gpg again so that a new .gnupg folder would get created. Inside that
 directory I had to manually create the private-keys-v1.d directory so the "No such file or directory" error would
 go away.
 
 I was still having issues and kept seeing a message telling me no private key present whenever I tried to decrypt something.
-I ended up restoring the .gnupg folder from a backup and restarting the gpg agent. 
+I ended up restoring the .gnupg folder from a backup and restarting the gpg agent.
 
 #### Pinentry
-Running gpg through SSH session sometimes will error when performing tasks. When I used the pinentry-mode, the password was cached but I was able to decrypt. 
+Running gpg through SSH session sometimes will error when performing tasks. When I used the pinentry-mode, the password was cached but I was able to decrypt.
 
 	gpg --decrypt --pinentry-mode=loopback <file>
 	gpg -c -s --pinentry-mode=loopback <file>
 
 #### Keybase error adding PGP/GPG key:
-	
+
 	https://github.com/keybase/client/issues/22458
