@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Mount - My Notes</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Mount";
+        var mkdocs_page_input_path = "mount.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> My Notes
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../git/">GiT</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lvm/">LVM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../markdown/">Markdown</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Mount</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#use-the-following-commands-to-view-the-disksusb-devices">Use the following commands to view the disks/USB devices:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#01-usb-drive-has-not-been-inserted-plugged-in-yet">01. USB drive has not been inserted (plugged in) yet.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#02-gui-password-prompt-when-drive-is-plugged-in-i-clicked-cancel-to-demonstrate-mounting-from-commandline">02. GUI password prompt when drive is plugged in (I clicked cancel to demonstrate mounting from commandline).</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#03-usb-drive-inserted-plugged-in-and-showing-as-devsdm1">03. USB drive inserted (plugged in) and showing as /dev/sdm1.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#04-udiskctl-showing-devsdm1-as-crypto_luks">04. udiskctl showing /dev/sdm1 as "crypto_LUKS"..</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#05-trying-to-mount-the-locked-luks-encrypted-volume-failed-because-volume-is-locked-run-cryptsetup-first-to-unlock">05. Trying to mount the locked LUKS encrypted volume (Failed because volume is locked. Run cryptsetup first to unlock.).</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#06-running-cryptsetup-to-unlock-the-encrypted-volume-assigning-alias-of-2t_ssd-to-reference-the-unlocked-volume-the-alias-can-be-whatever-you-want">06. Running cryptsetup to unlock the encrypted volume (Assigning alias of "2T_SSD" to reference the unlocked volume. The alias can be whatever you want.).</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#07-decrypted-volume-showing-as-2t_ssd-but-not-yet-mounted">07. Decrypted volume showing as 2T_SSD, but not yet mounted.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#08-decrypted-volume-alias-2t_ssd-showing-under-devmapper">08. Decrypted volume alias "2T_SSD" showing under /dev/mapper.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#09-password-prompt-when-using-sudo-to-mount-decrypted-2t_ssd-volume-to-devm">09. Password prompt when using sudo to mount decrypted 2T_SSD volume to /dev/m.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#10-decrypted-volume-showing-unlocked-and-mounted-at-mntm">10. Decrypted volume showing unlocked and mounted at /mnt/m.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#11-unmounting-mntm">11. Unmounting /mnt/m.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#12-closing-cryptsetup-session-locking-it">12. Closing cryptsetup session (Locking it).</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#13-usb-drive-unmounted-and-unplugged-from-system">13. USB drive unmounted and unplugged from system.</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mysql/">MySQL</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../pgp/">PGP</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">My Notes</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Mount</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="mounting-and-unmounting-a-luks-encrypted-usb-volume">Mounting and Unmounting a LUKS Encrypted USB Volume</h1>
+<h3 id="use-the-following-commands-to-view-the-disksusb-devices">Use the following commands to view the disks/USB devices:</h3>
+<ul>
+<li>blkid</li>
+<li>duf</li>
+<li>lsblk</li>
+<li>lsblk -a</li>
+<li>lsblk -o +UUID,PARTUUID</li>
+<li>lsblk -o +UUID,FSTYPE,PARTUUID</li>
+<li>ls -lF /dev/disk/by-id</li>
+<li>sudo lshw -short -C disk</li>
+<li>sudo udisksctl info -b /dev/??</li>
+</ul>
+<h3 id="01-usb-drive-has-not-been-inserted-plugged-in-yet">01. USB drive has not been inserted (plugged in) yet.</h3>
+<p><code>$ To see volumes type: lsblk</code></p>
+<p><img alt=" Running lsblk shows what is currently mounted." src="../img/x01.png" title="Running lsblk shows what is currently mounted." /></p>
+<h3 id="02-gui-password-prompt-when-drive-is-plugged-in-i-clicked-cancel-to-demonstrate-mounting-from-commandline">02. GUI password prompt when drive is plugged in (I clicked cancel to demonstrate mounting from commandline).</h3>
+<p><img alt=" I clicked cancel to demonstrate mounting from commandline." src="../img/x02.png" title="I clicked cancel to demonstrate mounting from commandline." /></p>
+<h3 id="03-usb-drive-inserted-plugged-in-and-showing-as-devsdm1">03. USB drive inserted (plugged in) and showing as /dev/sdm1.</h3>
+<p><code>$ To see volumes type: lsblk</code></p>
+<p><img alt=" USB drive inserted (plugged in) and showing as /dev/sdm1." src="../img/x03.png" title="USB drive inserted (plugged in) and showing as /dev/sdm1. Your volume name may be different than /dev/sdm1." /></p>
+<h3 id="04-udiskctl-showing-devsdm1-as-crypto_luks">04. udiskctl showing /dev/sdm1 as "crypto_LUKS"..</h3>
+<p><code>$ Check the volume information type: sudo udisksctl info -b /dev/sdm1</code></p>
+<p><img alt=" See the various commands above to view drive/volumes. Your volume name may be different than /dev/sdm1." src="../img/x04.png" title="See the various commands above to view drive/volumes. Your volume name may be different than /dev/sdm1." /></p>
+<h3 id="05-trying-to-mount-the-locked-luks-encrypted-volume-failed-because-volume-is-locked-run-cryptsetup-first-to-unlock">05. Trying to mount the locked LUKS encrypted volume (Failed because volume is locked. Run cryptsetup first to unlock.).</h3>
+<p><img alt=" See the various commands to view drive/volumes above." src="../img/x05.png" title="See the various commands to view drive/volumes above." /></p>
+<h3 id="06-running-cryptsetup-to-unlock-the-encrypted-volume-assigning-alias-of-2t_ssd-to-reference-the-unlocked-volume-the-alias-can-be-whatever-you-want">06. Running cryptsetup to unlock the encrypted volume (Assigning alias of "2T_SSD" to reference the unlocked volume. The alias can be whatever you want.).</h3>
+<p><code>$ To open the encrypted filesystem type: sudo cryptsetup luksOpen /dev/sdm1 2T_SSD</code></p>
+<p><img alt=" The alias name can be whatever you want." src="../img/x06.png" title="The alias name can be whatever you want." /></p>
+<h3 id="07-decrypted-volume-showing-as-2t_ssd-but-not-yet-mounted">07. Decrypted volume showing as 2T_SSD, but not yet mounted.</h3>
+<p><code>$ To see the unlocked volume type: lsblk</code></p>
+<p><img alt=" Decrypted volume showing the 2T_SSD alias, but not yet mounted." src="../img/x07.png" title="Decrypted volume showing the 2T_SSD alias, but not yet mounted." /></p>
+<h3 id="08-decrypted-volume-alias-2t_ssd-showing-under-devmapper">08. Decrypted volume alias "2T_SSD" showing under /dev/mapper.</h3>
+<p><code>$ Check /dev/mapper to see if your alias is there: ls -al /dev/mapper</code></p>
+<p><img alt=" Decrypted volume alias &quot;2T_SSD&quot; showing under /dev/mapper." src="../img/x08.png" title="Decrypted volume alias &quot;2T_SSD&quot; showing under /dev/mapper." /></p>
+<h3 id="09-password-prompt-when-using-sudo-to-mount-decrypted-2t_ssd-volume-to-devm">09. Password prompt when using sudo to mount decrypted 2T_SSD volume to /dev/m.</h3>
+<p><code>$ To mount your alias to a mount point type: sudo mount /dev/mapper/2T_SSD /mnt/m</code></p>
+<p><img alt=" Password prompt when using sudo to mount decrypted 2T_SSD volume to the /dev/m mount point (The mount point can be whatever you want." src="../img/x09.png" title="Password prompt when using sudo to mount decrypted 2T_SSD volume to the /dev/m mount point (The mount point can be whatever you want." /></p>
+<h3 id="10-decrypted-volume-showing-unlocked-and-mounted-at-mntm">10. Decrypted volume showing unlocked and mounted at /mnt/m.</h3>
+<p><code>$ To see volumes type: lsblk</code></p>
+<p><img alt=" Decrypted volume showing unlocked and mounted at /mnt/m." src="../img/x10.png" title="Decrypted volume showing unlocked and mounted at /mnt/m." /></p>
+<h3 id="11-unmounting-mntm">11. Unmounting /mnt/m.</h3>
+<p><code>$ To unmount th volume type: /mnt/m</code></p>
+<p><img alt=" Unmounting /mnt/m." src="../img/x11.png" title="Unmounting /mnt/m." /></p>
+<h3 id="12-closing-cryptsetup-session-locking-it">12. Closing cryptsetup session (Locking it).</h3>
+<p><code>$ To close the volume type: sudo cryptsetup close 2T_SSD</code></p>
+<p><img alt=" Closing cryptsetup session (Locking it)." src="../img/x12.png" title="Closing cryptsetup session (Locking it)." /></p>
+<h3 id="13-usb-drive-unmounted-and-unplugged-from-system">13. USB drive unmounted and unplugged from system.</h3>
+<p><code>$ To see volumes type: lsblk</code></p>
+<p><img alt=" USB drive unmounted and unplugged from system." src="../img/x13.png" title="USB drive unmounted and unplugged from system." /></p>
+
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../markdown/" class="btn btn-neutral float-left" title="Markdown"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../mysql/" class="btn btn-neutral float-right" title="MySQL">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../markdown/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../mysql/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
