@@ -136,42 +136,42 @@
 </ul>
 <h3 id="01-usb-drive-has-not-been-inserted-plugged-in-yet">01. USB drive has not been inserted (plugged in) yet.</h3>
 <p><code>$ To see volumes type: lsblk</code></p>
-<p><img alt=" Running lsblk shows what is currently mounted." src="../img/x01.png" title="Running lsblk shows what is currently mounted." /></p>
+<p><img alt=" Running lsblk shows what is currently mounted." src="/img/x01.png" title="Running lsblk shows what is currently mounted." /></p>
 <h3 id="02-gui-password-prompt-when-drive-is-plugged-in-i-clicked-cancel-to-demonstrate-mounting-from-commandline">02. GUI password prompt when drive is plugged in (I clicked cancel to demonstrate mounting from commandline).</h3>
-<p><img alt=" I clicked cancel to demonstrate mounting from commandline." src="../img/x02.png" title="I clicked cancel to demonstrate mounting from commandline." /></p>
+<p><img alt=" I clicked cancel to demonstrate mounting from commandline." src="/img/x02.png" title="I clicked cancel to demonstrate mounting from commandline." /></p>
 <h3 id="03-usb-drive-inserted-plugged-in-and-showing-as-devsdm1">03. USB drive inserted (plugged in) and showing as /dev/sdm1.</h3>
 <p><code>$ To see volumes type: lsblk</code></p>
-<p><img alt=" USB drive inserted (plugged in) and showing as /dev/sdm1." src="../img/x03.png" title="USB drive inserted (plugged in) and showing as /dev/sdm1. Your volume name may be different than /dev/sdm1." /></p>
+<p><img alt=" USB drive inserted (plugged in) and showing as /dev/sdm1." src="/img/x03.png" title="USB drive inserted (plugged in) and showing as /dev/sdm1. Your volume name may be different than /dev/sdm1." /></p>
 <h3 id="04-udiskctl-showing-devsdm1-as-crypto_luks">04. udiskctl showing /dev/sdm1 as "crypto_LUKS"..</h3>
 <p><code>$ Check the volume information type: sudo udisksctl info -b /dev/sdm1</code></p>
-<p><img alt=" See the various commands above to view drive/volumes. Your volume name may be different than /dev/sdm1." src="../img/x04.png" title="See the various commands above to view drive/volumes. Your volume name may be different than /dev/sdm1." /></p>
+<p><img alt=" See the various commands above to view drive/volumes. Your volume name may be different than /dev/sdm1." src="/img/x04.png" title="See the various commands above to view drive/volumes. Your volume name may be different than /dev/sdm1." /></p>
 <h3 id="05-trying-to-mount-the-locked-luks-encrypted-volume-failed-because-volume-is-locked-run-cryptsetup-first-to-unlock">05. Trying to mount the locked LUKS encrypted volume (Failed because volume is locked. Run cryptsetup first to unlock.).</h3>
-<p><img alt=" See the various commands to view drive/volumes above." src="../img/x05.png" title="See the various commands to view drive/volumes above." /></p>
+<p><img alt=" See the various commands to view drive/volumes above." src="/img/x05.png" title="See the various commands to view drive/volumes above." /></p>
 <h3 id="06-running-cryptsetup-to-unlock-the-encrypted-volume-assigning-alias-of-2t_ssd-to-reference-the-unlocked-volume-the-alias-can-be-whatever-you-want">06. Running cryptsetup to unlock the encrypted volume (Assigning alias of "2T_SSD" to reference the unlocked volume. The alias can be whatever you want.).</h3>
 <p><code>$ To open the encrypted filesystem type: sudo cryptsetup luksOpen /dev/sdm1 2T_SSD</code></p>
-<p><img alt=" The alias name can be whatever you want." src="../img/x06.png" title="The alias name can be whatever you want." /></p>
+<p><img alt=" The alias name can be whatever you want." src="/img/x06.png" title="The alias name can be whatever you want." /></p>
 <h3 id="07-decrypted-volume-showing-as-2t_ssd-but-not-yet-mounted">07. Decrypted volume showing as 2T_SSD, but not yet mounted.</h3>
 <p><code>$ To see the unlocked volume type: lsblk</code></p>
-<p><img alt=" Decrypted volume showing the 2T_SSD alias, but not yet mounted." src="../img/x07.png" title="Decrypted volume showing the 2T_SSD alias, but not yet mounted." /></p>
+<p><img alt=" Decrypted volume showing the 2T_SSD alias, but not yet mounted." src="/img/x07.png" title="Decrypted volume showing the 2T_SSD alias, but not yet mounted." /></p>
 <h3 id="08-decrypted-volume-alias-2t_ssd-showing-under-devmapper">08. Decrypted volume alias "2T_SSD" showing under /dev/mapper.</h3>
 <p><code>$ Check /dev/mapper to see if your alias is there: ls -al /dev/mapper</code></p>
-<p><img alt=" Decrypted volume alias &quot;2T_SSD&quot; showing under /dev/mapper." src="../img/x08.png" title="Decrypted volume alias &quot;2T_SSD&quot; showing under /dev/mapper." /></p>
+<p><img alt=" Decrypted volume alias &quot;2T_SSD&quot; showing under /dev/mapper." src="/img/x08.png" title="Decrypted volume alias &quot;2T_SSD&quot; showing under /dev/mapper." /></p>
 <h3 id="09-password-prompt-when-using-sudo-to-mount-decrypted-2t_ssd-volume-to-devm">09. Password prompt when using sudo to mount decrypted 2T_SSD volume to /dev/m.</h3>
 <p><code>$ To mount your alias to a mount point type: sudo mount /dev/mapper/2T_SSD /mnt/m</code></p>
-<p><img alt=" Password prompt when using sudo to mount decrypted 2T_SSD volume to the /dev/m mount point (The mount point can be whatever you want." src="../img/x09.png" title="Password prompt when using sudo to mount decrypted 2T_SSD volume to the /dev/m mount point (The mount point can be whatever you want." /></p>
+<p><img alt=" Password prompt when using sudo to mount decrypted 2T_SSD volume to the /dev/m mount point (The mount point can be whatever you want." src="/img/x09.png" title="Password prompt when using sudo to mount decrypted 2T_SSD volume to the /dev/m mount point (The mount point can be whatever you want." /></p>
 <h3 id="10-decrypted-volume-showing-unlocked-and-mounted-at-mntm">10. Decrypted volume showing unlocked and mounted at /mnt/m.</h3>
 <p><code>$ To see volumes type: lsblk</code></p>
-<p><img alt=" Decrypted volume showing unlocked and mounted at /mnt/m." src="../img/x10.png" title="Decrypted volume showing unlocked and mounted at /mnt/m." /></p>
+<p><img alt=" Decrypted volume showing unlocked and mounted at /mnt/m." src="/img/x10.png" title="Decrypted volume showing unlocked and mounted at /mnt/m." /></p>
 <h3 id="11-unmounting-mntm">11. Unmounting /mnt/m.</h3>
 <p><code>$ To unmount th volume type: /mnt/m</code></p>
-<p><img alt=" Unmounting /mnt/m." src="../img/x11.png" title="Unmounting /mnt/m." /></p>
+<p><img alt=" Unmounting /mnt/m." src="/img/x11.png" title="Unmounting /mnt/m." /></p>
 <h3 id="12-closing-cryptsetup-session-locking-it">12. Closing cryptsetup session (Locking it).</h3>
 <p><code>$ To close the volume type: sudo cryptsetup close 2T_SSD</code></p>
-<p><img alt=" Closing cryptsetup session (Locking it)." src="../img/x12.png" title="Closing cryptsetup session (Locking it)." /></p>
+<p><img alt=" Closing cryptsetup session (Locking it)." src="/img/x12.png" title="Closing cryptsetup session (Locking it)." /></p>
 <h3 id="13-usb-drive-unmounted-and-unplugged-from-system">13. USB drive unmounted and unplugged from system.</h3>
 <p><code>$ To see volumes type: lsblk</code></p>
-<p><img alt=" USB drive unmounted and unplugged from system." src="../img/x13.png" title="USB drive unmounted and unplugged from system." /></p>
-
+<p><img alt=" USB drive unmounted and unplugged from system." src="/img/x13.png" title="USB drive unmounted and unplugged from system." /></p>
+              
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">

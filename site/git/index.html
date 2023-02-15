@@ -103,6 +103,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#to-see-the-commits-for-only-one-file">To see the commits for only one file:</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#to-see-the-sha-for-files-for-a-specific-commit-r-will-recurse-directories">To see the SHA for files for a specific commit (-r will recurse directories):</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#undo-changes-in-the-staging-area">Undo changes in the staging area:</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#amending-commits">Amending Commits:</a>
@@ -336,7 +338,7 @@ files. If all goes well you can merge your changes into the master branch.</p>
 </code></pre>
 <h4 id="merge-branch">Merge branch:</h4>
 <p>To merge your new branch into master, first go to the master branch
-by typing: </p>
+by typing:</p>
 <pre><code>git checkout master
 </code></pre>
 <p>then type:</p>
@@ -381,7 +383,7 @@ Make new_master master
 
     git branch -mv new_master master
 
-Alternatively you can reset current branch to one commit ago on master
+Alternatively you can reset current branch to one commit ago on master (See git reflog for recovery of local branches).
 
     git reset --hard abc123...
 
@@ -450,6 +452,21 @@ The -w does not show differences in whitespace.
 <h4 id="to-see-the-commits-for-only-one-file">To see the commits for only one file:</h4>
 <pre><code>git log --follow filename
 </code></pre>
+<h4 id="to-see-the-sha-for-files-for-a-specific-commit-r-will-recurse-directories">To see the SHA for files for a specific commit (-r will recurse directories):</h4>
+<pre><code>git ls-tree -r HEAD #This will show the current head.
+
+or
+
+git ls-tree -r HEAD ab12cd34ef56    #This will show a specific commit.
+
+or
+
+git ls-tree -r HEAD^^  #This will show two commits ago.
+
+or
+
+git ls-tree -r HEAD~2  #This will show two commits ago.
+</code></pre>
 <h4 id="undo-changes-in-the-staging-area">Undo changes in the staging area:</h4>
 <p>I have made a change to a file and it shows up as changed in the working area. I used git add filename to add the file to the staging area. Now I want to take the file out of the staging area and put it back in the working area.</p>
 <pre><code>git reset HEAD filename
@@ -502,6 +519,7 @@ Changes the staging index to match the repository. Does not change the working d
 git reset --hard sha
 changes staging index and working directory to match the repository. (Rewinding 10 seconds and pressing record.) It removes every change that was made before the commit that you select.
 </code></pre>
+<p><a href="https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/" title="recover almost anything">How to undo almost anything: git reflog</a></p>
 <h4 id="git-clean">Git clean:</h4>
 <p>Remove unwanted files from your git directory.</p>
 <pre><code>git clean -n (does a dry run)
@@ -522,7 +540,7 @@ Ignore all files in a directory with a trailing slash.
 Comment with #
 </code></pre>
 <h4 id="global-ignore">Global Ignore</h4>
-<p>Put all of your git ignore commands in one file and point git to it using: </p>
+<p>Put all of your git ignore commands in one file and point git to it using:</p>
 <pre><code>git config --global
 </code></pre>
 <p>The file can be named anything you want. You just have to tell git where it is.</p>
@@ -534,7 +552,7 @@ Comment with #
 <p>This removes the file from being tracked by git. If you do a git status it will show as "deleted" but it really isn't. It is just no longer being tracked.</p>
 <p>Git does not track empty directories. If you want to track a directory you will have to put a file in it. Most commonly people put a file named .gitkeep or placeholder.txt inside the directory so that git will watch the directory.</p>
 <h4 id="comparing-branches">Comparing Branches:</h4>
-<pre><code>git diff master..newbranch 
+<pre><code>git diff master..newbranch
 The branch listed second in your command is the "b" branch in the diff output.
 </code></pre>
 <p>A different view for diff:</p>
@@ -752,7 +770,7 @@ git branch newbranchname origin/branchname
 <pre><code>git push origin :branchname
 </code></pre>
 <p>A little information history on the git push command. It used to be done like this:</p>
-<pre><code>    git push origin branchname:branchname. 
+<pre><code>    git push origin branchname:branchname.
     The colon between them means that you are telling git to push to origin the local branchname to the remote branchname. If you don't specify the colon and you only have one branchname, git assumes they are the same.
 </code></pre>
 <p>So the git push origin :branchname means to push to origin nothing locally to the remote branchname. The remote branchname is now getting nothing pushed to it and is deleted.</p>
@@ -916,8 +934,8 @@ which git-shell
     /bin/dash
     /usr/bin/git-shell
 </code></pre>
-<p>On Fedora 24 and 25, the chsh command is used to change the shell. It may not exist by default. </p>
-<pre><code>Install the package that contains chsh: 
+<p>On Fedora 24 and 25, the chsh command is used to change the shell. It may not exist by default.</p>
+<pre><code>Install the package that contains chsh:
     dnf install util-linux-user
 </code></pre>
 <p>Change the git user login shell to git-shell:</p>
@@ -1059,7 +1077,7 @@ done
 </code></pre>
 <p>This could be generalized to wait on a list of files and/or directories, and the corresponding inotifywait processes, and restart each inotifywait as a file is changed.</p>
 <p>Use the -r flag to inotifywait, but note that the kernel has a limit on the number of inotifywait watches it can set up. man inotifywait will tell you more.</p>
-<p>This Github repository was recommended: </p>
+<p>This Github repository was recommended:</p>
 <pre><code>https://github.com/nevik/gitwatch.git. I have cloned it in my personal repository.
 Source: http://stackoverflow.com/questions/420143/making-git-auto-commit.
 </code></pre>
@@ -1101,7 +1119,7 @@ git instaweb --httpd=apache2
 git instaweb --httpd=apache2 --stop
 </code></pre>
 <p>GitWeb source: https://git-scm.com/book/en/v2/Git-on-the-Server-GitWeb</p>
-<p>Transferring repositories. 
+<p>Transferring repositories.
     I transferred 3 repositories and for some reason, when I got the confirmation link in my email in Chrome, the transfer link didn't work.
     I had to open my email in Firefox and click on the confirmation link and the transfer worked.</p>
               
