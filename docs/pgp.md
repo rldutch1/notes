@@ -87,6 +87,22 @@ Encrypt multiple files. This option may be combined with --sign.
  	or add a recipient (your own key) to not be prompted.
 	gpg --encrypt-files -r A1B2C3D4E5F6 *.txt
 
+
+You can also batch encrypt using --multi-file:
+
+	gpg --multifile --encrypt --armor -r brothers *.txtrh
+
+Here is a bash script to batch encrypt multiple files:
+
+	for file in *.txtrh
+	do
+	#	echo "gpg --encrypt --armor -r 7FEBFF2F6AB4F024 -r D1BD917D4AF9F0EC" > ~/"$file"
+	#	gpg --encrypt --armor -r 7FEBFF2F6AB4F024 -r D1BD917D4AF9F0EC "$file"
+		gpg --encrypt --armor -r brothers "$file"
+	#	echo "============== $file"
+	done
+
+
 Encrypt with symmetric cipher only. This command asks for a passphrase. (May also be combined with --sign -- see GnuPG 1.0.7 released.)
 
  	gpg -c filename

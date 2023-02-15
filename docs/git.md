@@ -1,9 +1,9 @@
-##Configuring git: 
+##Configuring git:
 
-#### For all users on the system:	
-	
+#### For all users on the system:
+
 	git --config system
-	
+
 #### For user level:
 
     git --config global
@@ -112,9 +112,9 @@ If you have a branch that is not tracking you can add it to be tracked by typing
 
 #### Merge branch:
 To merge your new branch into master, first go to the master branch
-by typing: 
+by typing:
 
-	git checkout master 
+	git checkout master
 
 then type:
 
@@ -130,13 +130,13 @@ The master branch will now have the same changes as branchname
 You have two options:
 	The first is a merge, but this creates an extra commit for the merge.
 	Checkout each branch:
-	
+
 		git checkout branch1
-		
+
 	Then merge:
-	
+
 		git merge origin/master
-		
+
 	Then push:
 		git push origin branch1
 
@@ -147,35 +147,35 @@ Alternatively, you can do a rebase (easier):
 
 #### If you want to change or revert the master branch to the previous commit:
 	Checkout previous commit on master
-	
+
 		git checkout abc123...
-		
+
 	While in the abc123... detached branch, create branch for new master
-	
+
 		git checkout -b new_master
-		
+
 	Delete old master
-	
+
 		git branch -D master
-		
+
 	Make new_master master
-	
+
 		git branch -mv new_master master
-		
-	Alternatively you can reset current branch to one commit ago on master
-	
+
+	Alternatively you can reset current branch to one commit ago on master (See git reflog for recovery of local branches).
+
 		git reset --hard abc123...
-		
+
 	Then you will have to force push to the repository:
-	
+
 		git push --force origin master
-		
+
 	Try this if you get an error force pushing "error: denying non-fast forward refs/heads/master (you should pull first)" and you have access to the remote git server in ssh, you can go into the git remote directory and set:
-	
+
 		git config receive.denyNonFastforwards false
-		
+
 	If all fails or you don't have access to the remote repository, just make an update commit correcting the error.
-	
+
 If you want to delete the branch (make sure you are on the master branch) type:
 
 	git branch -D branchname
@@ -248,6 +248,22 @@ If you want to see a particular commit type:
 
 	git log --follow filename
 
+#### To see the SHA for files for a specific commit (-r will recurse directories):
+
+	git ls-tree -r HEAD	#This will show the current head.
+
+	or
+
+	git ls-tree -r HEAD ab12cd34ef56	#This will show a specific commit.
+
+	or
+
+	git ls-tree -r HEAD^^  #This will show two commits ago.
+
+	or
+
+	git ls-tree -r HEAD~2  #This will show two commits ago.
+
 #### Undo changes in the staging area:
 I have made a change to a file and it shows up as changed in the working area. I used git add filename to add the file to the staging area. Now I want to take the file out of the staging area and put it back in the working area.
 
@@ -312,34 +328,36 @@ Has 3 options.
 	git reset --hard sha
 	changes staging index and working directory to match the repository. (Rewinding 10 seconds and pressing record.) It removes every change that was made before the commit that you select.
 
+[How to undo almost anything: git reflog](https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/ "recover almost anything")
+
 #### Git clean:
 
 Remove unwanted files from your git directory.
 
     git clean -n (does a dry run)
-    
+
     git clean -f (permanently deletes the untracked files from your directory)
     (see cached option under git ignore below for how to remove files that have been previously tracked but you don't want to track them anymore.
 
 #### Git Ignore
 
 Create a file in the root directory called .gitignore and place files and extensions in .gitignore that you want git to ignore.
-    
+
     Can use regular expressions: * ? [aeiou] [0-9]
-    
+
     Negate expressions with !
         Example: !index.php tells git to not ignore index.php.
-        
+
     Ignore all files in a directory with a trailing slash.
         DirectoryName/DirectoryName/
-        
+
     Comment with #
 
 #### Global Ignore
-Put all of your git ignore commands in one file and point git to it using: 
+Put all of your git ignore commands in one file and point git to it using:
 
-	git config --global 
-	
+	git config --global
+
 The file can be named anything you want. You just have to tell git where it is.
 
 	git config --global core.excludesfile path/to/filename (Ex: .ignore_global)
@@ -354,7 +372,7 @@ Git does not track empty directories. If you want to track a directory you will 
 
 #### Comparing Branches:
 
-	git diff master..newbranch 
+	git diff master..newbranch
 	The branch listed second in your command is the "b" branch in the diff output.
 
 A different view for diff:
@@ -378,7 +396,7 @@ If you wanted to compare the same file between two different branches. *The bran
 Switch to the branch that you want to rename.
 
 	git branch -m oldbranchname newbranchname
-	
+
 	git branch --move oldbranchname newbranchname
 
 #### Using fast-forward vs true merge:
@@ -399,7 +417,7 @@ Process Tracking (rebase)
 A stash is not a commit and they do not have a SHA associated with them. You use "stash" when you are in one branch then try to checkout another branch without first saving the changes for the branch you are in. You will get a message telling you that you will lose the changes that you have already made. You can save them by stashing them and then continue to checkout the other branch.
 
 	To stash type:
-	
+
 	git stash save "Message for stash."
 
 If you want to see a list of items in the stash type:
@@ -446,24 +464,24 @@ If you want to add a remote repository type:
 
 You can clone a repository that you don't own and make changes to it then push your changes to your own repository.
 Just use git remote add and create another path to your repository.
-	
+
 	Example:
 		git remote add new-origin path-to-new-repository
 		Now you can push-pull to the new-origin and also pull updates from the old origin that you don't own.
 
 #### Change/Update URL:
 If you want to change/update the URL in .git/config to point to a different repository:
-	
+
 	git remote set-url <alias> <url>
 	Example:
 	git remote set-url origin B:/Millennium/mPage/gitrepositories/azb_custom_components.git
 
   This method defaults to SSH.
-  
+
 	git remote set-url origin git@github.com:rlholland/remoterepositoryname.git
 
   This method specifically uses SSH.
-  
+
 	git remote add origin ssh://username@servername/path/to/repository.git
 
 If you want to remove a remote repository type:
@@ -483,7 +501,7 @@ If you want to clone a remote repository into a folder that you name type:
 	git clone https://github.com/rlholland/reponame.git newlocalfoldername
 
 You can also clone a specific branch by using the -b option.
-	
+
 	Example:
 	git clone -b <branch> <remote_repo>
 	git clone -b thebranchname git@github.com:user/myproject.git
@@ -508,35 +526,35 @@ This will show you all of the commits and the messages that were entered when th
 	This will limit the number of messages displayed on the screen to 10.
 
 If you want to see all of the commits from the beginning up to a certain date type:
-	
+
 	git log --until=2014-05-25
 
 If you want to see all of the commits since a certain date to the present type:
-	
+
 	git log --since=2014-05-25
 
 You can use both commands together to see commits between two dates.
-	
+
 	git log --since="two weeks ago" --until="3 days ago"
 	git log --since="two.weeks" --until="3.days"
 
 You can see commits made by a specific person (author) by typing:
-	
+
 	git log --author="Robert" (can use quotes if search term has a space).
 
 You can search the commit messages for an expression by using grep (Global Regular Expression). Type:
-	
+
 	git log --grep="Text you are looking for" (this is case sensitive).
 
 You can ignore case with:
-	
+
 	git log --grep="Text you are looking for" -i  (the dash "i" will ignore case).
 
 You can show the log file by SHA:
 
     git log SHA1..SHA2
     Example: git log 23fadf323..938533arad --oneline
-    
+
     The --oneline shows part of the SHA and the commit on one line.
     git log --format=oneline shows the complete SHA and message on one line.
 
@@ -626,7 +644,7 @@ To delete a remote branch use a colon:
 
 A little information history on the git push command. It used to be done like this:
 
-		git push origin branchname:branchname. 
+		git push origin branchname:branchname.
 		The colon between them means that you are telling git to push to origin the local branchname to the remote branchname. If you don't specify the colon and you only have one branchname, git assumes they are the same.
 
 So the git push origin :branchname means to push to origin nothing locally to the remote branchname. The remote branchname is now getting nothing pushed to it and is deleted.
@@ -664,10 +682,10 @@ You can create aliases for Git in the .gitconfig file two ways. You can edit the
 	For example:
 	I didn't want to type the entire log line below so I created a shortcut for it in the .gitconfig file by using the git config --global command.
 		git log --graph --oneline --decorate --all
-	
+
 	I created an alias for it named "logg" by typing:
 		git config --global alias.logg "log --graph --oneline --decorate --all"
-	
+
 	Now I only have to enter "git logg" to get the same output.
 
 Re-install Git icons on Windows
@@ -803,7 +821,7 @@ Find out what shells are currently in use:
 	cat /etc/shells
 
 Find out which shell git is using:
-	
+
 	From the git user login type:
 	which git-shell
 
@@ -816,9 +834,9 @@ Add the information from 'which git-shell' command to the list of valid shells i
 		/bin/dash
 		/usr/bin/git-shell
 
-On Fedora 24 and 25, the chsh command is used to change the shell. It may not exist by default. 
+On Fedora 24 and 25, the chsh command is used to change the shell. It may not exist by default.
 
-	Install the package that contains chsh: 
+	Install the package that contains chsh:
 		dnf install util-linux-user
 
 Change the git user login shell to git-shell:
@@ -994,7 +1012,7 @@ This could be generalized to wait on a list of files and/or directories, and the
 
 Use the -r flag to inotifywait, but note that the kernel has a limit on the number of inotifywait watches it can set up. man inotifywait will tell you more.
 
-This Github repository was recommended: 
+This Github repository was recommended:
 
 	https://github.com/nevik/gitwatch.git. I have cloned it in my personal repository.
 	Source: http://stackoverflow.com/questions/420143/making-git-auto-commit.
@@ -1007,7 +1025,7 @@ While the prompt is still showing "Do you want to retry Y/N", open another comma
 
 	On Windows:
 	type index.lock > index.lock.bak
-	
+
 	On Linux:
 	cat index.lock > index.lock.bak
 
@@ -1043,7 +1061,7 @@ That starts up an HTTPD server on port 1234 and then automatically starts a web 
 
 GitWeb source: https://git-scm.com/book/en/v2/Git-on-the-Server-GitWeb
 
-Transferring repositories. 
+Transferring repositories.
 	I transferred 3 repositories and for some reason, when I got the confirmation link in my email in Chrome, the transfer link didn't work.
 	I had to open my email in Firefox and click on the confirmation link and the transfer worked.
 
