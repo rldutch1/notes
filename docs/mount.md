@@ -1,4 +1,4 @@
-#Mounting and Unmounting a LUKS Encrypted USB Volume
+# Mounting
 
 ### Use the following commands to view the disks/USB devices:
 
@@ -12,76 +12,133 @@
 - sudo lshw -short -C disk
 - sudo udisksctl info -b /dev/??
 
-### 01. USB drive has not been inserted (plugged in) yet.
+### Mounting and Unmounting a LUKS Encrypted USB Volume
+#### 01. USB drive has not been inserted (plugged in) yet.
 
-`$ To see volumes type: lsblk`
+To see volumes type:
+```
+lsblk
+```
 
-![ Running lsblk shows what is currently mounted.](/img/x01.png "Running lsblk shows what is currently mounted.")
+![ Running lsblk shows what is currently mounted.](../img/x01.png "Running lsblk shows what is currently mounted.")
 
-### 02. GUI password prompt when drive is plugged in (I clicked cancel to demonstrate mounting from commandline).
+#### 02. GUI password prompt when drive is plugged in (I clicked cancel to demonstrate mounting from commandline).
 
-![ I clicked cancel to demonstrate mounting from commandline.](/img/x02.png "I clicked cancel to demonstrate mounting from commandline.")
+![ I clicked cancel to demonstrate mounting from commandline.](../img/x02.png "I clicked cancel to demonstrate mounting from commandline.")
 
-### 03. USB drive inserted (plugged in) and showing as /dev/sdm1.
+#### 03. USB drive inserted (plugged in) and showing as /dev/sdm1.
 
-`$ To see volumes type: lsblk`
+To see volumes type:
+```
+lsblk
+```
 
-![ USB drive inserted (plugged in) and showing as /dev/sdm1.](/img/x03.png "USB drive inserted (plugged in) and showing as /dev/sdm1. Your volume name may be different than /dev/sdm1.")
+![ USB drive inserted (plugged in) and showing as /dev/sdm1.](../img/x03.png "USB drive inserted (plugged in) and showing as /dev/sdm1. Your volume name may be different than /dev/sdm1.")
 
-### 04. udiskctl showing /dev/sdm1 as "crypto_LUKS"..
+#### 04. Check the volume information type:
 
-`$ Check the volume information type: sudo udisksctl info -b /dev/sdm1`
+```
+sudo udisksctl info -b /dev/sdm1
+```
+The volume /dev/sdm1 shows as "crypto_LUKS".
 
-![ See the various commands above to view drive/volumes. Your volume name may be different than /dev/sdm1.](/img/x04.png "See the various commands above to view drive/volumes. Your volume name may be different than /dev/sdm1.")
+![ See the various commands above to view drive/volumes. Your volume name may be different than /dev/sdm1.](../img/x04.png "See the various commands above to view drive/volumes. Your volume name may be different than /dev/sdm1.")
 
-### 05. Trying to mount the locked LUKS encrypted volume (Failed because volume is locked. Run cryptsetup first to unlock.).
+#### 05. If you try to mount the locked LUKS encrypted volume it will fail. (Screenshot shows mount failed. This is because the volume is locked. Run cryptsetup first to unlock.).
 
-![ See the various commands to view drive/volumes above.](/img/x05.png "See the various commands to view drive/volumes above.")
+![ See the various commands to view drive/volumes above.](../img/x05.png "See the various commands to view drive/volumes above.")
 
-### 06. Running cryptsetup to unlock the encrypted volume (Assigning alias of "2T_SSD" to reference the unlocked volume. The alias can be whatever you want.).
+#### 06. Running cryptsetup to unlock the encrypted volume (Assigning alias of "2T_SSD" to reference the unlocked volume. The alias can be whatever you want.).
 
-`$ To open the encrypted filesystem type: sudo cryptsetup luksOpen /dev/sdm1 2T_SSD`
+To open the encrypted filesystem type:
 
-![ The alias name can be whatever you want.](/img/x06.png "The alias name can be whatever you want.")
+```
+sudo cryptsetup luksOpen /dev/sdm1 2T_SSD
+```
 
-### 07. Decrypted volume showing as 2T_SSD, but not yet mounted.
+![ The alias name can be whatever you want.](../img/x06.png "The alias name can be whatever you want.")
 
-`$ To see the unlocked volume type: lsblk`
+#### 07. Decrypted volume showing as 2T_SSD, but not yet mounted.
 
-![ Decrypted volume showing the 2T_SSD alias, but not yet mounted.](/img/x07.png "Decrypted volume showing the 2T_SSD alias, but not yet mounted.")
+To see the unlocked volume type:
+```
+lsblk
+```
 
-### 08. Decrypted volume alias "2T_SSD" showing under /dev/mapper.
+![ Decrypted volume showing the 2T_SSD alias, but not yet mounted.](../img/x07.png "Decrypted volume showing the 2T_SSD alias, but not yet mounted.")
 
-`$ Check /dev/mapper to see if your alias is there: ls -al /dev/mapper`
+#### 08. Decrypted volume alias "2T_SSD" showing under /dev/mapper.
 
-![ Decrypted volume alias "2T_SSD" showing under /dev/mapper.](/img/x08.png "Decrypted volume alias "2T_SSD" showing under /dev/mapper.")
+Check /dev/mapper to see if your alias is there:
 
-### 09. Password prompt when using sudo to mount decrypted 2T_SSD volume to /dev/m.
+```
+ls -al /dev/mapper
+```
 
-`$ To mount your alias to a mount point type: sudo mount /dev/mapper/2T_SSD /mnt/m`
+![ Decrypted volume alias "2T_SSD" showing under /dev/mapper.](../img/x08.png "Decrypted volume alias "2T_SSD" showing under /dev/mapper.")
 
-![ Password prompt when using sudo to mount decrypted 2T_SSD volume to the /dev/m mount point (The mount point can be whatever you want.](/img/x09.png "Password prompt when using sudo to mount decrypted 2T_SSD volume to the /dev/m mount point (The mount point can be whatever you want.")
+#### 09. Password prompt when using sudo to mount decrypted 2T_SSD volume to /dev/m.
 
-### 10. Decrypted volume showing unlocked and mounted at /mnt/m.
+To mount your alias to a mount point type:
+```
+sudo mount /dev/mapper/2T_SSD /mnt/m
+```
 
-`$ To see volumes type: lsblk`
+![ Password prompt when using sudo to mount decrypted 2T_SSD volume to the /dev/m mount point (The mount point can be whatever you want.](../img/x09.png "Password prompt when using sudo to mount decrypted 2T_SSD volume to the /dev/m mount point (The mount point can be whatever you want.")
 
-![ Decrypted volume showing unlocked and mounted at /mnt/m.](/img/x10.png "Decrypted volume showing unlocked and mounted at /mnt/m.")
+#### 10. Decrypted volume showing unlocked and mounted at /mnt/m.
 
-### 11. Unmounting /mnt/m.
+To see volumes type:
+```
+lsblk
+```
 
-`$ To unmount th volume type: /mnt/m`
+![ Decrypted volume showing unlocked and mounted at /mnt/m.](../img/x10.png "Decrypted volume showing unlocked and mounted at /mnt/m.")
 
-![ Unmounting /mnt/m.](/img/x11.png "Unmounting /mnt/m.")
+#### 11. Unmounting /mnt/m.
 
-### 12. Closing cryptsetup session (Locking it).
+To unmount th volume type:
+```
+sudo umount /mnt/m
+```
 
-`$ To close the volume type: sudo cryptsetup close 2T_SSD`
+![ Unmounting /mnt/m.](../img/x11.png "Unmounting /mnt/m.")
 
-![ Closing cryptsetup session (Locking it).](/img/x12.png "Closing cryptsetup session (Locking it).")
+#### 12. Closing cryptsetup session (Locking it).
 
-### 13. USB drive unmounted and unplugged from system.
+To close the volume type:
+```
+sudo cryptsetup close 2T_SSD
+```
 
-`$ To see volumes type: lsblk`
+![ Closing cryptsetup session (Locking it).](../img/x12.png "Closing cryptsetup session (Locking it).")
 
-![ USB drive unmounted and unplugged from system.](/img/x13.png "USB drive unmounted and unplugged from system.")
+#### 13. USB drive unmounted and unplugged from system.
+
+To see volumes type:
+```
+lsblk
+```
+
+![ USB drive unmounted and unplugged from system.](../img/x13.png "USB drive unmounted and unplugged from system.")
+
+### Mount a USB volume and use umask to allow "other" full access.
+
+```
+sudo mount /dev/sdi1 /mnt/i -o umask=000,utf8
+```
+
+### You can automatically mount by UUID if you want the mount points to consistently mount to the same device. Each partition on a drive will have its own UUID.
+Use this to find the UUID:
+```
+lsblk -o +UUID,PARTUUID
+```
+
+```
+In fstab;
+	UUID=FC3E-233D /mnt/i auto   user,umask=000,utf8  0   0
+	UUID=B06E-CC89 /mnt/c auto   user,umask=000,utf8  0   0
+	UUID=02608207608201A1 /mnt/h auto   user,umask=000,utf8  0   0
+
+	After editing the fstab file, run 'systemctl daemon-reload' to update systemd
+```
