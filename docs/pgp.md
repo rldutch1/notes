@@ -2,6 +2,8 @@ The GNU Privacy Handbook - https://www.gnupg.org/gph/en/manual/book1.html
 Archlinux Wiki GnuPG - https://wiki.archlinux.org/index.php/GnuPG
 GnuPG Website - https://www.gnupg.org
 
+Public [PGP Global Directory](http://keyserver1.pgp.com/ "PGP Key Server")
+
 Youtube Videos:
   GnuPG Part One https://www.youtube.com/watch?v=IF-MchgZ2Os
   GnuPG Part Two https://www.youtube.com/watch?v=R-Dw7UXH00c
