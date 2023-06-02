@@ -4,7 +4,7 @@ nav:
     - GiT: git.md
     - LVM: lvm.md
     - Markdown: markdown.md
-    - Mount: mount.md
+    - Mount LUKS Encrypted Media: mount.md
     - MySQL: mysql.md
     - PGP: pgp.md
 theme: readthedocs

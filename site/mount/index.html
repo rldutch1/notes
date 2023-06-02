@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Mount - My Notes</title>
+    <title>Mount LUKS Encrypted Media - My Notes</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Mount";
+        var mkdocs_page_name = "Mount LUKS Encrypted Media";
         var mkdocs_page_input_path = "mount.md";
         var mkdocs_page_url = null;
       </script>
@@ -57,15 +57,15 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Mount</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Mount LUKS Encrypted Media</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#use-the-following-commands-to-view-the-disksusb-devices">Use the following commands to view the disks/USB devices:</a>
+    <li class="toctree-l2"><a class="reference internal" href="#this-process-also-works-for-hard-drives">This process also works for hard drives.</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#mounting-and-unmounting-a-luks-encrypted-usb-volume">Mounting and Unmounting a LUKS Encrypted USB Volume</a>
+    <li class="toctree-l2"><a class="reference internal" href="#basic-commands-to-view-the-disksusb-devices">Basic commands to view the disks/USB devices:</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#01-usb-drive-has-not-been-inserted-plugged-in-yet">01. USB drive has not been inserted (plugged in) yet.</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#02-gui-password-prompt-when-drive-is-plugged-in-i-clicked-cancel-to-demonstrate-mounting-from-commandline">02. GUI password prompt when drive is plugged in (I clicked cancel to demonstrate mounting from commandline).</a>
+    <li class="toctree-l3"><a class="reference internal" href="#02-gui-password-prompt-when-encrypted-drive-is-plugged-in-i-clicked-cancel-to-demonstrate-mounting-from-commandline">02. GUI password prompt when encrypted drive is plugged in (I clicked cancel to demonstrate mounting from commandline).</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#03-usb-drive-inserted-plugged-in-and-showing-as-devsdm1">03. USB drive inserted (plugged in) and showing as /dev/sdm1.</a>
     </li>
@@ -120,7 +120,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Mount</li>
+      <li>Mount LUKS Encrypted Media</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -129,8 +129,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="mounting">Mounting</h1>
-<h3 id="use-the-following-commands-to-view-the-disksusb-devices">Use the following commands to view the disks/USB devices:</h3>
+                <h1 id="mounting-and-unmounting-a-luks-encrypted-usb-volume">Mounting and Unmounting a LUKS Encrypted USB Volume</h1>
+<h4 id="this-process-also-works-for-hard-drives">This process also works for hard drives.</h4>
+<h3 id="basic-commands-to-view-the-disksusb-devices">Basic commands to view the disks/USB devices:</h3>
 <ul>
 <li>blkid</li>
 <li>duf</li>
@@ -142,13 +143,12 @@
 <li>sudo lshw -short -C disk</li>
 <li>sudo udisksctl info -b /dev/??</li>
 </ul>
-<h3 id="mounting-and-unmounting-a-luks-encrypted-usb-volume">Mounting and Unmounting a LUKS Encrypted USB Volume</h3>
 <h4 id="01-usb-drive-has-not-been-inserted-plugged-in-yet">01. USB drive has not been inserted (plugged in) yet.</h4>
 <p>To see volumes type:</p>
 <pre><code>lsblk
 </code></pre>
 <p><strong><img src="../img/mount01.png" alt="Running lsblk shows what is currently mounted." /></strong><br /></p>
-<h4 id="02-gui-password-prompt-when-drive-is-plugged-in-i-clicked-cancel-to-demonstrate-mounting-from-commandline">02. GUI password prompt when drive is plugged in (I clicked cancel to demonstrate mounting from commandline).</h4>
+<h4 id="02-gui-password-prompt-when-encrypted-drive-is-plugged-in-i-clicked-cancel-to-demonstrate-mounting-from-commandline">02. GUI password prompt when encrypted drive is plugged in (I clicked cancel to demonstrate mounting from commandline).</h4>
 <p><img alt=" I clicked cancel to demonstrate mounting from commandline." src="../img/mount02.png" title="I clicked cancel to demonstrate mounting from commandline." /></p>
 <h4 id="03-usb-drive-inserted-plugged-in-and-showing-as-devsdm1">03. USB drive inserted (plugged in) and showing as /dev/sdm1.</h4>
 <p>To see volumes type:</p>

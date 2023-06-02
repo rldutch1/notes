@@ -1,14 +1,15 @@
-The GNU Privacy Handbook - https://www.gnupg.org/gph/en/manual/book1.html
-Archlinux Wiki GnuPG - https://wiki.archlinux.org/index.php/GnuPG
-GnuPG Website - https://www.gnupg.org
+#<h1>PGP:</h1>
+- [The GNU Privacy Handbook](https://www.gnupg.org/gph/en/manual/book1.html/ "")
+- [Archlinux Wiki GnuPG](https://wiki.archlinux.org/index.php/GnuPG/ "")
+- [GnuPG Website](https://www.gnupg.org/ "")
 
-Public [PGP Global Directory](http://keyserver1.pgp.com/ "PGP Key Server")
+###### Public [PGP Global Directory](http://keyserver1.pgp.com/ "PGP Key Server")
 
-Youtube Videos:
-  GnuPG Part One https://www.youtube.com/watch?v=IF-MchgZ2Os
-  GnuPG Part Two https://www.youtube.com/watch?v=R-Dw7UXH00c
-  GnuPG Part Three https://www.youtube.com/watch?v=JOBJPwyByyI
-  NITC-GnuPG Part 3 https://www.youtube.com/watch?v=xAGfWyNgi2Q
+###### Youtube Videos:
+- [GnuPG Part One](https://www.youtube.com/watch?v=IF-MchgZ2Os/ "")
+- [GnuPG Part Two](https://www.youtube.com/watch?v=R-Dw7UXH00c/ "")
+- [GnuPG Part Three](https://www.youtube.com/watch?v=JOBJPwyByyI/ "")
+- [NITC-GnuPG Part 3](https://www.youtube.com/watch?v=xAGfWyNgi2Q/ "")
 
 #### Generate/Create GPG/PGP Key:
 	gpg2 --full-gen-key
@@ -245,11 +246,6 @@ This is a special version of the --verify command which does not work with detac
 
  	gpg --verify-files filenames
 
-
-#### Options
-Starting with GnuPG 1.1.92 (incl. GnuPG 1.2.1, 1.2.0 and 1.1.92), long options can be put in an options file (default "~/.gnupg/gpg.conf"). In GnuPG versions up through GnuPG 1.1.91 (incl. 1.0.6, 1.0.7, and 1.1.91), long options can be put in an "old style" configuration file (default "~/.gnupg/options").
-Short option names will not work -- for example, armor is a valid option for the options file, while a is not. Do not write the 2 dashes, but simply the name of the option and any required arguments. Lines with a hash as the first non-white-space character are ignored. Commands may be put in this file too, but that does not make sense.
-
 #### Create ASCII armored output.
 
  	gpg -a -e filename
@@ -430,6 +426,13 @@ Next, send your updated key to the keyservers.
 
 	gpg: sending key 01234567 to hkp server keys.gnupg.net
 
+There are three main rings of keyservers out there ([Source](https://www.phildev.net/pgp/gpgsigning.html "")). Each group syncs within it's own pool well, and to the other pools with varying levels of success, so I recommend uploading to one of each. Something like this will work.
+
+		servers="x-hkp://pool.sks-keyservers.net pgp.mit.edu wwwkeys.ch.pgp.net"
+		for server in $servers; do
+			gpg --keyserver $server --send-key <your_keyid>
+		done
+
 #### Key Administration:
 With the GnuPG system comes a file that acts as some kind of database. In this file all data regarding keys with the information that comes with the keys is stored.
 
@@ -507,180 +510,208 @@ http://www.dewinter.com/gnupg_howto/english/GPGMiniHowto-3.html#ss3.5
 https://www.gnupg.org/documentation/howtos.html
 https://github.com/rldutch1/pgp/blob/master/commandline_switches.html
 
-#### PGP Function:
+#### Shell Function for PGP:
 Here is a PGP function that I have created and use on my Mac and Linux computers (it works on Windows too with Git or Cygwin installed). I named it "pgp" so that it is different from gpg on Linux/Mac and will not conflict.
 
 	pgp(){
 	clear
 	case $1 in
-          ascii)
-          echo "ASCII Encrypting... " $2
-          gpg -a -e $2
-          echo "..." >> $2;rm -f $2
-          echo $2 " has been deleted!"
-          ;;
-          clearsign)
-          echo "Signing..." $2
-          gpg --clearsign $2
-          echo $2 " has an associated signature file!"
-          ;;
-          decrypt)
-          if [ ! $3 ]; then
-          echo "Syntax: pgp decrypt outputfile.txt encryptedfile.txt.asc"
-          else
-          gpg --output $2 --decrypt $3
-          fi
-          ;;
-          delete-keys)
-          echo "Deleting..." $2
-          gpg --delete-keys $2
-          gpg --list-keys
-          ;;
-          encrypt)
-          echo "Encrypting..." $2
-          gpg --encrypt $2
-          echo "..." > $2;rm -f $2
-          echo $2 " has been deleted!"
-          ;;
-          exportpublic)
-          echo "Exporting Public Key..." $2
-          gpg --export --armor $2 > $2.asc
-          ;;
-          exportprivate)
-          echo "Exporting PRIVATE KEY..." $2
-          gpg --export --armor $2 > $2.asc
-          gpg --export-secret-keys --armor $2 >> $2.asc
-          ;;
-          fingerprint)
-          gpg --fingerprint $2
-          ;;
-          fingerprint_from_file)
-          gpg --with-fingerprint $2
-          ;;
-          import)
-          echo "Importing..." $2
-          gpg --import $2
-          echo $2 " has been imported!"
-          ;;
-          list)
-          gpg --list-keys
-          ;;
-          message)
-          cd ~/Documents/PGP/messages
-          xyzrh1=message.`date +"%Y%m%d%H%M%S%Z"`
-          vi $xyzrh1.txt; pgp ascii $xyzrh1.txt
-          ;;
-          passencrypt)
-          echo "Encrypting..." $2
-          gpg -c -s $2
-          echo $2 " has been password encrypted!"
-          ;;
-          releasecache)
-          gpgconf --kill gpg-agent;gpgconf --launch gpg-agent
-          ;;
-          receivekeys)
-          gpg --keyserver $2 --recv-keys $3
-          ;;
-          sign)
-          echo "Signing..." $2
-          gpg --sign $2
-          echo $2 " has been signed!"
-          ;;
-          sendkeys)
-          if [ ! $2 ]; then
-          echo "Example: gpg --keyserver hkp://pgp.mit.edu --send-keys 6EE89C2D"
-          else
-          gpg --keyserver $2 --send-keys $3
-          fi
-          ;;
-          update)
-          gpg --update-trustdb
-          ;;
-          uue)
-          echo "UUEncoding..." $2
-          uuencode $2 $2 > $2.uue
-          echo "ASCII Encrypting..." $2.uue
-          gpg -a -e $2.uue
-          echo "..." > $2.uue;rm -f $2 $2.uue
-          echo $2 " has been deleted!"
-          ;;
-          uuegpg)
-          echo "UUEncoding..." $2
-          uuencode $2 $2 > $2.uue
-          echo "Encrypting..." $2.uue
-          gpg --encrypt $2.uue
-          echo "..." > $2.uue;rm -f $2 $2.uue
-          echo $2 " has been deleted!"
-          ;;
-          uuedecrypt)
-          #echo "Decrypting..." $2
-          gpg --decrypt $2 > $2.uue
-          echo "Decoding..." $2
-          uudecode $2.uue;
-          echo "..." > $2.uue;rm -f $2.uue
-          echo $2 " has been decoded!"
-          ;;
-          verify)
-          echo "Signing..." $2
-          gpg --verify $2
-          echo $2 " verify status!"
-          ;;
-          *)
-          message00="gpg --edit-key 5DD98B3E"
-        	message01="pgp ascii textfile  (gpg -a -e thefilename)"
-        	message02="pgp clearsign textfile  (gpg --clearsign thefilename)"
-        	message03="pgp decrypt encryptedfile.tar.gpg  (gpg -o outputfile -d encryptedfile)"
-        	message04="pgp decrypto outputfile.tar encryptedfile.tar.gpg  (gpg -o outputfile -d encryptedfile)"
-        	message05="pgp delete-keys 5DD98B3E  (gpg --delete-keys keyname)"
-        	message06="pgp encrypt filename  (gpg --encrypt thefilename)"
-        	message07="pgp exportpublic keyname  (gpg --export --armor thekeyname)"
-        	message08="pgp exportprivate keyname  (gpg --export-secret-keys --armor ABCD1234 >> ABCD1234.asc)"
-        	message09="pgp fingerprint 5DD98B3E  (gpg --fingerprint key)"
-        	message10="pgp fingerprint_from_file file_with_key  (gpg --with-fingerprint thefilename)"
-        	message11="pgp import filename.asc  (gpg --import keyfile)"
-        	message12="pgp list  (gpg --list-keys)"
-        	message13="pgp message"
-        	message14="pgp passencrypt textfile  (gpg -c -s thefilename)"
-        	message15="pgp receivekeys theservername thekeyname (gpg --keyserver keyserver.ubuntu.com --recv-keys 6EE89C2D)"
-        	message16="pgp releasecache (gpgconf --kill gpg-agent;gpgconf --launch gpg-agent)"
-        	message17="pgp sendkeys theservername thekeyname  (gpg --keyserver hkp://pgp.mit.edu --send-keys 6EE89C2D)"
-        	message18="pgp sign textfile  (gpg --sign thefilename)"
-        	message19="pgp update (gpg --update-trustdb)"
-        	message20="pgp uue filename (uuencode thefilename thefilename > thefilename.uue;gpg -a -e thefilename.uue)"
-        	message21="pgp uuedecrypt filename  (gpg --decrypt thefilename > thefilename.uue;uudecode thefilename.uue)"
-        	message22="pgp uuegpg filename (uuencode thefilename thefilename > thefilename.uue;gpg --encrypt thefilename.uue)"
-        	message23="pgp verify filename  (gpg --verify signaturefile)"
-          echo $message00
-          echo $message01
-          echo $message02
-          echo $message03
-          echo $message04
-          echo $message05
-          echo $message06
-          echo $message07
-          echo $message08
-          echo $message09
-          echo $message10
-          echo $message11
-          echo $message12
-          echo $message13
-          echo $message14
-          echo $message15
-          echo $message16
-          echo $message17
-          echo $message18
-          echo $message19
-          echo $message20
-          echo $message21
-          echo $message22
-          echo $message23
-          echo " "
-		;;
+        ascii)
+        echo "ASCII Encrypting... " $2
+        gpg -a -e $2
+        echo "..." >> $2;rm -f $2
+        echo $2 " has been deleted!"
+        ;;
+        clearsign)
+        echo "Signing..." $2
+        gpg --clearsign $2
+        echo $2 " has been signed!"
+        ;;
+        decrypt)
+        #gpg --decrypt $2
+        if [ ! $2 ] || [ ! $3 ]; then
+        echo "Syntax: pgp decrypt outputfile encryptedfile.asc"
+        else
+        gpg --output $2 --decrypt $3
+        fi
+        ;;
+        delete-keys)
+        echo "Deleting..." $2
+        gpg --delete-keys $2
+        gpg --list-keys
+        ;;
+        detachedsig)
+        echo "Creating signature file..." $2
+        gpg --output $2.sig --detach-sig $2
+        ;;
+        encrypt)
+        echo "Encrypting..." $2
+        gpg --encrypt $2
+        echo "..." > $2;rm -f $2
+        echo $2 " has been deleted!"
+        ;;
+        exportpublic)
+        echo "Exporting Public Key..." $2
+        gpg --export --armor $2 > $2.asc
+        ;;
+        exportprivate)
+        echo "Exporting PRIVATE KEY..." $2
+        gpg --export --armor $2 > $2.asc
+        gpg --export-secret-keys --armor $2 >> $2.asc
+        ;;
+        fingerprint)
+        gpg --fingerprint $2
+        ;;
+        fingerprint_from_file)
+        gpg --with-fingerprint $2
+        ;;
+        import)
+        echo "Importing..." $2
+        gpg --import $2
+        echo $2 " has been imported!"
+        ;;
+        list)
+        gpg --list-keys
+        ;;
+        listdirs)
+        gpgconf --list-dirs
+        ;;
+        message)
+        cd ~/Documents/PGP/messages
+        xyzrh1=message.`date +"%Y%m%d%H%M%S%Z"`
+        vi $xyzrh1.txt; pgp ascii $xyzrh1.txt
+        ;;
+        passencrypt)
+        echo "Encrypting..." $2
+        gpg -c -s $2
+        echo $2 " has been password encrypted!"
+        ;;
+        releasecache)
+        gpgconf --kill gpg-agent;gpgconf --launch gpg-agent
+        ;;
+        receivekeys)
+        gpg --keyserver $2 --recv-keys $3
+        ;;
+        revoke_key)
+        gpg --gen-revoke $2 > revoke.$2.asc
+        ;;
+        sign)
+        echo "Signing..." $2
+        gpg --sign $2
+        echo $2 " has been signed!"
+        ;;
+        sendkeys)
+        if [ ! $2 ]; then
+        echo "Example: gpg --keyserver hkp://pgp.mit.edu --send-keys 6EE89C2D"
+        else
+        gpg --keyserver $2 --send-keys $3
+        fi
+        ;;
+        showphoto)
+        if [ ! $2 ]; then
+        echo "Should have xloadimage installed:"
+        echo "Example:"
+        echo "showphoto 6EE89C2D"
+        echo "showphoto user@example.com"  
+        else      
+        gpg --list-options show-photos --fingerprint $2
+        fi
+        ;;
+        update)
+        gpg --update-trustdb
+        ;;
+        uue)
+        echo "UUEncoding..." $2
+        uuencode $2 $2 > $2.uue
+        echo "ASCII Encrypting..." $2.uue
+        gpg -a -e $2.uue
+        echo "..." > $2.uue;rm -f $2 $2.uue
+        echo $2 " has been deleted!"
+        ;;
+        uuegpg)
+        echo "UUEncoding..." $2
+        uuencode $2 $2 > $2.uue
+        echo "Encrypting..." $2.uue
+        gpg --encrypt $2.uue
+        echo "..." > $2.uue;rm -f $2 $2.uue
+        echo $2 " has been deleted!"
+        ;;
+        uuedecrypt)
+        #echo "Decrypting..." $2
+        gpg --decrypt $2 > $2.uue
+        echo "Decoding..." $2
+        uudecode $2.uue;
+        echo "..." > $2.uue;rm -f $2.uue
+        echo $2 " has been decoded!"
+        ;;
+        verify)
+        echo "Signing..." $2
+        gpg --verify $2
+        echo $2 " verify status!"
+        ;;
+        *)
+        message00="gpg --edit-key 5DD98B3E"
+      	message01="pgp ascii textfile  (gpg -a -e thefilename)"
+      	message02="pgp clearsign textfile  (gpg --clearsign thefilename)"
+      	message03="pgp decrypt outputfile.tar encryptedfile.tar.gpg  (gpg -o outputfile -d encryptedfile)"
+      	message04="pgp delete-keys 5DD98B3E  (gpg --delete-keys keyname)"
+      	message05="pgp detachedsig filename  (gpg --output doc.sig --detach-sig doc.txt)"
+      	message06="pgp encrypt filename  (gpg --encrypt thefilename)"
+      	message07="pgp exportpublic keyname  (gpg --export --armor thekeyname)"
+      	message08="pgp exportprivate keyname  (gpg --export-secret-keys --armor ABCD1234 >> ABCD1234.asc)"
+      	message09="pgp fingerprint 5DD98B3E  (gpg --fingerprint key)"
+      	message10="pgp fingerprint_from_file file_with_key  (gpg --with-fingerprint thefilename)"
+      	message11="pgp import filename.asc  (gpg --import keyfile / gpg2 --import keyfile)"
+      	message12="pgp list  (gpg --list-keys)"
+      	message13="pgp listdirs  (gpgconf --list-dirs)"
+      	message14="pgp message"
+      	message15="pgp passencrypt textfile  (gpg -c -s thefilename)"
+      	message16="pgp receivekeys theservername thekeyname (gpg --keyserver keyserver.ubuntu.com --recv-keys 6EE89C2D)"
+      	message17="pgp releasecache (gpgconf --kill gpg-agent;gpgconf --launch gpg-agent)"
+      	message18="pgp revoke_key (gpg --gen-revoke thekeyname > revoke.thekeyname.asc)"
+      	message19="pgp sendkeys theservername thekeyname  (gpg --keyserver hkp://pgp.mit.edu --send-keys 6EE89C2D)"
+      	message20="pgp showphoto 6EE89C2D (gpg --list-options show-photos --fingerprint 6EE89C2D)"
+      	message21="pgp sign textfile  (gpg --sign thefilename)"
+      	message22="pgp update (gpg --update-trustdb)"
+      	message23="pgp uue filename (uuencode thefilename thefilename > thefilename.uue;gpg -a -e thefilename.uue)"
+      	message24="pgp uuedecrypt filename  (gpg --decrypt thefilename > thefilename.uue;uudecode thefilename.uue)"
+      	message25="pgp uuegpg filename (uuencode thefilename thefilename > thefilename.uue;gpg --encrypt thefilename.uue)"
+      	message26="pgp verify filename  (gpg --verify signaturefile)"
+        echo $message00
+        echo $message01
+        echo $message02
+        echo $message03
+        echo $message04
+        echo $message05
+        echo $message06
+        echo $message07
+        echo $message08
+        echo $message09
+        echo $message10
+        echo $message11
+        echo $message12
+        echo $message13
+        echo $message14
+        echo $message15
+        echo $message16
+        echo $message17
+        echo $message18
+        echo $message19
+        echo $message20
+        echo $message21
+        echo $message22
+        echo $message23
+        echo $message24
+        echo $message25
+        echo $message26
+        echo " "
+   	;;
 	esac
-	}
+	}	
 
 #### View your trust database:
 View your trust database and see the marginal and other trust information type:
+
 	gpg --update-trustdb
 
 Before a key can be trusted it must be signed and the trust level applied by the key owner. Marginally (Marginal) trusted keys can also be trusted if 3 or more people you trust have chosen to trust the same key that you have marginally trusted. Or if 3 or more marginally trusted people marginally trust the same key then it will be considered trusted by your key.
@@ -698,16 +729,19 @@ I installed Open GnuPG on my Mac using: sudo port install gnupg2
 I like it a lot better thant the GPG Suite that I was previously using because I can encrypt and decrypt from an SSH session without the GUI password prompt preventing me from decrypting something. I have also discovered that I no longer seem to be able to use the command 'gpg < encryptedfile'. I get a message that says it doesn't understand what I am trying to do. I actually have to paste in the encrypted content and press control+d.
 
 #### gpgconf:
+##### Options
+Starting with GnuPG 1.1.92 (incl. GnuPG 1.2.1, 1.2.0 and 1.1.92), long options can be put in an options file (default "~/.gnupg/gpg.conf"). In GnuPG versions up through GnuPG 1.1.91 (incl. 1.0.6, 1.0.7, and 1.1.91), long options can be put in an "old style" configuration file (default "~/.gnupg/options").
+Short option names will not work -- for example, **armor** is a valid option for the options file, while **a** is not. Do not write the 2 dashes, but simply the name of the option and any required arguments. Lines with a hash as the first non-white-space character are ignored. Commands may be put in this file too, but that does not make sense.
 
-	gpgconf --kill gpg-agent
-	gpgconf --launch gpg-agent
+	Two useful entries for .gnupg/gpg.conf file. 
+	These entries will force GPG to use your key as default and automatically encrypt to your key.
+	
+	default-key 1A2B3CD4
+	encrypt-to 1A2B3CD4
 
-	gnome-keyring-daemon -r
+	#gpg-connect-agent
 
-	gpg-connect-agent
-
-How can I force the system to ask the passphrase every time?
-https://security.stackexchange.com/questions/103034/gnupg-decryption-not-asking-for-passphrase
+[How can I force the system to ask the passphrase every time?](https://security.stackexchange.com/questions/103034/gnupg-decryption-not-asking-for-passphrase/ "")
 
 Old versions of GnuPG uses the gpg-agent, which caches the passphrase for a given time. Use the option --no-use-agent or add a line no-use-agent to ~/.gnupg/gpg.conf to prevent using the agent.
 

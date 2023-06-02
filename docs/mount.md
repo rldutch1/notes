@@ -1,6 +1,6 @@
-# Mounting
-
-### Use the following commands to view the disks/USB devices:
+# Mounting and Unmounting a LUKS Encrypted USB Volume
+#### This process also works for hard drives.
+### Basic commands to view the disks/USB devices:
 
 - blkid
 - duf
@@ -12,7 +12,7 @@
 - sudo lshw -short -C disk
 - sudo udisksctl info -b /dev/??
 
-### Mounting and Unmounting a LUKS Encrypted USB Volume
+
 #### 01. USB drive has not been inserted (plugged in) yet.
 
 To see volumes type:
@@ -22,7 +22,7 @@ lsblk
 
 **<img src="../img/mount01.png" alt="Running lsblk shows what is currently mounted." />**<br />
 
-#### 02. GUI password prompt when drive is plugged in (I clicked cancel to demonstrate mounting from commandline).
+#### 02. GUI password prompt when encrypted drive is plugged in (I clicked cancel to demonstrate mounting from commandline).
 
 ![ I clicked cancel to demonstrate mounting from commandline.](img/mount02.png "I clicked cancel to demonstrate mounting from commandline.")
 
