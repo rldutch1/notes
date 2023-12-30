@@ -313,7 +313,3 @@ Note right of China: China thinks\nabout it
 China-->Andrew: How are you? 
 Andrew->>China: I am good thanks!
 ```
-
-######Source [link](https://pandao.github.io/editor.md/en.html "https://pandao.github.io/editor.md/en.html")
-
-###End

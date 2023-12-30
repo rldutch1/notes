@@ -16,6 +16,7 @@
 	sudo lsblk -a  Show volumes and where they are mounted.
 	gnome-disks --block-device=/dev/sdX - Opens the disk manager for the volume specified.
 	sudo blkid |grep crypto - Show the encrypted volume IDs.
+	sudo cryptsetup isLuks -v /dev/sdb - Show the encrypted volume ID.
 	sudo cryptsetup luksOpen /dev/sdX TheUUIDofTheDevice - Open the encrypted volume.
 	sudo cryptsetup luksUUID /dev/sd?  #Show the Luks UUID of the device.
 	sudo udisksctl info -b /dev/sd?  #Show the Luks UUID of the device.

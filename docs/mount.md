@@ -39,6 +39,8 @@ lsblk
 
 ```
 sudo udisksctl info -b /dev/sdm1
+or
+sudo cryptsetup isLuks -v /dev/sdm1
 ```
 The volume /dev/sdm1 shows as "crypto_LUKS".
 

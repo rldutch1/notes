@@ -364,13 +364,39 @@ For scripting in a shell, you can use either of the following:
     CREATE USER 'monty'@'%' IDENTIFIED BY 'some_pass';
     GRANT ALL PRIVILEGES ON *.* TO 'monty'@'%'
     WITH GRANT OPTION;
-    
-    CREATE USER 'admin'@'localhost';
-    
-    GRANT RELOAD,PROCESS ON *.* TO 'admin'@'localhost';
-    
-    CREATE USER 'dummy'@'localhost';
-    
+```    
+    This is my MariaDB Create User and MySQL Create User Statement. 
+        % = remote user
+        localhost = local user
+
+    CREATE USER 'SomeUser'@'%';
+    CREATE USER 'SomeUser'@'localhost';
+    SET PASSWORD FOR 'SomeUser'@'%' = PASSWORD('SomePassword!');
+    SET PASSWORD FOR 'SomeUser'@'localhost' = PASSWORD('SomePassword!');
+    GRANT USAGE ON SomeTable.* TO 'SomeUser'@'%'
+    REQUIRE NONE
+    WITH MAX_QUERIES_PER_HOUR 0
+    MAX_CONNECTIONS_PER_HOUR 0
+    MAX_UPDATES_PER_HOUR 0
+    MAX_USER_CONNECTIONS 0;
+    GRANT ALL PRIVILEGES ON `SomeTable`.* TO 'SomeUser'@'localhost';
+    GRANT ALL PRIVILEGES ON `SomeTable\_%`.* TO 'SomeUser'@'%';
+    FLUSH PRIVILEGES;
+``` 
+    On MariaDB: I got an access denied error when I tried to run the following statement as root. 
+        UPDATE mysql.user SET Grant_priv='Y', Super_priv='Y' WHERE User='rob';
+        FLUSH PRIVILEGES;
+
+    I had to run the following as root to give myself the "GRANT" privilege. (https://stackoverflow.com/questions/8484722/access-denied-for-user-rootlocalhost-while-attempting-to-grant-privileges)
+    Note that we use `%`.* instead of *.* <-- The backticks are needed.
+    Website example: GRANT ALL PRIVILEGES ON `%`.* TO '[user]'@'[hostname]' IDENTIFIED BY '[password]' WITH GRANT OPTION;
+    I ran it without the password section because I already have an established password: 
+      GRANT ALL PRIVILEGES ON `%`.* TO 'rob'@'localhost' WITH GRANT OPTION;
+      GRANT ALL PRIVILEGES ON *.* TO 'rob'@'%' WITH GRANT OPTION;
+  
+    show grants for 'root'@'localhost';
+    show grants for 'rob'@'localhost';
+
     MySQL 8.0.X.X. Grant superuser privileges:
     use mysql;
     UPDATE `user` SET `Select_priv` = 'Y', `Insert_priv` = 'Y', `Update_priv` = 'Y', `Delete_priv` = 'Y', `Create_priv` = 'Y', `Drop_priv` = 'Y', `Reload_priv` = 'Y', `Shutdown_priv` = 'Y', `Process_priv` = 'Y', `File_priv` = 'Y', `Grant_priv` = 'Y', `References_priv` = 'Y', `Index_priv` = 'Y', `Alter_priv` = 'Y', `Show_db_priv` = 'Y', `Super_priv` = 'Y', `Create_tmp_table_priv` = 'Y', `Lock_tables_priv` = 'Y', `Execute_priv` = 'Y', `Repl_slave_priv` = 'Y', `Repl_client_priv` = 'Y', `Create_view_priv` = 'Y', `Show_view_priv` = 'Y', `Create_routine_priv` = 'Y', `Alter_routine_priv` = 'Y', `Create_user_priv` = 'Y', `Event_priv` = 'Y', `Trigger_priv` = 'Y', `Create_tablespace_priv` = 'Y', `Create_role_priv` = 'Y', `Drop_role_priv` = 'Y' WHERE `user`.`Host` = '%' AND `user`.`User` = 'rob';
@@ -574,6 +600,17 @@ For scripting in a shell, you can use either of the following:
 ###### Dump All Databases on the Server to a file:
 	
 	mysqldump -p -c -e --all-databases > The_Name_of_the_Dump.sql
+
+###### Backup shell script to create a timestamped database dump:
+```
+    Script Name: dbdump.sh 
+    DBuser=SomeUser
+    DBname=SomeDatabase
+    TimeStamp=`date +"%Y%m%d%H%M%S%Z"`
+    mysqldump -u$SomeUser -p -c -e $DBname > $TimeStamp.DBDump.$DBname.`hostname`.sql
+    echo "Compressing Database Dump. Please wait..."
+    tar -zcvf $TimeStamp.DBDump.$DBname.`hostname`.sql.gz $TimeStamp.DBDump.$DBname.`hostname`.sql
+```
 
 #### Duplicate Data:
 ###### Find duplicate data in a column.
