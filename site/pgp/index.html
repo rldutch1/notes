@@ -83,6 +83,46 @@
     <li class="toctree-l2"><a class="reference internal" href="#export-ascii-armored-key">Export ascii armored key:</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#encrypt-a-message-to-standard-output">Encrypt a message to standard output:</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#encrypt-message-to-a-file-you-can-type">Encrypt message to a file you can type:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#encrypt-a-single-file-creates-a-binary-file-this-option-may-be-combined-with-sign">Encrypt a single file (creates a binary file). This option may be combined with --sign.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#encrypt-a-single-file-creates-an-ascii-file-this-option-may-be-combined-with-sign">Encrypt a single file (creates an ASCII file). This option may be combined with --sign.</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#encrypt-multiple-files-this-option-may-be-combined-with-sign">Encrypt multiple files. This option may be combined with --sign.</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#batch-encrypt-using-multi-file">Batch encrypt using --multi-file:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bash-script-to-batch-encrypt-multiple-files">Bash script to batch encrypt multiple files:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#encrypt-with-symmetric-cipher-only-this-command-asks-for-a-passphrase-may-also-be-combined-with-sign-see-gnupg-107-released">Encrypt with symmetric cipher only. This command asks for a passphrase. (May also be combined with --sign -- see GnuPG 1.0.7 released.)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#batch-encrypt-multiple-files-to-specified-recipients-encryptsh-make-sure-your-file-variable-is-surrounded-by-quotes-so-that-files-with-spaces-in-their-names-will-get-picked-up">Batch Encrypt multiple files to specified recipients (encrypt.sh). Make sure your $file variable is surrounded by quotes so that files with spaces in their names will get picked up.</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#encrypt-to-a-recipient">Encrypt to a recipient.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#password-encrypt-and-sign-a-file">Password encrypt and sign a file:</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#password-encrypt-and-sign-a-message-that-can-be-decrypted-by-passphrase-or-secret-key">Password encrypt and sign a message that can be decrypted by passphrase or secret key:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#uuencode-a-file-before-ascii-encrypting">UUEncode a file before ascii encrypting:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#uuencode-a-file-before-normal-encrypting">UUEncode a file before normal encrypting:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#decrypt-uuencoded-file-with-normal-encryption-then-uudecode-it">Decrypt UUEncoded file with normal encryption then UUDecode it:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#decrypt-a-message-in-standard-out-stout-type">Decrypt a message in standard out (stout) type:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#decrypt-a-file-that-has-been-binary-or-ascii-encrypted-and-output-the-decrypted-content-to-a-file">Decrypt a file that has been binary or ascii encrypted and output the decrypted content to a file:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#multiple-private-keys">Multiple Private Keys.</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#signing-verifying">Signing / Verifying:</a>
     </li>
@@ -118,12 +158,6 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#passphrase-cache-timeout">Passphrase cache timeout:</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#gpgconf">gpgconf:</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#options">Options</a>
-    </li>
-        </ul>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#reload-the-gpg-agent">Reload the gpg agent:</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#restart-the-gpg-agent">Restart the gpg agent:</a>
@@ -135,6 +169,14 @@
     <li class="toctree-l2"><a class="reference internal" href="#pinentry">Pinentry</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#keybase-error-adding-pgpgpg-key">Keybase error adding PGP/GPG key:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#gpgconf">gpgconf:</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#options">Options</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#gpgconf-example-file">gpg.conf Example File</a>
     </li>
     </ul>
                 </li>
@@ -214,21 +256,21 @@ Example: gpg --keyserver keyserver.ubuntu.com --recv-keys 5DD98B3E
 <p>Enter your recipients and end with an empty line.
   Type your message that you want to encrypt.
   Press Control+D and your encrypted message will appear onscreen.</p>
-<p>If you want to encrypt the above message to a file you can type:</p>
+<h6 id="encrypt-message-to-a-file-you-can-type">Encrypt message to a file you can type:</h6>
 <pre><code>gpg -ea &gt; filename.txt
 </code></pre>
 <p>then do the steps above.
   Enter your recipients and end with an empty line.
   Type your message that you want to encrypt.
   Press Control+D and your encrypted message will be sent to filename.txt.</p>
-<p>Encrypt a single file (creates a binary file). This option may be combined with --sign.</p>
+<h6 id="encrypt-a-single-file-creates-a-binary-file-this-option-may-be-combined-with-sign">Encrypt a single file (creates a binary file). This option may be combined with --sign.</h6>
 <pre><code>gpg -e filename
 
 or
 
 gpg --encrypt filename
 </code></pre>
-<p>Encrypt a single file (creates an ASCII file). This option may be combined with --sign.</p>
+<h6 id="encrypt-a-single-file-creates-an-ascii-file-this-option-may-be-combined-with-sign">Encrypt a single file (creates an ASCII file). This option may be combined with --sign.</h6>
 <pre><code>gpg -a -e filename
 
 or
@@ -239,18 +281,18 @@ or
 
 gpg -ea filename
 </code></pre>
-<p>This is a special version of the --encrypt command. The command expects the files to be encrypted either on the command line or reads the filenames from stdin; each name must be on separate line. The command is intended for a quick encryption of multiple files.
-Encrypt multiple files. This option may be combined with --sign.</p>
+<p>This is a special version of the --encrypt command. The command expects the files to be encrypted either on the command line or reads the filenames from stdin; each name must be on separate line. The command is intended for a quick encryption of multiple files.</p>
+<h4 id="encrypt-multiple-files-this-option-may-be-combined-with-sign">Encrypt multiple files. This option may be combined with --sign.</h4>
 <pre><code>This will prompt you for your password for each file.
 gpg --encrypt-files file1 file2 file3
 
 or add a recipient (your own key) to not be prompted.
 gpg --encrypt-files -r A1B2C3D4E5F6 *.txt
 </code></pre>
-<p>You can also batch encrypt using --multi-file:</p>
+<h6 id="batch-encrypt-using-multi-file">Batch encrypt using --multi-file:</h6>
 <pre><code>gpg --multifile --encrypt --armor -r brothers *.txtrh
 </code></pre>
-<p>Here is a bash script to batch encrypt multiple files:</p>
+<h6 id="bash-script-to-batch-encrypt-multiple-files">Bash script to batch encrypt multiple files:</h6>
 <pre><code>for file in *.txtrh
 do
 #   echo "gpg --encrypt --armor -r 7FEBFF2F6AB4F024 -r D1BD917D4AF9F0EC" &gt; ~/"$file"
@@ -259,14 +301,14 @@ do
 #   echo "============== $file"
 done
 </code></pre>
-<p>Encrypt with symmetric cipher only. This command asks for a passphrase. (May also be combined with --sign -- see GnuPG 1.0.7 released.)</p>
+<h6 id="encrypt-with-symmetric-cipher-only-this-command-asks-for-a-passphrase-may-also-be-combined-with-sign-see-gnupg-107-released">Encrypt with symmetric cipher only. This command asks for a passphrase. (May also be combined with --sign -- see GnuPG 1.0.7 released.)</h6>
 <pre><code>gpg -c filename
 
 or
 
 gpg --symmetric filename
 </code></pre>
-<p>Batch Encrypt multiple files to specified recipients (encrypt.sh). Make sure your $file variable is surrounded by quotes so that files with spaces in their names will get picked up.</p>
+<h6 id="batch-encrypt-multiple-files-to-specified-recipients-encryptsh-make-sure-your-file-variable-is-surrounded-by-quotes-so-that-files-with-spaces-in-their-names-will-get-picked-up">Batch Encrypt multiple files to specified recipients (encrypt.sh). Make sure your $file variable is surrounded by quotes so that files with spaces in their names will get picked up.</h6>
 <pre><code>for file in *.txt
 
 do
@@ -275,7 +317,7 @@ do
 
 done
 </code></pre>
-<p>Encrypt to a recipient.</p>
+<h4 id="encrypt-to-a-recipient">Encrypt to a recipient.</h4>
 <pre><code>gpg -e -r recipient filename
 
 or
@@ -287,7 +329,7 @@ or encrypt and sign.
 gpg -e -r recipient -s filename
 </code></pre>
 <p>Use -u to specify the secret key to be used, and -r to specify the public key of the recipient.
-**Note: This doesn't seem to work when you have a default sender and recipient key established in gpg.conf.</p>
+**Note: This doesn't seem to work when you have a default sender and recipient key established in gpg.conf because the default sender and recipient overwrite the "-u" option.</p>
 <pre><code>gpg -e -u "Sender User Name" -r "Receiver User Name" somefile
 Example 1: gpg -e -u "me@example.com" -r "you@example.com" -r "them@example.com" somefile
 
@@ -297,29 +339,29 @@ gpg -e -u "Billy Bob" -r "Nancy Bob" mydata.tar
 Example 3:
 gpg -s --default-key ABCD1234 -ea yyy.txt
 </code></pre>
-<p>Password encrypt and sign a file:</p>
+<h4 id="password-encrypt-and-sign-a-file">Password encrypt and sign a file:</h4>
 <pre><code>gpg -c -s filename
 </code></pre>
-<p>Password encrypt and sign a message that can be decrypted by passphrase or secret key:</p>
+<h6 id="password-encrypt-and-sign-a-message-that-can-be-decrypted-by-passphrase-or-secret-key">Password encrypt and sign a message that can be decrypted by passphrase or secret key:</h6>
 <pre><code>gpg -c --sign --encrypt filename
 
 or
 
 gpg -c -s -e filename
 </code></pre>
-<p>UUEncode a file before ascii encrypting:</p>
+<h6 id="uuencode-a-file-before-ascii-encrypting">UUEncode a file before ascii encrypting:</h6>
 <pre><code>uuencode filename filename &gt; filename.uue
 gpg -a -e filename.uue
 </code></pre>
-<p>UUEncode a file before normal encrypting:</p>
+<h6 id="uuencode-a-file-before-normal-encrypting">UUEncode a file before normal encrypting:</h6>
 <pre><code>uuencode filename filename &gt; filename.uue
 gpg --encrypt filename.uue
 </code></pre>
-<p>Decrypt UUEncoded file with normal encryption then UUDecode it:</p>
+<h6 id="decrypt-uuencoded-file-with-normal-encryption-then-uudecode-it">Decrypt UUEncoded file with normal encryption then UUDecode it:</h6>
 <pre><code>gpg --decrypt filename &gt; filename.uue
 uudecode filename.uue
 </code></pre>
-<p>Decrypt a message in standard out (stout) type:</p>
+<h6 id="decrypt-a-message-in-standard-out-stout-type">Decrypt a message in standard out (stout) type:</h6>
 <p>gpg</p>
 <p>You will see a message similar to this: gpg: Go ahead and type your message ...
   At this point you can paste in the encrypted text and you will be prompted for your passphrase.
@@ -327,7 +369,7 @@ uudecode filename.uue
 <p>Decrypt file (or stdin if no file is specified) and write it to stdout (or the file specified with --output). If the decrypted file is signed, the signature is also verified. This command differs from the default operation, as it never writes to the filename which is included in the file and it rejects files which don't begin with an encrypted message.</p>
 <pre><code>gpg --decrypt filenames
 </code></pre>
-<p>Decrypt a file that has been binary or ascii encrypted and output the decrypted content to a file:</p>
+<h6 id="decrypt-a-file-that-has-been-binary-or-ascii-encrypted-and-output-the-decrypted-content-to-a-file">Decrypt a file that has been binary or ascii encrypted and output the decrypted content to a file:</h6>
 <pre><code>gpg --output decrypted.txt --decrypt encrypted.txt.gpg
 
 or
@@ -337,7 +379,7 @@ gpg -o decrypted.txt -d encrypted.txt.gpg
 <p>This is a special version of the --decrypt command. The command expects the files to be decrypted either on the command line or reads the filenames from stdin; each name must be on separate line. The command is intended for a quick decryption of multiple files.</p>
 <pre><code>gpg --decrypt-files file1 file2 file3
 </code></pre>
-<p>Multiple Private Keys.</p>
+<h4 id="multiple-private-keys">Multiple Private Keys.</h4>
 <p>When encrypting or decrypting it is possible to have more than one private key in use. To use a different private key other than the default use the option -u UID or use the option --local-user UID. This causes the default key used to be replaced by the wanted key.</p>
 <pre><code>gpg -u &lt;KEY ID&gt; -r recipient --armor --sign --encrypt filename
 
@@ -552,7 +594,7 @@ You want to see "Fingerprints" to ensure that somebody is really the person they
 <pre><code>gpg --delete-key UID
 </code></pre>
 <p>To delete a secret key you type:</p>
-<pre><code>gpg --delete-secret-key
+<pre><code>gpg --delete-secret-key UID
 (You have to delete the private key before deleting the public key)
 </code></pre>
 <p>There is one more important command that is relevant for working with keys.</p>
@@ -797,18 +839,6 @@ sudo dnf -y install gpa
 <p>On Fedora Linux, the passphrase cache timeout was 300 seconds (5 minutes). I couldn't find where I could change that setting. I ended up installing dconf-editor and I was able to change the passphrase cache. I added screenshots (dconf-editor_settings##.png.</p>
 <p>I installed Open GnuPG on my Mac using: sudo port install gnupg2
 I like it a lot better thant the GPG Suite that I was previously using because I can encrypt and decrypt from an SSH session without the GUI password prompt preventing me from decrypting something. I have also discovered that I no longer seem to be able to use the command 'gpg &lt; encryptedfile'. I get a message that says it doesn't understand what I am trying to do. I actually have to paste in the encrypted content and press control+d.</p>
-<h4 id="gpgconf">gpgconf:</h4>
-<h5 id="options">Options</h5>
-<p>Starting with GnuPG 1.1.92 (incl. GnuPG 1.2.1, 1.2.0 and 1.1.92), long options can be put in an options file (default "~/.gnupg/gpg.conf"). In GnuPG versions up through GnuPG 1.1.91 (incl. 1.0.6, 1.0.7, and 1.1.91), long options can be put in an "old style" configuration file (default "~/.gnupg/options").
-Short option names will not work -- for example, <strong>armor</strong> is a valid option for the options file, while <strong>a</strong> is not. Do not write the 2 dashes, but simply the name of the option and any required arguments. Lines with a hash as the first non-white-space character are ignored. Commands may be put in this file too, but that does not make sense.</p>
-<pre><code>Two useful entries for .gnupg/gpg.conf file. 
-These entries will force GPG to use your key as default and automatically encrypt to your key.
-
-default-key 1A2B3CD4
-encrypt-to 1A2B3CD4
-
-#gpg-connect-agent
-</code></pre>
 <p><a href="https://security.stackexchange.com/questions/103034/gnupg-decryption-not-asking-for-passphrase/" title="">How can I force the system to ask the passphrase every time?</a></p>
 <p>Old versions of GnuPG uses the gpg-agent, which caches the passphrase for a given time. Use the option --no-use-agent or add a line no-use-agent to ~/.gnupg/gpg.conf to prevent using the agent.</p>
 <p>Note: --no-use-agent is obsolete in gpg2 and has no effect.</p>
@@ -867,6 +897,260 @@ gpg -c -s --pinentry-mode=loopback &lt;file&gt;
 </code></pre>
 <h4 id="keybase-error-adding-pgpgpg-key">Keybase error adding PGP/GPG key:</h4>
 <pre><code>https://github.com/keybase/client/issues/22458
+</code></pre>
+<h4 id="gpgconf">gpgconf:</h4>
+<h5 id="options">Options</h5>
+<p>Starting with GnuPG 1.1.92 (incl. GnuPG 1.2.1, 1.2.0 and 1.1.92), long options can be put in an options file (default "~/.gnupg/gpg.conf"). In GnuPG versions up through GnuPG 1.1.91 (incl. 1.0.6, 1.0.7, and 1.1.91), long options can be put in an "old style" configuration file (default "~/.gnupg/options").
+Short option names will not work -- for example, <strong>armor</strong> is a valid option for the options file, while <strong>a</strong> is not. Do not write the 2 dashes, but simply the name of the option and any required arguments. Lines with a hash as the first non-white-space character are ignored. Commands may be put in this file too, but that does not make sense.</p>
+<pre><code>Two useful entries for .gnupg/gpg.conf file. 
+These entries will force GPG to use your key as default and automatically encrypt to your key.
+
+default-key 1A2B3CD4
+encrypt-to 1A2B3CD4
+
+#gpg-connect-agent
+</code></pre>
+<h4 id="gpgconf-example-file">gpg.conf Example File</h4>
+<pre><code># These first three lines are not copied to the gpg.conf file in
+# the users home directory.
+# $Id$
+# Options for GnuPG
+# Copyright 1998, 1999, 2000, 2001, 2002, 2003,
+#           2010 Free Software Foundation, Inc.
+#
+# This file is free software; as a special exception the author gives
+# unlimited permission to copy and/or distribute it, with or without
+# modifications, as long as this notice is preserved.
+#
+# This file is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
+# implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# Unless you specify which option file to use (with the command line
+# option &quot;--options filename&quot;), GnuPG uses the file ~/.gnupg/gpg.conf
+# by default.
+#
+# An options file can contain any long options which are available in
+# GnuPG. If the first non white space character of a line is a '#',
+# this line is ignored.  Empty lines are also ignored.
+#
+# See the man page for a list of options.
+
+# Uncomment the following option to get rid of the copyright notice
+
+#no-greeting
+
+# If you have more than 1 secret key in your keyring, you may want to
+# uncomment the following option and set your preferred keyid.
+
+default-key ABCD1234
+encrypt-to ABCD1234
+
+
+# If you do not pass a recipient to gpg, it will ask for one.  Using
+# this option you can encrypt to a default key.  Key validation will
+# not be done in this case.  The second form uses the default key as
+# default recipient.
+
+#default-recipient some-user-id
+#default-recipient-self
+#default-recipient ABCD1234
+
+# By default GnuPG creates version 4 signatures for data files as
+# specified by OpenPGP.  Some earlier (PGP 6, PGP 7) versions of PGP
+# require the older version 3 signatures.  Setting this option forces
+# GnuPG to create version 3 signatures.
+
+#force-v3-sigs
+
+# Because some mailers change lines starting with &quot;From &quot; to &quot;&gt;From &quot;
+# it is good to handle such lines in a special way when creating
+# cleartext signatures; all other PGP versions do it this way too.
+# To enable full OpenPGP compliance you may want to use this option.
+
+no-escape-from-lines
+
+# When verifying a signature made from a subkey, ensure that the cross
+# certification &quot;back signature&quot; on the subkey is present and valid.
+# This protects against a subtle attack against subkeys that can sign.
+# Defaults to --no-require-cross-certification.  However for new
+# installations it should be enabled.
+
+require-cross-certification
+
+
+# If you do not use the Latin-1 (ISO-8859-1) charset, you should tell
+# GnuPG which is the native character set.  Please check the man page
+# for supported character sets.  This character set is only used for
+# metadata and not for the actual message which does not undergo any
+# translation.  Note that future version of GnuPG will change to UTF-8
+# as default character set.
+
+#charset utf-8
+
+# Group names may be defined like this:
+#   group mynames = paige 0x12345678 joe patti
+#
+# Any time &quot;mynames&quot; is a recipient (-r or --recipient), it will be
+# expanded to the names &quot;paige&quot;, &quot;joe&quot;, and &quot;patti&quot;, and the key ID
+# &quot;0x12345678&quot;.  Note there is only one level of expansion - you
+# cannot make an group that points to another group.  Note also that
+# if there are spaces in the recipient name, this will appear as two
+# recipients.  In these cases it is better to use the key ID.
+
+#group mynames = paige 0x12345678 joe patti
+group myfriends = BD4054DAC61AB7BB B1BC917D4AF9F0EC
+
+#no-mangle-dos-filenames
+
+# Lock the file only once for the lifetime of a process.  If you do
+# not define this, the lock will be obtained and released every time
+# it is needed - normally this is not needed.
+
+#lock-once
+
+# GnuPG can send and receive keys to and from a keyserver.  These
+# servers can be HKP, email, or LDAP (if GnuPG is built with LDAP
+# support).
+#
+# Example HKP keyservers:
+#      hkp://keys.gnupg.net
+#
+# Example LDAP keyservers:
+#      ldap://pgp.surfnet.nl:11370
+#
+# Regular URL syntax applies, and you can set an alternate port
+# through the usual method:
+#      hkp://keyserver.example.net:22742
+#
+# If you have problems connecting to a HKP server through a buggy http
+# proxy, you can use keyserver option broken-http-proxy (see below),
+# but first you should make sure that you have read the man page
+# regarding proxies (keyserver option honor-http-proxy)
+#
+# Most users just set the name and type of their preferred keyserver.
+# Note that most servers (with the notable exception of
+# ldap://keyserver.pgp.com) synchronize changes with each other.  Note
+# also that a single server name may actually point to multiple
+# servers via DNS round-robin.  hkp://keys.gnupg.net is an example of
+# such a &quot;server&quot;, which spreads the load over a number of physical
+# servers.  To see the IP address of the server actually used, you may use
+# the &quot;--keyserver-options debug&quot;.
+
+keyserver hkp://pgp.mit.edu
+#keyserver hkps://hkps.pool.sks-keyservers.net
+#keyserver http://http-keys.gnupg.net
+#keyserver mailto:pgp-public-keys@keys.nl.pgp.net
+
+# Common options for keyserver functions:
+#
+# include-disabled = when searching, include keys marked as &quot;disabled&quot;
+#                    on the keyserver (not all keyservers support this).
+#
+# no-include-revoked = when searching, do not include keys marked as
+#                      &quot;revoked&quot; on the keyserver.
+#
+# verbose = show more information as the keys are fetched.
+#           Can be used more than once to increase the amount
+#           of information shown.
+#
+# use-temp-files = use temporary files instead of a pipe to talk to the
+#                  keyserver.  Some platforms (Win32 for one) always
+#                  have this on.
+#
+# keep-temp-files = do not delete temporary files after using them
+#                   (really only useful for debugging)
+#
+# honor-http-proxy = if the keyserver uses HTTP, honor the http_proxy
+#                    environment variable
+#
+# broken-http-proxy = try to work around a buggy HTTP proxy
+#
+# auto-key-retrieve = automatically fetch keys as needed from the keyserver
+#                     when verifying signatures or when importing keys that
+#                     have been revoked by a revocation key that is not
+#                     present on the keyring.
+#
+# no-include-attributes = do not include attribute IDs (aka &quot;photo IDs&quot;)
+#                         when sending keys to the keyserver.
+
+keyserver-options auto-key-retrieve
+
+# Uncomment this line to display photo user IDs in key listings and
+# when a signature from a key with a photo is verified.
+
+#show-photos
+
+# Use this program to display photo user IDs
+#
+# %i is expanded to a temporary file that contains the photo.
+# %I is the same as %i, but the file isn't deleted afterwards by GnuPG.
+# %k is expanded to the key ID of the key.
+# %K is expanded to the long OpenPGP key ID of the key.
+# %t is expanded to the extension of the image (e.g. &quot;jpg&quot;).
+# %T is expanded to the MIME type of the image (e.g. &quot;image/jpeg&quot;).
+# %f is expanded to the fingerprint of the key.
+# %% is %, of course.
+#
+# If %i or %I are not present, then the photo is supplied to the
+# viewer on standard input.  If your platform supports it, standard
+# input is the best way to do this as it avoids the time and effort in
+# generating and then cleaning up a secure temp file.
+#
+# The default program is &quot;xloadimage -fork -quiet -title 'KeyID 0x%k' stdin&quot;
+# On Mac OS X and Windows, the default is to use your regular JPEG image
+# viewer.
+#
+# Some other viewers:
+# photo-viewer &quot;qiv %i&quot;
+# photo-viewer &quot;ee %i&quot;
+# photo-viewer &quot;display -title 'KeyID 0x%k'&quot;
+#
+# This one saves a copy of the photo ID in your home directory:
+# photo-viewer &quot;cat &gt; ~/photoid-for-key-%k.%t&quot;
+#
+# Use your MIME handler to view photos:
+# photo-viewer &quot;metamail -q -d -b -c %T -s 'KeyID 0x%k' -f GnuPG&quot;
+
+#  *** Options for GPGTools ***
+
+# Automatic key location
+#
+# GnuPG can automatically locate and retrieve keys as needed using the
+# auto-key-locate option.  This happens when encrypting to an email
+# address (in the &quot;user@example.com&quot; form), and there are no
+# user@example.com keys on the local keyring.  This option takes the
+# following arguments, in the order they are to be tried:
+#
+# cert = locate a key using DNS CERT, as specified in RFC-4398.
+#        GnuPG can handle both the PGP (key) and IPGP (URL + fingerprint)
+#        CERT methods.
+#
+# pka = locate a key using DNS PKA.
+#
+# ldap = locate a key using the PGP Universal method of checking
+#        &quot;ldap://keys.(thedomain)&quot;.  For example, encrypting to
+#        user@example.com will check ldap://keys.example.com.
+#
+# keyserver = locate a key using whatever keyserver is defined using
+#             the keyserver option.
+#
+# You may also list arbitrary keyservers here by URL.
+#
+# Try CERT, then PKA, then LDAP, then hkp://keys.gnupg.net:
+auto-key-locate keyserver
+
+comment An encrypted message received, deserves an encrypted reply!
+cert-digest-algo SHA512
+default-preference-list SHA512 SHA384 SHA256 SHA224 AES256 AES192 AES CAST5 ZLIB BZIP2 ZIP Uncompressed
+personal-digest-preferences SHA512 SHA384 SHA256 SHA224
+
+no-emit-version
+
+cipher-algo AES256
+digest-algo SHA512
+
+#pinentry-program /usr/bin/pinentry-curses
 </code></pre>
               
             </div>
