@@ -6,6 +6,6 @@ nav:
     - LVM: lvm.md
     - Markdown: markdown.md
     - Mount LUKS Encrypted Media: mount.md
-    - MySQL: mysql.md
+    - MariaDB/MySQL: mysql.md
     - PGP: pgp.md
 theme: readthedocs
