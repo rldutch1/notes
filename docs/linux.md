@@ -1,0 +1,177 @@
+<pre>If you want to find the system ID of the user type:
+	<span style="color: #3366ff;">id username</span>
+
+You can check what groups a user belongs to by using the "groups" command.
+	<span style="color: #3366ff;">groups &lt;username&gt;</span>
+
+To create a user with the default groups type:
+	<span style="color: #3366ff;">sudo adduser --add_extra_groups username</span>
+        <span style="color: #ff0000;">Fedora: sudo adduser -m username</span>
+
+To delete a user and its primary group type:
+	<span style="color: #3366ff;">sudo deluser username</span>
+
+To add an existing user to an existing group type:
+	<span style="color: #3366ff;">sudo usermod -a -G thegroupname theusername</span>
+	<span style="color: #3366ff;">sudo usermod -a -G thegroupname theusername</span>
+	<span style="color: #3366ff;">sudo useradd -G thegroupname theusername</span>
+
+Use gpasswd:
+	<span style="color: #3366ff;">sudo gpasswd -a theusername thegroupname</span>
+
+To remove user billybob from the group hillbilly.
+	<span style="color: #3366ff;">gpasswd -d billybob hillbilly</span>
+
+To give user billybob administrative rights to the group hillbilly.
+	<span style="color: #3366ff;">gpasswd -A billybob hillbilly</span>
+
+To Change a users primary group type:
+	<span style="color: #3366ff;">useradd -g www joebob</span>
+
+To show users that are in a group named joebob type:
+	<span style="color: #3366ff;">getent group joebob</span>
+
+To temporarily lock or unlock a user account, use the following syntax, respectively: 
+	<span style="color: #3366ff;">sudo passwd -l username</span> 
+	<span style="color: #3366ff;">sudo passwd -u username</span> 
+
+If you want to use the GUI you will have to install the gnome-system-tools 
+	<span style="color: #3366ff;">sudo apt-get install gnome-system-tools</span> 
+
+Here are a few ways to run it once it is installed type: 
+	<span style="color: #3366ff;">sudo users-admin</span> 
+Press <span style="color: #3366ff;">Alt+F2</span> 
+Type 
+	<span style="color: #3366ff;">sudo users-admin</span> 
+Press Enter. Press <span style="color: #3366ff;">Ctrl+Alt+T</span>. 
+Type 
+	<span style="color: #3366ff;">sudo users-admin</span>
+Press Enter. 
+
+If you want to add a group type: 
+	<span style="color: #3366ff;">sudo groupadd foo</span> 
+	<span style="color: #3366ff;">sudo addgroup groupname</span> 
+
+If you want to delete a group type: 
+	<span style="color: #3366ff;">sudo delgroup groupname</span> 
+
+User Profile Security when a new user is created, the <span style="color: #3366ff;">adduser</span> utility creates a 
+brand new home directory named <span style="color: #3366ff;">/home/username</span>, respectively. The default profile 
+is modeled after the contents found in the directory of <span style="color: #3366ff;">/etc/skel</span>, which includes 
+all profile basics. If your server will be home to multiple users, you should pay 
+close attention to the user home directory permissions to ensure confidentiality. 
+By default, user home directories in Ubuntu are created with world read/execute 
+permissions. This means that all users can browse and access the contents of other 
+users home directories. This may not be suitable for your environment. 
+
+To verify your current users home directory permissions, use the following syntax: 
+	<span style="color: #3366ff;">ls -ld /home/username</span> 
+
+	The following output shows that the directory /home/username has world 
+readable permissions: drwxr-xr-x 2 username username 4096 2007-10-02 20:03 username 
+You can remove the world readable permissions using the following syntax: 
+	<span style="color: #3366ff;">sudo chmod 0750 /home/username</span> 
+
+Some people tend to use the recursive option (<span style="color: #3366ff;">-R</span>) indiscriminately which modifies 
+all child folders and files, but this is not necessary, and may yield other 
+undesirable results. The parent directory alone is sufficient for preventing
+unauthorized access to anything below the parent. A much more efficient approach 
+to the matter would be to modify the <span style="color: #3366ff;">adduser</span> global default permissions when creating 
+user home folders. Simply edit the file <span style="color: #3366ff;">/etc/adduser.conf</span> and modify the <span style="color: #3366ff;">DIR_MODE</span> 
+variable to something appropriate, so that all new home directories will receive the 
+correct permissions. 
+	<span style="color: #3366ff;">DIR_MODE=0750</span> 
+
+After correcting the directory permissions using any of the previously mentioned 
+techniques, verify the results using the following syntax: 
+	<span style="color: #3366ff;">ls -ld /home/username</span> 
+
+The results below show that world readable permissions have been removed: 
+    <span style="color: #3366ff;">drwxr-x--- 2 username username 4096 2007-10-02 20:03 username</span> 
+
+Password Policy 
+A strong password policy is one of the most important aspects of your security posture. 
+Many successful security breaches involve simple brute force and dictionary attacks 
+against weak passwords. If you intend to offer any form of remote access involving 
+your local password system, make sure you adequately address minimum password 
+complexity requirements, maximum password lifetimes, and frequent audits of your 
+authentication systems. Minimum Password Length By default, Ubuntu requires a <span style="color: #3366ff;">minimum 
+password length of 6 characters</span>, as well as some basic entropy checks 
+<span style="color: #3366ff;">(Fedora has a minimum of 8 characters)</span>. 
+These values are controlled in the file <span style="color: #3366ff;">/etc/pam.d/common-password</span>, which is outlined below. 
+    <span style="color: #3366ff;">password required pam_unix.so nullok obscure min=4 max=8 md5</span>
+
+If you would like to adjust the minimum length to 6 characters, change the appropriate variable 
+to min=6. The modification is outlined below. 
+    <span style="color: #3366ff;">password required pam_unix.so nullok obscure min=6 max=8 md5</span>
+
+The max=8 variable does not represent the maximum length of 
+a password. It only means that complexity requirements will not be checked on 
+passwords over 8 characters. You may want to look at the libpam-cracklib package for 
+additional password entropy assistance. Password Expiration When creating user 
+accounts, you should make it a policy to have a minimum and maximum password age 
+forcing users to change their passwords when they expire. 
+
+To easily view the current status of a user account, use the following syntax: 
+	<span style="color: #3366ff;">sudo chage -l username</span> 
+
+The output below shows interesting facts about the user account, namely that there 
+are no policies applied: Last password change : Jan 20, 2008 Password expires : 
+never Password inactive : never Account expires : never Minimum number of days 
+between password change : 0 Maximum number of days between password change : 99999 
+Number of days of warning before password expires : 7 To set any of these values, 
+simply use the following syntax, and follow the interactive prompts: 
+	<span style="color: #3366ff;">sudo chage username</span> 
+
+The following is also an example of how you can manually change the explicit 
+expiration date (-E) to 01/31/2008, minimum password age (-m) of 5 days, maximum 
+password age (-M) of 90 days, inactivity period (-I) of 5 days after password 
+expiration, and a warning time period (-W) of 14 days before password expiration. 
+sudo chage -E 01/31/2008 -m 5 -M 90 -I 30 -W 14 username To verify changes, use the 
+same syntax as mentioned previously: 
+	<span style="color: #3366ff;">sudo chage -l username</span> 
+
+The output below shows the new policies that have been established for the account: 
+	Last password change : Jan 20, 2008 
+	Password expires : Apr 19, 2008 
+	Password inactive : May 19, 2008 
+	Account expires : Jan 31, 2008 
+	Minimum number of days between password change : 5 
+	Maximum number of days between password change : 90 
+	Number of days of warning before password expires : 14 
+
+Other Security Considerations Many applications use alternate authentication 
+mechanisms that can be easily overlooked by even experienced system administrators. 
+Therefore, it is important to understand and control how users authenticate and gain 
+access to services and applications on your server. SSH Access by Disabled Users 
+Simply disabling/locking a user account will not prevent a user from logging into 
+your server remotely if they have previously set up RSA public key authentication. 
+They will still be able to gain shell access to the server, without the need for any 
+password. Remember to check the users home directory for files that will allow for 
+this type of authenticated SSH access. e.g. <span style="color: #3366ff;">/home/username/.ssh/authorized_keys</span>. 
+Remove or rename the directory <span style="color: #3366ff;">.ssh/</span> in the user's home folder to prevent further 
+SSH authentication capabilities. Be sure to check for any established SSH connections 
+by the disabled user, as it is possible they may have existing inbound or outbound 
+connections. Kill any that are found. Restrict SSH access to only user accounts that 
+should have it. 
+
+For example, you may create a group called "sshlogin" and add the group name as the 
+value associated with the AllowGroups variable located in the 
+file <span style="color: #3366ff;">/etc/ssh/sshd_config</span>. 
+	<span style="color: #3366ff;">AllowGroups sshlogin</span> 
+
+Then add your permitted SSH users to the group "sshlogin", and restart the SSH service. 
+	<span style="color: #3366ff;">sudo adduser username sshlogin</span> 
+	<span style="color: #3366ff;">sudo /etc/init.d/ssh restart</span> 
+</pre>
+MakeUser Function for .bashrc file:
+<pre>  <span style="color: #3366ff;">makeuser () {</span> 
+  <span style="color: #3366ff;">if [ $# -eq 0 ]</span> 
+  <span style="color: #3366ff;">then</span> 
+  <span style="color: #3366ff;">echo "Usage: makeuser username."</span> 
+  <span style="color: #3366ff;">else</span> 
+  <span style="color: #3366ff;">sudo adduser --add_extra_groups $1</span> 
+  <span style="color: #3366ff;">fi</span> 
+  <span style="color: #3366ff;">}</span> 
+</pre>
+<a title="Source for most of this document:" href="https://help.ubuntu.com/8.04/serverguide/user-management.html" target="_blank" rel="noopener">Source for most of this document:</a> | Ubuntu Server User and Group Administration

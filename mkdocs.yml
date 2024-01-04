@@ -2,6 +2,7 @@ site_name: My Notes
 nav:
     - Home: index.md
     - GiT: git.md
+    - Linux Admin: linux.md
     - LVM: lvm.md
     - Markdown: markdown.md
     - Mount LUKS Encrypted Media: mount.md
