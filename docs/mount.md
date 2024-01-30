@@ -99,7 +99,7 @@ lsblk
 
 #### 11. Unmounting /mnt/m.
 
-To unmount th volume type:
+To unmount the volume type:
 ```
 sudo umount /mnt/m
 ```
