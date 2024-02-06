@@ -2,10 +2,11 @@ site_name: My Notes
 nav:
     - Home: index.md
     - GiT: git.md
+    - Keybase: keybase.md
     - Linux Admin: linux.md
     - LVM: lvm.md
     - Markdown: markdown.md
-    - Mount LUKS Encrypted Media: mount.md
+    - Mount LUKS Encrypted Media: luksmount.md
     - MariaDB/MySQL: mysql.md
     - PGP: pgp.md
 theme: readthedocs
