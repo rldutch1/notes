@@ -4,9 +4,11 @@ nav:
     - GiT: git.md
     - Keybase: keybase.md
     - Linux Admin: linux.md
+    - Linux Tape Drives: linuxtapedrives.md
     - LVM: lvm.md
     - Markdown: markdown.md
     - Mount LUKS Encrypted Media: luksmount.md
     - MariaDB/MySQL: mysql.md
     - PGP: pgp.md
+    - VI Editor: vi_editor.md
 theme: readthedocs
