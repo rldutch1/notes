@@ -737,6 +737,21 @@ Create Event Source: https://dba.stackexchange.com/questions/56424/column-auto-u
     and `kcu`.`TABLE_SCHEMA` = 'YOURDATABASENAME'
     order by This_DB_Table_and_column;
 
+####### Show constraints for all databases:
+    create VIEW `vw_fk_global_constraints` AS 
+    select distinct concat(`kcu`.`TABLE_SCHEMA`,'.',`kcu`.`TABLE_NAME`,'.',`kcu`.`COLUMN_NAME`) AS `This_DB_Table_and_Column`
+    ,concat(`kcu`.`TABLE_SCHEMA`,'.',`kcu`.`REFERENCED_TABLE_NAME`,'.',`kcu`.`REFERENCED_COLUMN_NAME`) AS `References_This_DB_Table_and_Column`
+    ,`kcu`.`CONSTRAINT_NAME` AS `CONSTRAINT_NAME`
+    ,`rc`.`UPDATE_RULE` AS `update_rule`
+    ,`rc`.`DELETE_RULE` AS `delete_rule` 
+    from (
+	`information_schema`.`KEY_COLUMN_USAGE` `kcu` 
+	join `information_schema`.`referential_constraints` `rc` 
+	on(`kcu`.`TABLE_NAME` = `rc`.`TABLE_NAME`)) 
+	where `kcu`.`REFERENCED_TABLE_NAME` is not null 
+	order by concat(`kcu`.`TABLE_SCHEMA`,'.',`kcu`.`TABLE_NAME`,'.',`kcu`.`COLUMN_NAME`
+    );
+
     -- This is a quick way to view all of the constraints:
     SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS;
     
