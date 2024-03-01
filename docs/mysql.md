@@ -432,6 +432,7 @@ For scripting in a shell, you can use either of the following:
 
     grant alter,create,delete,drop,index,insert,select,update,trigger,alter routine,
     create routine, execute, create temporary tables on hillc1.* to 'theusername';
+```
 
 ###### Create Table of Datatypes Example:
     --Create a table with all of the MySQL datatypes.
