@@ -3,7 +3,7 @@ nav:
     - Home: index.md
     - GiT: git.md
     - Keybase: keybase.md
-    - Linux Admin: linux.md
+    - Linux Admin: linuxuser.md
     - Linux Tape Drives: linuxtapedrives.md
     - LVM: lvm.md
     - Markdown: markdown.md
