@@ -1266,7 +1266,7 @@ mysql -u username -p < test.sql > test.tab
 mysql -h hostname -u databaseuser -p -D databasename
 ```
 
--- To Dump a database to a file and generate full insert statments:
+-- To Dump a database to a file and generate full insert statements:
 ```
 mysqldump -p -c -e databasename > DatabaseName.sql
 ```
