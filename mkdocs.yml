@@ -3,7 +3,7 @@ nav:
     - Home: index.md
     - GiT: git.md
     - Keybase: keybase.md
-    - Linux Admin: linuxuser.md
+    - Linux User Admin: linuxuser.md
     - Linux Tape Drives: linuxtapedrives.md
     - LVM: lvm.md
     - Markdown: markdown.md
@@ -11,4 +11,5 @@ nav:
     - MariaDB/MySQL: mysql.md
     - PGP: pgp.md
     - VI Editor: vi_editor.md
+    - X11 Forwarding: x11_forwarding.md
 theme: readthedocs

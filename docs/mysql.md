@@ -945,6 +945,12 @@ Example:
 
 		insert into secondtable (column1, column2) select column1, column2 from firsttable;
 
+		-- Another method:
+		CREATE TABLE secondtable AS
+		SELECT columns
+		FROM firsttable
+		WHERE conditions;
+		
 #### INT vs BIGINT:
     -- http://stackoverflow.com/questions/3135804/types-in-mysql-bigint20-vs-int20-etcc
 

@@ -52,7 +52,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../linuxuser/">Linux Admin</a>
+                <li class="toctree-l1"><a class="reference internal" href="../linuxuser/">Linux User Admin</a>
                 </li>
               </ul>
               <ul>
@@ -361,6 +361,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../vi_editor/">VI Editor</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../x11_forwarding/">X11 Forwarding</a>
                 </li>
               </ul>
       </div>
@@ -1313,6 +1317,12 @@ Example:</p>
     -- This example inserts two columns into the secondtable table from the firsttable table.
 
     insert into secondtable (column1, column2) select column1, column2 from firsttable;
+
+    -- Another method:
+    CREATE TABLE secondtable AS
+    SELECT columns
+    FROM firsttable
+    WHERE conditions;
 </code></pre>
 <h4 id="int-vs-bigint">INT vs BIGINT:</h4>
 <pre><code>-- http://stackoverflow.com/questions/3135804/types-in-mysql-bigint20-vs-int20-etcc
