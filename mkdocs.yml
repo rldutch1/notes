@@ -1,6 +1,8 @@
 site_name: My Notes
 nav:
     - Home: index.md
+    - Base64: base64.md
+    - FFMEG: ffmpeg.md
     - GiT: git.md
     - Keybase: keybase.md
     - Linux User Admin: linuxuser.md
@@ -10,6 +12,7 @@ nav:
     - Mount LUKS Encrypted Media: luksmount.md
     - MariaDB/MySQL: mysql.md
     - PGP: pgp.md
+    - RDesktop: rdesktop.md
     - VI Editor: vi_editor.md
     - X11 Forwarding: x11_forwarding.md
 theme: readthedocs
