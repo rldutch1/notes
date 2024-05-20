@@ -2,6 +2,7 @@ site_name: My Notes
 nav:
     - Home: index.md
     - Base64: base64.md
+    - Bash Stuff: bashstuff.md
     - FFMEG: ffmpeg.md
     - GiT: git.md
     - Keybase: keybase.md
