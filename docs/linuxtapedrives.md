@@ -54,6 +54,36 @@ Switches the tape head to the end of the data.
 Ejects the tape.
 ```
 		mt -f /dev/st0 eject
+		
+		For bacula: use bconsole to unmount the tape drive then exit the program and eject the tape using the command above. 
+		username@servername:/home/username
+		$ sudo bconsole
+				*unmount
+				Automatically selected Catalog: MyCatalog
+				Using Catalog "MyCatalog"
+				The defined Storage resources are:
+		    		 1: File1
+		    		 2: File2
+		    		 3: LTO-4
+		    		 4: LTO-4_SD
+				Select Storage resource (1-4): 4
+				3001 Device ""LTO-4" (/dev/st0)" unmounted.
+				*quit
+		username@servername:/home/username
+				$ mt -f /dev/st0 eject
+		username@servername:/home/username
+		$ sudo bconsole
+				*mount
+				Automatically selected Catalog: MyCatalog
+				Using Catalog "MyCatalog"
+				The defined Storage resources are:
+				     1: File1
+				     2: File2
+				     3: LTO-4
+				     4: LTO-4_SD
+				Select Storage resource (1-4): 4
+				3001 Device ""LTO-4" (/dev/st0)" is mounted with Volume "Tape-0004"
+				You have messages.
 ```
 
 ```
@@ -103,4 +133,12 @@ mount storage=storage-name
     quit - Exit or quit the console program.
 Most of the commands given above, with the exception of list, will prompt you for the necessary arguments if you simply enter the command name.
 
+```
+
+```
+Tape drive full and could not be written to:
+Solution was to use bconsole to unmount, then eject the tape from the commandline, then insert Tape-0004 and mount from bconsole.
+27-May 08:00 bacula-sd JobId 219: Warning: Director wanted Volume "Tape-0004".
+    Current Volume "Tape-0003" not acceptable because:
+    1998 Volume "Tape-0003" catalog status is Error, but should be Append, Purged or Recycle.
 ```
