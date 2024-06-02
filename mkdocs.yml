@@ -1,6 +1,7 @@
 site_name: My Notes
 nav:
     - Home: index.md
+    - Bacula: bacula.md
     - Base64: base64.md
     - Bash Stuff: bashstuff.md
     - FFMEG: ffmpeg.md
@@ -8,7 +9,8 @@ nav:
     - Keybase: keybase.md
     - Linux User Admin: linuxuser.md
     - Linux Tape Drives: linuxtapedrives.md
-    - LVM: lvm.md
+    - LVM - Linux Volume Manager: lvm.md
+    - MAC - Apple: mac_apple.md
     - Markdown: markdown.md
     - Mount LUKS Encrypted Media: luksmount.md
     - MariaDB/MySQL: mysql.md

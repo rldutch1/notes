@@ -54,36 +54,6 @@ Switches the tape head to the end of the data.
 Ejects the tape.
 ```
 		mt -f /dev/st0 eject
-		
-		For bacula: use bconsole to unmount the tape drive then exit the program and eject the tape using the command above. 
-		username@servername:/home/username
-		$ sudo bconsole
-				*unmount
-				Automatically selected Catalog: MyCatalog
-				Using Catalog "MyCatalog"
-				The defined Storage resources are:
-		    		 1: File1
-		    		 2: File2
-		    		 3: LTO-4
-		    		 4: LTO-4_SD
-				Select Storage resource (1-4): 4
-				3001 Device ""LTO-4" (/dev/st0)" unmounted.
-				*quit
-		username@servername:/home/username
-				$ mt -f /dev/st0 eject
-		username@servername:/home/username
-		$ sudo bconsole
-				*mount
-				Automatically selected Catalog: MyCatalog
-				Using Catalog "MyCatalog"
-				The defined Storage resources are:
-				     1: File1
-				     2: File2
-				     3: LTO-4
-				     4: LTO-4_SD
-				Select Storage resource (1-4): 4
-				3001 Device ""LTO-4" (/dev/st0)" is mounted with Volume "Tape-0004"
-				You have messages.
 ```
 
 ```
@@ -113,32 +83,3 @@ You would need to keep a catalogue of which archives are on which tape and which
 Breaking your archives into many smaller sections, and skipping between them, would be a significant optimisation for retrieving small numbers of files.
 ```
 
-#### bconsole Commands:
-```
-    list volumes - Shows the volumes that bconsole knows about.
-    status dir - Print a status of all running jobs and jobs scheduled in the next 24 hours. 
-    status - The console program will prompt you to select a daemon type, then will request the daemon's status.
-    status jobid=rn - Print a status of JobId nn if it is running. The Storage daemon is contacted and requested to print a current status of the job as well.
-    list pools - List the pools defined in the Catalog (normally only Default is used).
-    list media - Lists all the media defined in the Catalog.
-    list jobs - Lists all jobs in the Catalog that have run.
-    list jobid=rn - Lists JobId nn from the Catalog.
-    list jobtotals - Lists totals for all jobs in the Catalog.
-    list files jobid=nn - List the files that were saved for JobId nn.
-    list jobmedia - List the media information for each Job run.
-    messages - Prints any messages that have been directed to the console.
-    unmount storage=storage-name - Unmounts the drive associated with the storage device with the name storage-name if the drive is not currently being used. This command is used if you wish Bacula to free the drive so that you can use it to label a tape.
-mount storage=storage-name
-    mount storage=storage-name - Causes the drive associated with the storage device to be mounted again. When Bacula reaches the end of a volume and requests you to mount a new volume, you must issue this command after you have placed the new volume in the drive. In effect, it is the signal needed by Bacula to know to start reading or writing the new volume.
-    quit - Exit or quit the console program.
-Most of the commands given above, with the exception of list, will prompt you for the necessary arguments if you simply enter the command name.
-
-```
-
-```
-Tape drive full and could not be written to:
-Solution was to use bconsole to unmount, then eject the tape from the commandline, then insert Tape-0004 and mount from bconsole.
-27-May 08:00 bacula-sd JobId 219: Warning: Director wanted Volume "Tape-0004".
-    Current Volume "Tape-0003" not acceptable because:
-    1998 Volume "Tape-0003" catalog status is Error, but should be Append, Purged or Recycle.
-```
