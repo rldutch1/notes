@@ -16,6 +16,7 @@ nav:
     - MariaDB/MySQL: mysql.md
     - PGP: pgp.md
     - RDesktop: rdesktop.md
+    - SSH: ssh.md
     - VI Editor: vi_editor.md
     - X11 Forwarding: x11_forwarding.md
 theme: readthedocs

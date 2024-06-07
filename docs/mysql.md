@@ -1282,6 +1282,11 @@ mysqldump -p -c -e databasename > DatabaseName.sql
 mysqldump -p -c -e databasename tablename > TableName.sql
 ```
 
+-- To dump multiple tables from a database:
+```
+mysqldump -u theusername -p thedatabasename tablename1 tablename1 tablename2 tablename3 tablename4 tablename5 > thedate_thedatabasename_tables_on_`hostname`.sql
+```
+
 -- To dump all databases on the database server:
 ```
 mysqldump -p -c -e --all-databases > AllDatabases.sql

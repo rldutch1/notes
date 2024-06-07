@@ -384,6 +384,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssh/">SSH</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../vi_editor/">VI Editor</a>
                 </li>
               </ul>
@@ -1638,6 +1642,9 @@ SELECT id,
 </code></pre>
 <p>-- To dump a table from a database and generate full insert statements:</p>
 <pre><code>mysqldump -p -c -e databasename tablename &gt; TableName.sql
+</code></pre>
+<p>-- To dump multiple tables from a database:</p>
+<pre><code>mysqldump -u theusername -p thedatabasename tablename1 tablename1 tablename2 tablename3 tablename4 tablename5 &gt; thedate_thedatabasename_tables_on_`hostname`.sql
 </code></pre>
 <p>-- To dump all databases on the database server:</p>
 <pre><code>mysqldump -p -c -e --all-databases &gt; AllDatabases.sql
