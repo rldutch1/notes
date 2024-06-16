@@ -1632,13 +1632,23 @@ SELECT id,
 <pre><code>mysql -u username -p &lt; test.sql &gt; test.tab
 
 -- Then chmod +x getdata. then run it from the commandline: sh getdata.
--- You will be prompted for your password and the data will get dumped to test.tab.
+-- You will be prompted for your database password and the data will get dumped to test.tab.
+</code></pre>
+<p>-- The contents of test.sql without the database name.</p>
+<pre><code>select * from tablename order by columnName;
+</code></pre>
+<p>-- The contents of test.sql with the database name.</p>
+<pre><code>use thedatabase;
+select * from tablename order by columnName;
 </code></pre>
 <p>-- Connect to a remote database server and directly to a database on that server.</p>
 <pre><code>mysql -h hostname -u databaseuser -p -D databasename
 </code></pre>
 <p>-- To Dump a database to a file and generate full insert statements:</p>
 <pre><code>mysqldump -p -c -e databasename &gt; DatabaseName.sql
+</code></pre>
+<p>-- To Dump the database data without the database structure:</p>
+<pre><code>mysqldump -u root -p thedatabasename --no-create-info &gt; 20240609.sql
 </code></pre>
 <p>-- To dump a table from a database and generate full insert statements:</p>
 <pre><code>mysqldump -p -c -e databasename tablename &gt; TableName.sql
@@ -1661,12 +1671,8 @@ SELECT id,
 <p>-- To dump all databases on a remote server:</p>
 <pre><code>mysqldump -h hostname -u username -p -c -e --all-databases &gt; NameOfEntireDatabaseDumpFile.sql
 </code></pre>
-<p>-- The contents of test.sql without the database name.</p>
-<pre><code>select * from tablename order by columnName;
-</code></pre>
-<p>-- The contents of test.sql with the database name.</p>
-<pre><code>use database;
-select * from tablename order by columnName;
+<p>-- Restore database from a file:</p>
+<pre><code>mysql -u root -p thedatabasename &lt; 20200424_thedatabasename.sql
 </code></pre>
 <h4 id="padding-numbers-with-zeros">Padding numbers with zeros:</h4>
 <h6 id="number-padding">Number padding</h6>
