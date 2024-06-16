@@ -1264,7 +1264,17 @@ mysql -u username -p --xml < test.sql > output.xml
 mysql -u username -p < test.sql > test.tab
 
 -- Then chmod +x getdata. then run it from the commandline: sh getdata.
--- You will be prompted for your password and the data will get dumped to test.tab.
+-- You will be prompted for your database password and the data will get dumped to test.tab.
+```
+
+-- The contents of test.sql without the database name.
+```
+select * from tablename order by columnName;
+```
+-- The contents of test.sql with the database name.
+```
+use thedatabase;
+select * from tablename order by columnName;
 ```
 
 -- Connect to a remote database server and directly to a database on that server.
@@ -1275,6 +1285,11 @@ mysql -h hostname -u databaseuser -p -D databasename
 -- To Dump a database to a file and generate full insert statements:
 ```
 mysqldump -p -c -e databasename > DatabaseName.sql
+```
+
+-- To Dump the database data without the database structure:
+```
+mysqldump -u root -p thedatabasename --no-create-info > 20240609.sql
 ```
 
 -- To dump a table from a database and generate full insert statements:
@@ -1312,14 +1327,9 @@ mysqldump -h hostname -u username -p -c -e databasename tablename > NameOfTableD
 mysqldump -h hostname -u username -p -c -e --all-databases > NameOfEntireDatabaseDumpFile.sql
 ```
 
--- The contents of test.sql without the database name.
+-- Restore database from a file:
 ```
-select * from tablename order by columnName;
-```
--- The contents of test.sql with the database name.
-```
-use database;
-select * from tablename order by columnName;
+mysql -u root -p thedatabasename < 20200424_thedatabasename.sql
 ```
 
 #### Padding numbers with zeros:
