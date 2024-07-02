@@ -378,7 +378,7 @@ For scripting in a shell, you can use either of the following:
 
 ###### This is my MySQL Create User Statement:
     CREATE USER 'monty'@'localhost' IDENTIFIED BY 'some_pass';
-		-- ALTER USER 'theusername'@'localhost' IDENTIFIED BY 'some_pass'; -- MySQL
+		-- ALTER USER 'theusername'@'localhost' IDENTIFIED BY 'some_pass';
     GRANT ALL PRIVILEGES ON *.* TO 'monty'@'localhost'
     WITH GRANT OPTION;
 
