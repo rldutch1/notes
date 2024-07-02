@@ -371,25 +371,22 @@ For scripting in a shell, you can use either of the following:
     CALL insert_ten_rows();
 
 #### Create Users:
-	Syntax definitions:
+###### Syntax definitions:
         % = remote user
         localhost = local user on server/computer
 
-```
-	This is my MySQL Create User Statement:
-    CREATE USER 'monty'@'localhost' IDENTIFIED BY 'some_pass';
 
+###### This is my MySQL Create User Statement:
+    CREATE USER 'monty'@'localhost' IDENTIFIED BY 'some_pass';
+		-- ALTER USER 'theusername'@'localhost' IDENTIFIED BY 'some_pass'; -- MySQL
     GRANT ALL PRIVILEGES ON *.* TO 'monty'@'localhost'
     WITH GRANT OPTION;
 
     CREATE USER 'monty'@'%' IDENTIFIED BY 'some_pass';
     GRANT ALL PRIVILEGES ON *.* TO 'monty'@'%'
     WITH GRANT OPTION;
-```
-    This is my MariaDB Create User and MySQL Create User Statement.
-        % = remote user
-        localhost = local user
 
+###### This is my MariaDB Create User and MySQL Create User Statement.
     CREATE USER 'SomeUser'@'%';
     CREATE USER 'SomeUser'@'localhost';
     SET PASSWORD FOR 'SomeUser'@'%' = PASSWORD('SomePassword!');
@@ -403,7 +400,7 @@ For scripting in a shell, you can use either of the following:
     GRANT ALL PRIVILEGES ON `SomeTable`.* TO 'SomeUser'@'localhost';
     GRANT ALL PRIVILEGES ON `SomeTable\_%`.* TO 'SomeUser'@'%';
     FLUSH PRIVILEGES;
-```
+
     On MariaDB: I got an access denied error when I tried to run the following statement as root.
         UPDATE mysql.user SET Grant_priv='Y', Super_priv='Y' WHERE User='rob';
         FLUSH PRIVILEGES;
@@ -415,26 +412,17 @@ For scripting in a shell, you can use either of the following:
       GRANT ALL PRIVILEGES ON `%`.* TO 'rob'@'localhost' WITH GRANT OPTION;
       GRANT ALL PRIVILEGES ON *.* TO 'rob'@'%' WITH GRANT OPTION;
 
-    show grants for 'root'@'localhost';
-    show grants for 'rob'@'localhost';
-
-    MySQL 8.0.X.X. Grant superuser privileges:
-    use mysql;
-    UPDATE `user` SET `Select_priv` = 'Y', `Insert_priv` = 'Y', `Update_priv` = 'Y', `Delete_priv` = 'Y', `Create_priv` = 'Y', `Drop_priv` = 'Y', `Reload_priv` = 'Y', `Shutdown_priv` = 'Y', `Process_priv` = 'Y', `File_priv` = 'Y', `Grant_priv` = 'Y', `References_priv` = 'Y', `Index_priv` = 'Y', `Alter_priv` = 'Y', `Show_db_priv` = 'Y', `Super_priv` = 'Y', `Create_tmp_table_priv` = 'Y', `Lock_tables_priv` = 'Y', `Execute_priv` = 'Y', `Repl_slave_priv` = 'Y', `Repl_client_priv` = 'Y', `Create_view_priv` = 'Y', `Show_view_priv` = 'Y', `Create_routine_priv` = 'Y', `Alter_routine_priv` = 'Y', `Create_user_priv` = 'Y', `Event_priv` = 'Y', `Trigger_priv` = 'Y', `Create_tablespace_priv` = 'Y', `Create_role_priv` = 'Y', `Drop_role_priv` = 'Y' WHERE `user`.`Host` = '%' AND `user`.`User` = 'rob';
-
     MySQL 8.0.X.X. Create user with mysql_native_password authentication;
     CREATE USER username@localhost identified with mysql_native_password by 'password';
 
-    https://lefred.be/content/how-to-grant-privileges-to-users-in-mysql-8-0/
-    Grant Privileges for a user to a database;
-    grant alter,create,delete,drop,index,insert,select,update,trigger,alter routine,
-    create routine, execute, create temporary tables on user1.* to 'user1';
+###### VPS on Godaddy;
+		CREATE USER 'theusername'@'localhost';
+		ALTER USER 'theusername'@'localhost' IDENTIFIED BY 'thePa55word!' -- MySQL
+		GRANT USAGE ON thedatabase.* TO 'theusername'@'localhost';
+		GRANT ALL PRIVILEGES ON `thedatabase`.* TO 'theusername'@'localhost';
+		GRANT ALL PRIVILEGES ON `thedatabase\_%`.* TO 'theusername'@'localhost';
 
-    grant alter,create,delete,drop,index,insert,select,update,trigger,alter routine,
-    create routine, execute, create temporary tables on hillc1.* to 'theusername';
-```
-
-###### Create Table of Datatypes Example:
+#### Datatypes Example:
     --Create a table with all of the MySQL datatypes.
     CREATE TABLE`all_data_types` (
         `bigint` BIGINT,
@@ -822,8 +810,23 @@ Columns are generated because the data in these columns are computed based on pr
 
 #### Grant:
 ###### Grant privileges.
-				grant all on *.* to 'rob'@'localhost';
+    grant all on *.* to 'rob'@'localhost';
 
+    show grants for 'root'@'localhost';
+    show grants for 'rob'@'localhost';
+
+    MySQL 8.0.X.X. Grant superuser privileges:
+    use mysql;
+    UPDATE `user` SET `Select_priv` = 'Y', `Insert_priv` = 'Y', `Update_priv` = 'Y', `Delete_priv` = 'Y', `Create_priv` = 'Y', `Drop_priv` = 'Y', `Reload_priv` = 'Y', `Shutdown_priv` = 'Y', `Process_priv` = 'Y', `File_priv` = 'Y', `Grant_priv` = 'Y', `References_priv` = 'Y', `Index_priv` = 'Y', `Alter_priv` = 'Y', `Show_db_priv` = 'Y', `Super_priv` = 'Y', `Create_tmp_table_priv` = 'Y', `Lock_tables_priv` = 'Y', `Execute_priv` = 'Y', `Repl_slave_priv` = 'Y', `Repl_client_priv` = 'Y', `Create_view_priv` = 'Y', `Show_view_priv` = 'Y', `Create_routine_priv` = 'Y', `Alter_routine_priv` = 'Y', `Create_user_priv` = 'Y', `Event_priv` = 'Y', `Trigger_priv` = 'Y', `Create_tablespace_priv` = 'Y', `Create_role_priv` = 'Y', `Drop_role_priv` = 'Y' WHERE `user`.`Host` = '%' AND `user`.`User` = 'rob';
+
+    https://lefred.be/content/how-to-grant-privileges-to-users-in-mysql-8-0/
+    Grant Privileges for a user to a database;
+    grant alter,create,delete,drop,index,insert,select,update,trigger,alter routine,
+    create routine, execute, create temporary tables on user1.* to 'user1';
+
+    grant alter,create,delete,drop,index,insert,select,update,trigger,alter routine,
+    create routine, execute, create temporary tables on hillc1.* to 'theusername';
+    
 #### Group By: (Uses "Having" instead of "Where" clause.)
 ###### Find duplicate data in a column.
 
@@ -2432,4 +2435,4 @@ SELECT CONVERT_TZ(displaytime,'GMT','MET');
 should work if your column type is timestamp, or date
 You need to have the timezones loaded. See below if you don't have the timezones loaded.
 ```
-
+```

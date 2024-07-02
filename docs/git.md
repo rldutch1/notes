@@ -958,6 +958,24 @@ If there is no .ssh directory in your home directory you will have to create one
 
 Add the contents of your public key to the git users authorized_keys file. Do not overwrite the git users authorized_keys file because anyone else using it will not be able to log in.
 
+#### SSH to GitHub with multiple usernames from the same computer. 
+	https://gist.github.com/jexchan/2351996
+	My steps based on above URL that I took to get this working for github.com/rlholland.
+		I created a separate SSH key using:
+			ssh-keygen -t rsa -b 4096 -C "rob@robholland.info"
+		Then I added the SSH key to Github rlholland profile.
+		I was able to clone my rlholland/b repository.
+			git clone git@github.com:rlholland/b.git
+		I was not able to push to the repository until I edited .git/config
+			url = rlholland_github:rlholland/b.git
+	The pattern is: rlholland_github:github_username/github_repository.git
+
+	My .ssh/config file looks like this for the rlholland repository:
+		Host rlholland_github
+			HostName github.com
+			User git		
+			IdentityFile ~/.ssh/rh_info
+
 #### Point repository to a different server and keep the history:
 If you want to change your repository to point to a different server and still keep the history.
 	Pull everything from your soon-to-be-old-server into your local repository.
