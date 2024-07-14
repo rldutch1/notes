@@ -668,7 +668,10 @@ Edit the .bashrc file and enter below
     #Git Prompt
       PS1="[\u:\w]\$(__git_ps1)$ "  #<-- On Fedora Linux
 	    export PS1='\W$(__git_ps1 "(%s)") > '  #<-- On Mac OSX
+	    setopt PROMPT_SUBST ; PS1='[%n@%m %c$(__git_ps1 " (%s)")]\$ '  #<-- On Mac OSX ZSH
 	END:
+
+Source: https://stackoverflow.com/questions/15883416/adding-git-branch-on-the-bash-command-prompt
 
 If the shell does not load the .git_prompt.sh file you may see the following error on the command line.
 
