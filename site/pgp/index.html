@@ -450,6 +450,14 @@ gpg --sign filename
 <p>Both -s and --sign make an illegible signature that you can't read. This is OK because GPG/PGP can still read it (not humans).</p>
 <h4 id="make-a-clear-text-signature">Make a clear text signature.</h4>
 <pre><code>gpg --clearsign filename
+
+or
+
+cat filename.txt| gpg --clearsign &gt; some_file.txt
+
+or
+
+echo "The message" | gpg --clearsign &gt; The_message.txt
 </code></pre>
 <h4 id="make-a-detached-signature">Make a detached signature.</h4>
 <pre><code>gpg -b filename
@@ -475,7 +483,7 @@ gpg --armor -e filename
 <p>Assume the input data is not in ASCII armored format.</p>
 <pre><code>gpg --no-armor
 </code></pre>
-<p>Use canonical text mode. If -t (but not --textmode) is used together with armoring and signing, this enables clearsigned messages. This kludge is needed for PGP compatibility; normally you would use --sign or --clearsign to selected the type of the signature.</p>
+<p>Use canonical text mode. If -t (but not --textmode) is used together with armoring and signing, this enables clearsigned messages. This kludge is needed for PGP compatibility; normally you would use --sign or --clearsign to select the type of the signature.</p>
 <pre><code>gpg -t
 
 or

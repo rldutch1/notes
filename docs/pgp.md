@@ -230,6 +230,14 @@ Make a signature. This command may be combined with --encrypt. (May also be comb
 
  	gpg --clearsign filename
 
+ 	or
+
+ 	cat filename.txt| gpg --clearsign > some_file.txt
+
+ 	or
+
+ 	echo "The message" | gpg --clearsign > The_message.txt
+
 #### Make a detached signature.
 
  	gpg -b filename
@@ -259,7 +267,7 @@ Assume the input data is not in ASCII armored format.
 
  	gpg --no-armor
 
-Use canonical text mode. If -t (but not --textmode) is used together with armoring and signing, this enables clearsigned messages. This kludge is needed for PGP compatibility; normally you would use --sign or --clearsign to selected the type of the signature.
+Use canonical text mode. If -t (but not --textmode) is used together with armoring and signing, this enables clearsigned messages. This kludge is needed for PGP compatibility; normally you would use --sign or --clearsign to select the type of the signature.
 
  	gpg -t
 
