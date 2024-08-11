@@ -573,7 +573,12 @@ Source: http://www.tutorialspoint.com/mysql/mysql-data-types.htm
 <ul>
 <li>Giving the unique index a name:</li>
 </ul>
-<p><code>ALTER TABLE tablename add unique uniquename (column1);</code></p>
+<p><code>ALTER TABLE tablename add unique idx_uniquename (column1);</code></p>
+<ul>
+<li>Multi-column unique index with a name:
+Source: https://stackoverflow.com/questions/635937/how-do-i-specify-unique-constraint-for-multiple-columns-in-mysql</li>
+</ul>
+<p><code>ALTER TABLE `tablename` add unique `idx_unique_index_name`(`column1`, `column2`, `column3`);</code></p>
 </li>
 </ul>
 <h6 id="create-a-unique-index-with-a-name-and-a-comment-mysql-v8">Create a unique index with a name and a comment (MySQL v8):</h6>

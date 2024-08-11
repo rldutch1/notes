@@ -115,7 +115,12 @@
 
 	- Giving the unique index a name:
 
-	``` ALTER TABLE tablename add unique uniquename (column1); ```
+	``` ALTER TABLE tablename add unique idx_uniquename (column1); ```
+
+	- Multi-column unique index with a name:
+	Source: https://stackoverflow.com/questions/635937/how-do-i-specify-unique-constraint-for-multiple-columns-in-mysql
+
+	``` ALTER TABLE `tablename` add unique `idx_unique_index_name`(`column1`, `column2`, `column3`); ```
 
 ###### Create a unique index with a name and a comment (MySQL v8):
 - Try to use idx for beginning of index name.
