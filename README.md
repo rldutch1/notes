@@ -1,2 +1,2 @@
 # notes - mkdocs
-mkdocs production
+mkdocs production version of my notes.
