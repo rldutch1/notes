@@ -14,6 +14,7 @@
 	sudo lvdisplay - Show detailed information about the logical volumes. (-v will show more verbose, -vv even more).
 	sudo lvdisplay|grep "LV Path" 
 	sudo lsblk -a  Show volumes and where they are mounted.
+	sudo udisksctl status - Shows high-level information about disk drives and block devices.
 	gnome-disks --block-device=/dev/sdX - Opens the disk manager for the volume specified.
 	sudo blkid |grep crypto - Show the encrypted volume IDs.
 	sudo cryptsetup isLuks -v /dev/sdb - Show the encrypted volume ID.

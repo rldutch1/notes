@@ -75,6 +75,11 @@ keybase pgp decrypt -i foo.txt.asc -o foo.txt  # foo.txt.asc -> foo.txt
 cat foo.txt.asc | keybase pgp decrypt          # decrypt a stream
 ```
 
+#### Send attachment from the commandline
+```
+keybase chat upload user1,user2 filename.txt
+```
+
 #### Signing a PGP message
 ```
 keybase pgp sign -m "Hello"                # sign a message

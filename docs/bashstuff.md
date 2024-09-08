@@ -294,3 +294,7 @@ Source: <br />
     <span style="color: #3366ff;">fi</span><br />
     }<br />
 	</span>
+
+#STAT command:
+   <span style="color: #3366ff;">stat -c "%a %n %C" filename.txt </span><br />
+

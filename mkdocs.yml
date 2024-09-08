@@ -4,8 +4,10 @@ nav:
     - Bacula: bacula.md
     - Base64: base64.md
     - Bash Stuff: bashstuff.md
+    - Blue Parrot: blueparrot.md
     - FFMEG: ffmpeg.md
     - GiT: git.md
+    - JS Notes: js_notes.md
     - Keybase: keybase.md
     - Linux User Admin: linuxuser.md
     - Linux Tape Drives: linuxtapedrives.md
@@ -16,7 +18,9 @@ nav:
     - MariaDB/MySQL: mysql.md
     - PGP: pgp.md
     - RDesktop: rdesktop.md
+    - SE Linux: se_linux.md
     - SSH: ssh.md
+    - MS Teams: ms_teams.md
     - VI Editor: vi_editor.md
     - X11 Forwarding: x11_forwarding.md
 theme: readthedocs

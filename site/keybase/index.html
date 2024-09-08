@@ -56,11 +56,19 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../blueparrot/">Blue Parrot</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../ffmpeg/">FFMEG</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../git/">GiT</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../js_notes/">JS Notes</a>
                 </li>
               </ul>
               <ul class="current">
@@ -85,6 +93,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#encrypting-a-pgp-message">Encrypting a PGP message</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#decrypting-a-pgp-message">Decrypting a PGP message</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#send-attachment-from-the-commandline">Send attachment from the commandline</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#signing-a-pgp-message">Signing a PGP message</a>
     </li>
@@ -132,7 +142,15 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../se_linux/">SE Linux</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../ssh/">SSH</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ms_teams/">MS Teams</a>
                 </li>
               </ul>
               <ul>
@@ -225,6 +243,9 @@ echo 'secret' | keybase pgp encrypt chris        # stream
 keybase pgp decrypt -i foo.txt.asc -o foo.txt  # foo.txt.asc -&gt; foo.txt
 cat foo.txt.asc | keybase pgp decrypt          # decrypt a stream
 </code></pre>
+<h4 id="send-attachment-from-the-commandline">Send attachment from the commandline</h4>
+<pre><code>keybase chat upload user1,user2 filename.txt
+</code></pre>
 <h4 id="signing-a-pgp-message">Signing a PGP message</h4>
 <pre><code>keybase pgp sign -m &quot;Hello&quot;                # sign a message
 keybase pgp sign --clearsign -m &quot;Hello&quot;    # sign, but don't encode contents
@@ -245,7 +266,7 @@ cat foo.txt.asc | keybase pgp verify         # stream a self-signed file
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../git/" class="btn btn-neutral float-left" title="GiT"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../js_notes/" class="btn btn-neutral float-left" title="JS Notes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../linuxuser/" class="btn btn-neutral float-right" title="Linux User Admin">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -269,7 +290,7 @@ cat foo.txt.asc | keybase pgp verify         # stream a self-signed file
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../git/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../js_notes/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../linuxuser/" style="color: #fcfcfc">Next &raquo;</a></span>
