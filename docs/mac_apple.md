@@ -27,4 +27,5 @@ To show a hidden user
 
 More stuff to read [here:](https://serverfault.com/questions/61214/how-can-i-disable-a-user-account-from-the-cli-with-mac-os-x-server#new-answer)
 
-
+Where to put custom executables on a Mac so they are globally visible:
+<span style="color: #3366ff;">/usr/local/bin/</span>
