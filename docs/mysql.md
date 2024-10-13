@@ -122,6 +122,14 @@
 
 	``` ALTER TABLE `tablename` add unique `idx_unique_index_name`(`column1`, `column2`, `column3`); ```
 
+###### Alter Table (Move a column):
+
+	``` ALTER TABLE `tablename` CHANGE `columnname` `columname` INT(11) NOT NULL AFTER `someothercolumnname`; ```
+
+	- Example: Move the lastname column after the firstname column in the customers table. 
+	
+	``` ALTER TABLE `customers` CHANGE `lastname` `lastname` INT(11) NOT NULL AFTER `firstname`; ```
+
 ###### Create a unique index with a name and a comment (MySQL v8):
 - Try to use idx for beginning of index name.
 	- Syntax: Create unique index:
@@ -714,6 +722,7 @@ Create Event Source: https://dba.stackexchange.com/questions/56424/column-auto-u
     	on update cascade on delete restrict;
 
     	*If you do not give the constraint a name, then one will be automatically generated.
+    	*Sometimes you will see a message "Check DataType" if the two columns are not exactly the same or there is a duplicate constraint name.
 
     Casecade only works if foreign_key_checks is ON. To see this information type:
     	show variables like 'foreign_key_checks';

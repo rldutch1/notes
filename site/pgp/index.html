@@ -120,6 +120,10 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#to-receive-a-public-key-from-a-keyserver">To receive a public key from a keyserver:</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#to-locate-the-key-of-a-user-by-email-address">To locate the key of a user, by email address:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#to-refresh-all-your-keys-eg-new-revocation-certificates-and-subkeys">To refresh all your keys (e.g. new revocation certificates and subkeys):</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#export-ascii-armored-key">Export ascii armored key:</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#encrypt-a-message-to-standard-output">Encrypt a message to standard output:</a>
@@ -295,6 +299,8 @@ Then type: passwd
 </code></pre>
 <h4 id="send-key-to-default-key-server">Send key to default key server:</h4>
 <pre><code>  gpg --send-key KEYNAME
+  gpg --export your_address@example.net | curl -T - https://keys.openpgp.org
+  gpg --export your_address@example.net &gt; my_key.pub
 
     You can upload your key to this PGP site: https://keyserver.pgp.com
     You can check if your key is on the PGP website here: https://keyserver.pgp.com
@@ -306,8 +312,14 @@ Example: gpg --keyserver hkp://pgp.mit.edu --send-keys YOURKEYID
 Example: gpg --keyserver hkps.pool.sks-keyservers.net --send-keys YOURKEYID
 </code></pre>
 <h4 id="to-receive-a-public-key-from-a-keyserver">To receive a public key from a keyserver:</h4>
-<pre><code>gpg --keyserver the.keyserver.name.com --recv-keys THEKEYID
+<pre><code>Example: gpg --keyserver the.keyserver.name.com --recv-keys THEKEYID
 Example: gpg --keyserver keyserver.ubuntu.com --recv-keys 5DD98B3E
+</code></pre>
+<h4 id="to-locate-the-key-of-a-user-by-email-address">To locate the key of a user, by email address:</h4>
+<pre><code>  Example: gpg --auto-key-locate keyserver --locate-keys user@example.net
+</code></pre>
+<h4 id="to-refresh-all-your-keys-eg-new-revocation-certificates-and-subkeys">To refresh all your keys (e.g. new revocation certificates and subkeys):</h4>
+<pre><code>  Example: gpg --refresh-keys
 </code></pre>
 <h4 id="export-ascii-armored-key">Export ascii armored key:</h4>
 <pre><code>  gpg --export --armor jqdoe@example.com &gt; jqdoe-pubkey.asc
@@ -800,8 +812,8 @@ case $1 in
     echo "Should have xloadimage installed:"
     echo "Example:"
     echo "showphoto 6EE89C2D"
-    echo "showphoto user@example.com"  
-    else      
+    echo "showphoto user@example.com"
+    else
     gpg --list-options show-photos --fingerprint $2
     fi
     ;;
@@ -974,7 +986,7 @@ gpg -c -s --pinentry-mode=loopback &lt;file&gt;
 <h5 id="options">Options</h5>
 <p>Starting with GnuPG 1.1.92 (incl. GnuPG 1.2.1, 1.2.0 and 1.1.92), long options can be put in an options file (default "~/.gnupg/gpg.conf"). In GnuPG versions up through GnuPG 1.1.91 (incl. 1.0.6, 1.0.7, and 1.1.91), long options can be put in an "old style" configuration file (default "~/.gnupg/options").
 Short option names will not work -- for example, <strong>armor</strong> is a valid option for the options file, while <strong>a</strong> is not. Do not write the 2 dashes, but simply the name of the option and any required arguments. Lines with a hash as the first non-white-space character are ignored. Commands may be put in this file too, but that does not make sense.</p>
-<pre><code>Two useful entries for .gnupg/gpg.conf file. 
+<pre><code>Two useful entries for .gnupg/gpg.conf file.
 These entries will force GPG to use your key as default and automatically encrypt to your key.
 
 default-key 1A2B3CD4

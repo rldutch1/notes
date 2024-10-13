@@ -124,6 +124,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#alter-table-add">Alter Table (Add):</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#alter-table-move-a-column">Alter Table (Move a column):</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#create-a-unique-index-with-a-name-and-a-comment-mysql-v8">Create a unique index with a name and a comment (MySQL v8):</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#remove-the-primary-key">Remove the primary key:</a>
@@ -597,6 +599,13 @@ Source: https://stackoverflow.com/questions/635937/how-do-i-specify-unique-const
 <p><code>ALTER TABLE `tablename` add unique `idx_unique_index_name`(`column1`, `column2`, `column3`);</code></p>
 </li>
 </ul>
+<h6 id="alter-table-move-a-column">Alter Table (Move a column):</h6>
+<pre><code>``` ALTER TABLE `tablename` CHANGE `columnname` `columname` INT(11) NOT NULL AFTER `someothercolumnname`; ```
+
+- Example: Move the lastname column after the firstname column in the customers table.
+
+``` ALTER TABLE `customers` CHANGE `lastname` `lastname` INT(11) NOT NULL AFTER `firstname`; ```
+</code></pre>
 <h6 id="create-a-unique-index-with-a-name-and-a-comment-mysql-v8">Create a unique index with a name and a comment (MySQL v8):</h6>
 <ul>
 <li>
@@ -1176,6 +1185,7 @@ Instead, you can create a cron job or if you want to keep it all in MySQL use th
     on update cascade on delete restrict;
 
     *If you do not give the constraint a name, then one will be automatically generated.
+    *Sometimes you will see a message "Check DataType" if the two columns are not exactly the same or there is a duplicate constraint name.
 
 Casecade only works if foreign_key_checks is ON. To see this information type:
     show variables like 'foreign_key_checks';

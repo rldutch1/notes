@@ -25,6 +25,8 @@
 
 #### Send key to default key server:
 	  gpg --send-key KEYNAME
+	  gpg --export your_address@example.net | curl -T - https://keys.openpgp.org
+	  gpg --export your_address@example.net > my_key.pub
 
 	 	You can upload your key to this PGP site: https://keyserver.pgp.com
 	 	You can check if your key is on the PGP website here: https://keyserver.pgp.com
@@ -38,8 +40,15 @@
 
 #### To receive a public key from a keyserver:
 
-	gpg --keyserver the.keyserver.name.com --recv-keys THEKEYID
+	Example: gpg --keyserver the.keyserver.name.com --recv-keys THEKEYID
 	Example: gpg --keyserver keyserver.ubuntu.com --recv-keys 5DD98B3E
+
+
+#### To locate the key of a user, by email address:
+	  Example: gpg --auto-key-locate keyserver --locate-keys user@example.net
+
+#### To refresh all your keys (e.g. new revocation certificates and subkeys):
+	  Example: gpg --refresh-keys
 
 #### Export ascii armored key:
 	  gpg --export --armor jqdoe@example.com > jqdoe-pubkey.asc
@@ -621,8 +630,8 @@ Here is a PGP function that I have created and use on my Mac and Linux computers
         echo "Should have xloadimage installed:"
         echo "Example:"
         echo "showphoto 6EE89C2D"
-        echo "showphoto user@example.com"  
-        else      
+        echo "showphoto user@example.com"
+        else
         gpg --list-options show-photos --fingerprint $2
         fi
         ;;
@@ -716,7 +725,7 @@ Here is a PGP function that I have created and use on my Mac and Linux computers
         echo " "
    	;;
 	esac
-	}	
+	}
 
 #### View your trust database:
 View your trust database and see the marginal and other trust information type:
@@ -817,9 +826,9 @@ Running gpg through SSH session sometimes will error when performing tasks. When
 Starting with GnuPG 1.1.92 (incl. GnuPG 1.2.1, 1.2.0 and 1.1.92), long options can be put in an options file (default "~/.gnupg/gpg.conf"). In GnuPG versions up through GnuPG 1.1.91 (incl. 1.0.6, 1.0.7, and 1.1.91), long options can be put in an "old style" configuration file (default "~/.gnupg/options").
 Short option names will not work -- for example, **armor** is a valid option for the options file, while **a** is not. Do not write the 2 dashes, but simply the name of the option and any required arguments. Lines with a hash as the first non-white-space character are ignored. Commands may be put in this file too, but that does not make sense.
 
-	Two useful entries for .gnupg/gpg.conf file. 
+	Two useful entries for .gnupg/gpg.conf file.
 	These entries will force GPG to use your key as default and automatically encrypt to your key.
-	
+
 	default-key 1A2B3CD4
 	encrypt-to 1A2B3CD4
 

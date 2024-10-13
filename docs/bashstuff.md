@@ -298,3 +298,8 @@ Source: <br />
 #STAT command:
    <span style="color: #3366ff;">stat -c "%a %n %C" filename.txt </span><br />
 
+#The following examples prints numbers from 1 to 10 using the for and while loops
+   <span style="color: #3366ff;">echo "for(i=1;i<=10;i++) {i;}" | bc </span><br />
+   <span style="color: #3366ff;">echo "i=1; while(i<=10) {i; i+=1}" | bc </span><br />
+ 
+
