@@ -223,6 +223,10 @@ diff between two different commits in the same branch, you can put the SHA of th
 
 	git diff 118192cf:/path/to/filename.txt d861a745:/path/to/filename.txt
 
+diff but don't show file mode changes.
+
+	git diff -G"."
+
 #### Word Wrap
 When you are in the diff view you can use the (minus sign + shift + S) to word wrap the long lines. Repeat the same key combination to undo the word wrap. Also you can see the changes side by side by typing:
 

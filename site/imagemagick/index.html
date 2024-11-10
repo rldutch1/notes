@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>VI Editor - My Notes</title>
+    <title>ImageMagick - My Notes</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "VI Editor";
-        var mkdocs_page_input_path = "vi_editor.md";
+        var mkdocs_page_name = "ImageMagick";
+        var mkdocs_page_input_path = "imagemagick.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -71,8 +71,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../git/">GiT</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../imagemagick/">ImageMagick</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">ImageMagick</a>
+    <ul class="current">
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -131,10 +133,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../ms_teams/">MS Teams</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">VI Editor</a>
-    <ul class="current">
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vi_editor/">VI Editor</a>
                 </li>
               </ul>
               <ul>
@@ -155,7 +155,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">VI Editor</li>
+      <li class="breadcrumb-item active">ImageMagick</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -164,16 +164,91 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h4 id="write-specific-lines-from-a-file-to-a-new-file">Write specific lines from a file to a new file.</h4>
-<pre><code>Example to write lines 230 through 300 to a new file:
-:230,300w filename.txt
-</code></pre>
+                <h1 id="imagemagick">imagemagick</h1>
+<pre>
+Adding a background image to a current image: 
+<span style="color: #3366ff;">
+  The background image is: zzz.png 
+  The current image is: Wisdom_from_Aiko1.png
+  The new image with background is: WfA2.png
+    magick -size 570x873 tile:zzz.png -gravity center Wisdom_from_Aiko1.png WfA2.png
+</span>
+
+Function Resize:
+<span style="color: #3366ff;">
+  Resize(){
+  #convert -resize 1024x768 $i re_1024x768_$i
+  #magick s1.png -resize 120x120 s1_120x120.png
+  #magick -resize s1.png 50x50 re_50x50_s1.png
+  if [ $# -eq 0 ]
+  then
+  echo "Usage: Resize filename.xxx size"
+  echo "Example: Resize picture.jpg 1024x768"
+  else
+  echo "Resizing $1 to $2 ..."
+    #convert -resize $1 $2 re_$1_$2
+    magick $1 -resize $2 re_$2_$1
+  fi
+  }
+</span>
+
+Function ResizeAll:
+<span style="color: #3366ff;">
+  ResizeAll(){
+  if [ $# -ne 3 ]
+  then
+  echo "You can resize and convert image format or just resize."
+  echo "Example: ResizeAll png png 800x600"
+  echo "or resize and convert ..."
+  echo "Example: ResizeAll png jpg 800x600"
+  #/home/rob/Pictures/Screenshots/z_test
+  else
+  echo "echo 'Resizing $1 to $2 at $3.'"
+  let a=1
+  for i in *.$1; 
+  do 
+    #echo magick "$i"\'[$3]\' ${i%.$1}_$a.$2;
+    #echo magick "$i"\'[$3]\' ${i%.$1}_%003d.$2;
+    echo magick "$i"\'[$3]\' ${i%.$1}_$3.$2;
+    #/usr/bin/magick "$i"\'[$3]\' ${i%.$1}_$3.$2;
+    #magick "$i" ${i%.$1}.$2; 
+    a=$(( $a + 1 ))
+  done
+  fi
+  }
+</span>
+
+Function Convert:
+<span style="color: #3366ff;">
+  Convert(){
+  #convert -resize 1024x768 $i re_1024x768_$i
+  #for image in *.png;do magick "$image" "${image%.*}.gif"; done
+  #for image in *.$1; do magick "$image" "${image%.*}.$2"; done
+
+  if [ $# -ne 2 ]
+  then
+  echo "Convert from one image format to another:  "
+  echo "Usage: Convert png jpg  "
+  echo " "
+  echo "|-------To simultaneously convert and resize----------|"
+  echo "| magick 'theimagename.jpg[800x600]' newimagename.png |"
+  echo "|-----------------------------------------------------|"
+  else
+  echo "Converting $1 to $2 ..."
+  # for i in $( ls * |awk '{print $9}' ); do convert -resize $1 $i $1_$i ; done
+    #for i in $( ls *.PNG |awk '{print $9}' ); do convert -resize 1024x768 $i re_1024x768_$i; done
+    #for i in $( printf "%s\n" * ); do convert -resize $1 $i $1_$i ; done
+    for image in *.$1; do magick "$image" "${image%.*}.$2"; done
+  fi
+  }
+</span>
+</pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../ms_teams/" class="btn btn-neutral float-left" title="MS Teams"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../x11_forwarding/" class="btn btn-neutral float-right" title="X11 Forwarding">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../git/" class="btn btn-neutral float-left" title="GiT"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../js_notes/" class="btn btn-neutral float-right" title="JS Notes">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -196,10 +271,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../ms_teams/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../git/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../x11_forwarding/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../js_notes/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

@@ -5,8 +5,10 @@ nav:
     - Base64: base64.md
     - Bash Stuff: bashstuff.md
     - Blue Parrot: blueparrot.md
+    - Exiftool: exiftool.md
     - FFMEG: ffmpeg.md
     - GiT: git.md
+    - ImageMagick: imagemagick.md
     - JS Notes: js_notes.md
     - Keybase: keybase.md
     - Linux User Admin: linuxuser.md
