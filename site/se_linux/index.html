@@ -121,6 +121,8 @@
               </ul>
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">SE Linux</a>
+    <ul class="current">
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -162,25 +164,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <ol>
-<li>
-<p>Messages via Rsyslog are generated with "kern" facility. CentOS default Rsyslog setting is written as "*.info;xxx /var/log/messages", so AVC Denial Log is recorded to /var/log/messages.
-    grep "avc: .denied" /var/log/messages</p>
-</li>
-<li>
-<p>Messages via Auditd are generated to /var/log/audit/audit.log.
-    grep "avc: .denied" /var/log/audit/audit.log</p>
-</li>
-<li>
-<p>For Messages via Auditd, it's possible to search them with ausearch command.
-    ausearch -m AVC</p>
-</li>
-<li>
-<p>For Messages via Auditd, it's possible to show summary reports with aureport command.
-    aureport --avc --summary</p>
-</li>
-</ol>
-<p>STAT command to show SE_Linux status: stat -c "%a %n %C" *</p>
+                <p><a href="https://www.server-world.info/en/note?os=CentOS_7&amp;p=selinux&amp;f=7">Source: </a></p>
+<h3 id="places-to-search-for-avc-messages">Places to search for AVC messages:</h3>
+<p>Messages via Rsyslog are generated with "kern" facility. CentOS default Rsyslog setting is written as "*.info;xxx /var/log/messages", so AVC Denial Log is recorded to /var/log/messages.</p>
+<pre><code>    grep &quot;avc: .denied&quot; /var/log/messages
+</code></pre>
+<p>Messages via Auditd are generated to /var/log/audit/audit.log.</p>
+<pre><code>    grep &quot;avc: .denied&quot; /var/log/audit/audit.log
+</code></pre>
+<p>For Messages via Auditd, it's possible to search them with ausearch command.</p>
+<pre><code>    ausearch -m AVC
+</code></pre>
+<p>For Messages via Auditd, it's possible to show summary reports with aureport command.</p>
+<pre><code>    aureport --avc --summary
+</code></pre>
+<p>STAT command to show SE_Linux status: </p>
+<pre><code>stat -c &quot;%a %n %C&quot; *
+</code></pre>
+<p>Allow apache to receive files to an uploads folder/directory:</p>
+<pre><code>sudo chown apache:apache -R /uploads
+sudo chcon -Rv --type=httpd_sys_rw_content_t uploads/
+</code></pre>
               
             </div>
           </div><footer>
