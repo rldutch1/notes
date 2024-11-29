@@ -397,8 +397,9 @@ done
 <p><span style="color: #3366ff;">echo "for(i=1;i&lt;=10;i++) {i;}" | bc </span><br />
    <span style="color: #3366ff;">echo "i=1; while(i&lt;=10) {i; i+=1}" | bc </span><br /></p>
 <h1 id="multiple-search-using-grep">Multiple search using grep:</h1>
-<p><span style="color: #3366ff;">grep 'word1.<em>word2' logs </span><br />
-   <span style="color: #3366ff;">ip addr |grep -i 'inet.</em>global' </span><br /></p>
+<p><span style="color: #3366ff;">grep 'word1.&#42;word2' logs </span><br />
+   <span style="color: #3366ff;">ls -al |grep 'rob.&#42;Nov.&#42;mp3' |grep -v ".sh" </span><br />
+   <span style="color: #3366ff;">ip addr |grep -i 'inet.&#42;global' </span><br /></p>
               
             </div>
           </div><footer>

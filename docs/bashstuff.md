@@ -301,6 +301,6 @@ In this example, we’ve read a CSV file line by line into an array using the ca
    <span style="color: #3366ff;">echo "i=1; while(i<=10) {i; i+=1}" | bc </span><br />
  
 #Multiple search using grep:
-   <span style="color: #3366ff;">grep 'word1.*word2' logs </span><br />
-   <span style="color: #3366ff;">ip addr |grep -i 'inet.*global' </span><br />
-
+   <span style="color: #3366ff;">grep 'word1.&#42;word2' logs </span><br />
+   <span style="color: #3366ff;">ls -al |grep 'rob.&#42;Nov.&#42;mp3' |grep -v ".sh" </span><br />
+   <span style="color: #3366ff;">ip addr |grep -i 'inet.&#42;global' </span><br />
