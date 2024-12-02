@@ -39,24 +39,30 @@
 </span>
 
 ####Shutdown a computer from the commandline:
-<span style="color: #3366ff;">
-TargetComputer incident#_or_message<br />
+
 Old School:<br />
+<span style="color: #3366ff;"><br />
 shutdown -m \\TargetComputer -r -t 0 -f & ping TargetComputer -t<br />
 or<br />
 runas /noprofile /user:BHS\a-rlholland "shutdown -m \\TargetComputer -r -t 0 -f" & ping TargetComputer -t<br />
+</span><br />
 <br />
 New School:<br />
 Event Viewer Data for shutdown:<br />
 Level=Information; Event ID=1074; Source=User32<br />
+<span style="color: #3366ff;"><br />
 shutdown /m \\TargetComputer /c "incident#_or_message" /d p:4:1 /r /t 0 /f & ping TargetComputer -t<br />
 or<br />
 runas /noprofile /user:BHS\a-rlholland "shutdown /m \\TargetComputer /c \"incident#_or_message\" /d p:4:1 /r /t 0 /f" & ping TargetComputer -t<br />
+</span><br />
 <br />
 From Administrator Command Prompt:<br />
+<span style="color: #3366ff;"><br />
 net use A: \\TargetComputer\c$<br />
+</span><br />
 <br />
 Remember to Flush and Register the computer in DNS.<br />
+<span style="color: #3366ff;"><br />
 Tucson DNS 10.109.0.202 (TUSNS01) and 10.109.64.202 (TUSNS02) are the ones to use.<br />
 runas /noprofile /user:BHS\a-rlholland "ipconfig /flushdns"<br />
 runas /noprofile /user:BHS\a-rlholland "ipconfig /registerdns"<br />
