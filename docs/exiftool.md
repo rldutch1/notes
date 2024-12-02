@@ -5,7 +5,10 @@ Frequently Asked Questions: https://exiftool.org/faq.html#Q1
 To write a new copyright, use something like this
 
 ```
+exiftool -IPTC:CopyrightNotice="© [Year], [Your Name]" [image file]
+exiftool -IPTC:CopyrightNotice="© 2023, John Doe" my_photo.jpg
 exiftool -Copyright="New Notice" -CopyrightNotice="New Notice" -Rights="New Notice" <FileOrDir>
+exiftool -Copyright="Copyright 2002, Robert Holland" -CopyrightNotice="© 2002, Robert Holland" -Rights="All rights reserved." *.jpg
 ```
 
 That will set the three major copyright tags to what you want.  If you want to batch recurse into subdirectories, use the -r (recurse) option.  This command will make backup files.  Use the Overwrite_Original option to suppress that.  
@@ -80,4 +83,17 @@ showdates_allfiles)
 ;;
 esac
 }
+```
+Show all dates from a file:
+```
+exiftool -time:all -a -G0:1 -s 01590009.jpg
+```
+Change date:
+```
+exiftool -exif:createdate="2002:04:20 16:00:00.00-07:00" *.jpg
+exiftool -exif:dateTimeOriginal="2002:04:20 16:00:00.00-07:00" *.jpg
+```
+Add date (only if dateTimeOriginal is not there, otherwise there will be a duplicate dateTimeOriginal).
+```
+ exiftool -xmp:dateTimeOriginal="2002:04:20 16:00:00.00-07:00" *.jpg
 ```

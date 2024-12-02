@@ -24,5 +24,6 @@ nav:
     - SSH: ssh.md
     - MS Teams: ms_teams.md
     - VI Editor: vi_editor.md
+    - Windows: windows.md
     - X11 Forwarding: x11_forwarding.md
 theme: readthedocs
