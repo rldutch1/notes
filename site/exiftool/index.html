@@ -136,6 +136,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../windows/">Windows</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../x11_forwarding/">X11 Forwarding</a>
                 </li>
               </ul>
@@ -165,7 +169,10 @@
                 <p>Frequently Asked Questions: https://exiftool.org/faq.html#Q1</p>
 <p><code>Source:</code> : <a href="https://exiftool.org/forum/index.php?topic=10562.0">https://exiftool.org/forum/index.php?topic=10562.0</a></p>
 <p>To write a new copyright, use something like this</p>
-<pre><code>exiftool -Copyright=&quot;New Notice&quot; -CopyrightNotice=&quot;New Notice&quot; -Rights=&quot;New Notice&quot; &lt;FileOrDir&gt;
+<pre><code>exiftool -IPTC:CopyrightNotice=&quot;© [Year], [Your Name]&quot; [image file]
+exiftool -IPTC:CopyrightNotice=&quot;© 2023, John Doe&quot; my_photo.jpg
+exiftool -Copyright=&quot;New Notice&quot; -CopyrightNotice=&quot;New Notice&quot; -Rights=&quot;New Notice&quot; &lt;FileOrDir&gt;
+exiftool -Copyright=&quot;Copyright 2002, Robert Holland&quot; -CopyrightNotice=&quot;© 2002, Robert Holland&quot; -Rights=&quot;All rights reserved.&quot; *.jpg
 </code></pre>
 <p>That will set the three major copyright tags to what you want.  If you want to batch recurse into subdirectories, use the -r (recurse) option.  This command will make backup files.  Use the Overwrite_Original option to suppress that.<br />
 Add the -P (preserve) option to keep the current file system modify date.</p>
@@ -233,6 +240,16 @@ showdates_allfiles)
 ;;
 esac
 }
+</code></pre>
+<p>Show all dates from a file:</p>
+<pre><code>exiftool -time:all -a -G0:1 -s 01590009.jpg
+</code></pre>
+<p>Change date:</p>
+<pre><code>exiftool -exif:createdate=&quot;2002:04:20 16:00:00.00-07:00&quot; *.jpg
+exiftool -exif:dateTimeOriginal=&quot;2002:04:20 16:00:00.00-07:00&quot; *.jpg
+</code></pre>
+<p>Add date (only if dateTimeOriginal is not there, otherwise there will be a duplicate dateTimeOriginal).</p>
+<pre><code> exiftool -xmp:dateTimeOriginal=&quot;2002:04:20 16:00:00.00-07:00&quot; *.jpg
 </code></pre>
               
             </div>
