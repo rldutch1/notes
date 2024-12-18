@@ -66,6 +66,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="" href="../fedora_keyring.md">Fedora Keyring</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../ffmpeg/">FFMEG</a>
                 </li>
               </ul>
@@ -111,6 +115,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../mysql/">MariaDB/MySQL</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../openvpn/">OpenVPN</a>
                 </li>
               </ul>
               <ul>
@@ -355,7 +363,7 @@ done
  Processing line1<br />
  Processing line2
  ...
-</span> </p>
+</span></p>
 <p>In this example, we’ve read a CSV file line by line into an array using the cat command. We then iterate over the array and process each line.</p>
 <p><a href="https://ioflood.com/blog/bash-length-of-array/">Source1:</a><br />
 <a href="https://www.geeksforgeeks.org/bash-scripting-array/">Source2:</a></p>
@@ -397,13 +405,31 @@ done
     </span></p>
 <h1 id="stat-command">STAT command:</h1>
 <p><span style="color: #3366ff;">stat -c "%a %n %C" filename.txt </span><br /></p>
-<h1 id="the-following-examples-prints-numbers-from-1-to-10-using-the-for-and-while-loops">The following examples prints numbers from 1 to 10 using the for and while loops</h1>
-<p><span style="color: #3366ff;">echo "for(i=1;i&lt;=10;i++) {i;}" | bc </span><br />
-   <span style="color: #3366ff;">echo "i=1; while(i&lt;=10) {i; i+=1}" | bc </span><br /></p>
 <h1 id="multiple-search-using-grep">Multiple search using grep:</h1>
 <p><span style="color: #3366ff;">grep 'word1.&#42;word2' logs </span><br />
    <span style="color: #3366ff;">ls -al |grep 'rob.&#42;Nov.&#42;mp3' |grep -v ".sh" </span><br />
    <span style="color: #3366ff;">ip addr |grep -i 'inet.&#42;global' </span><br /></p>
+<h1 id="the-following-examples-prints-numbers-from-1-to-10-using-the-for-and-while-loops">The following examples prints numbers from 1 to 10 using the for and while loops</h1>
+<p><span style="color: #3366ff;">echo "for(i=1;i&lt;=10;i++) {i;}" | bc </span><br />
+   <span style="color: #3366ff;">echo "i=1; while(i&lt;=10) {i; i+=1}" | bc </span><br /></p>
+<h1 id="for-loop-count">For loop (count):</h1>
+<p><span style="color: #3366ff;">
+  y=1<br />
+  for x in *.jpg<br />
+  do<br />
+  echo $y<br />
+    mv $x 20241215_sequentially_numbered_file_$y.jpg<br />
+    ((y++))<br />
+  done<br />
+ </span></p>
+<h1 id="while-loop-count">While loop (count):</h1>
+<p><span style="color: #3366ff;">
+  counter=0<br />
+  while [ $counter -lt 5 ]; do<br />
+    echo "Counter: $counter"<br />
+    ((counter++))<br />
+  done<br />
+ </span></p>
               
             </div>
           </div><footer>

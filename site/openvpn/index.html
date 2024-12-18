@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Exiftool - My Notes</title>
+    <title>OpenVPN - My Notes</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Exiftool";
-        var mkdocs_page_input_path = "exiftool.md";
+        var mkdocs_page_name = "OpenVPN";
+        var mkdocs_page_input_path = "openvpn.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -59,8 +59,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../blueparrot/">Blue Parrot</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Exiftool</a>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../exiftool/">Exiftool</a>
                 </li>
               </ul>
               <ul>
@@ -115,8 +115,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../mysql/">MariaDB/MySQL</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../openvpn/">OpenVPN</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">OpenVPN</a>
+    <ul class="current">
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -165,7 +167,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Exiftool</li>
+      <li class="breadcrumb-item active">OpenVPN</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -174,97 +176,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>Frequently Asked Questions: https://exiftool.org/faq.html#Q1</p>
-<p><code>Source:</code> : <a href="https://exiftool.org/forum/index.php?topic=10562.0">https://exiftool.org/forum/index.php?topic=10562.0</a></p>
-<p>To write a new copyright, use something like this</p>
-<pre><code>exiftool -IPTC:CopyrightNotice=&quot;© [Year], [Your Name]&quot; [image file]
-exiftool -IPTC:CopyrightNotice=&quot;© 2023, John Doe&quot; my_photo.jpg
-exiftool -Copyright=&quot;New Notice&quot; -CopyrightNotice=&quot;New Notice&quot; -Rights=&quot;New Notice&quot; &lt;FileOrDir&gt;
-exiftool -Copyright=&quot;Copyright 2002, Robert Holland&quot; -CopyrightNotice=&quot;© 2002, Robert Holland&quot; -Rights=&quot;All rights reserved.&quot; *.jpg
-</code></pre>
-<p>That will set the three major copyright tags to what you want.  If you want to batch recurse into subdirectories, use the -r (recurse) option.  This command will make backup files.  Use the Overwrite_Original option to suppress that.<br />
-Add the -P (preserve) option to keep the current file system modify date.</p>
-<p><code>Source:</code> : <a href="https://exiftool.org/forum/index.php?topic=4837.0">https://exiftool.org/forum/index.php?topic=4837.0</a></p>
-<p>Set the copyright flag to true:</p>
-<pre><code>exiftool -all= -Holland:CopyrightFlag='True' soccer*.webm
-</code></pre>
-<p>Exiftool function:</p>
-<pre><code>gpsinfo() {
-case $1 in
+                <h1 id="openvpn">OPENVPN</h1>
+<pre>
+<span style="color: #3366ff;">
+    Settings->Network->VPN->Add+
+    Import from file...
+    Browse to RLH_OpenVPN_Server.ovpn
+</span>
+<span style="color: #3366ff;"></span>
 
-#-n = Put the coordinates in decimal format.
-#-csv = Put the output in .csv format.
-#-T = Put the output in wide format.
-#-t = Put the output in column format.
-#-ext = Look for the following file extension.
-#DIR1 = The directory to look in for photos.
-#DIR2 = The directory to output the csv file.
-
-#exiftool -filename -gpslatitude -gpslongitude -gpsaltitude -createdate -relativealtitude -T -n -csv -ext JPG DIR1 &gt; DIR2\out.csv
-##exiftool -T -FileName -GPSPosition -c &quot;%.6f&quot; * &gt; GPSInfo.txt
-#exiftool -T -Filename -createdate -gpsposition -c &quot;%.6f degrees&quot; -Filename *| sed 's/://g'| sed 's/,\ /_/g'| sed 's/\ degrees\ /_/g' &gt; GPSInfo.sh;chmod +x GPSInfo.sh
-##exiftool -T -Filename -createdate -gpsposition -c &quot;%.6f degrees&quot; -Filename *| sed 's/://g'| sed 's/,\ /_/g'| sed 's/\ degrees\ /_/g'|awk '{print &quot;mv &quot; $1 &quot; &quot;$2$3&quot;.&quot;$4&quot;.&quot;$5}' &gt; GPSInfo.sh
-##exiftool -T -Filename -DateTimeOriginal -gpsposition -c &quot;%.6f degrees&quot; -Filename * | sed 's/://g'| sed 's/,\ /_/g'| sed 's/\ degrees\ /_/g'|awk '{print &quot;mv &quot; $1 &quot; &quot;$2$3&quot;.&quot;$4&quot;.&quot;$5}' &gt; GPSInfo.sh
-##exiftool -T -Filename -FileModifyDate -gpsposition -c &quot;%.6f degrees&quot; -Filename * | sed 's/://g'| sed 's/,\ /_/g'| sed 's/\ degrees\ /_/g'|awk '{print &quot;mv &quot; $1 &quot; &quot;$2$3&quot;.&quot;$4&quot;.&quot;$5}' &gt; GPSInfo.sh
-##exiftool -T -Filename -DateTimeOriginal -gpsposition -c &quot;%.6f degrees&quot; -Filename * | sed 's/://g'| sed 's/,\ /_/g'| sed 's/\ degrees\ /_/g'|awk '{print &quot;mv &quot; $1 &quot; &quot;$2$3&quot;.&quot;$4&quot;.&quot;$5}' &gt; GPSInfo.sh
-#!#TESTING: Change the timezone for DateTimeOriginal to -7.
-#!# exiftool -T -Filename &quot;-DateTimeOriginal-=0:0:0 7:0:0&quot; -gpsposition -c &quot;%.6f degrees&quot; -Filename * | sed 's/://g'| sed 's/,\ /_/g'| sed 's/\ degrees\ /_/g'|awk '{print &quot;mv &quot; $1 &quot; &quot;$2$3&quot;.&quot;$4&quot;.&quot;$5}' &gt; GPSInfo.sh
-#This works: exiftool -n -filename -gpslatitude -gpslongitude -csv -r . &gt;&gt; out.csv #Source: https://exiftool.org/forum/index.php?topic=3075.0
-
-crdate)
-        exiftool -T -FileName -GPSPosition -c &quot;%.6f&quot; * &gt; GPSInfo.txt
-        exiftool -T -Filename -createdate -gpsposition -c &quot;%.6f degrees&quot; -Filename *| sed 's/://g'| sed 's/,\ /_/g'| sed 's/\ degrees\ //g'|awk '{print &quot;mv &quot; $1 &quot; &quot;$2$3&quot;.&quot;$4&quot;.&quot;$5}' &gt; GPSInfo.sh ;chmod +x GPSInfo.sh
-;;
-dttimeorig)
-        exiftool -T -FileName -GPSPosition -c &quot;%.6f&quot; * &gt; GPSInfo.txt
-        exiftool -T -Filename -DateTimeOriginal -gpsposition -c &quot;%.6f degrees&quot; -Filename * | sed 's/://g'| sed 's/,\ /_/g'| sed 's/\ degrees\ //g'|awk '{print &quot;mv &quot; $1 &quot; &quot;$2$3&quot;.&quot;$4&quot;.&quot;$5}' &gt; GPSInfo.sh;chmod +x GPSInfo.sh
-;;
-filemoddt)
-        exiftool -T -FileName -GPSPosition -c &quot;%.6f&quot; * &gt; GPSInfo.txt
-        exiftool -T -Filename -FileModifyDate -gpsposition -c &quot;%.6f degrees&quot; -Filename * | sed 's/://g'| sed 's/,\ /_/g'| sed 's/\ degrees\ //g'|awk '{print &quot;mv &quot; $1 &quot; &quot;$2$3&quot;.&quot;$4&quot;.&quot;$5}' &gt; GPSInfo.sh ;chmod +x GPSInfo.sh
-;;
-subsecdtorig)
-        exiftool -T -FileName -GPSPosition -c &quot;%.6f&quot; * &gt; GPSInfo.txt
-        exiftool -T -Filename -SubSecDateTimeOriginal -gpsposition -c &quot;%.6f degrees&quot; -Filename * | sed 's/://g'| sed 's/,\ /_/g'| sed 's/\ degrees\ //g'|awk '{print &quot;mv &quot; $1 &quot; &quot;$2$3&quot;.&quot;$4&quot;.&quot;$5}' &gt; GPSInfo.sh;chmod +x GPSInfo.sh
-;;
-showdates_allfiles)
-        exiftool -a -G1 -s -time:all *
-;;
-*)
-    Message=&quot;Usage:&quot;
-        Message0=&quot;-----  gpsinfo crdate&quot;
-        Message1=&quot;-----  gpsinfo dttimeorig&quot;
-        Message2=&quot;-----  gpsinfo filemoddt&quot;
-        Message3=&quot;-----  gpsinfo subsecdtorig&quot;
-        Message4=&quot;-----  gpsinfo showdates_allfiles&quot;
-        Message5=&quot;-----  Type: \&quot;exiftool -t filename\&quot; to see the fields available.&quot;
-    echo $Message
-    echo $Message0
-    echo $Message1
-    echo $Message2
-    echo $Message3
-    echo $Message4
-    echo $Message5
-;;
-esac
-}
-</code></pre>
-<p>Show all dates from a file:</p>
-<pre><code>exiftool -time:all -a -G0:1 -s 01590009.jpg
-</code></pre>
-<p>Change date:</p>
-<pre><code>exiftool -exif:createdate=&quot;2002:04:20 16:00:00.00-07:00&quot; *.jpg
-exiftool -exif:dateTimeOriginal=&quot;2002:04:20 16:00:00.00-07:00&quot; *.jpg
-</code></pre>
-<p>Add date (only if dateTimeOriginal is not there, otherwise there will be a duplicate dateTimeOriginal).</p>
-<pre><code> exiftool -xmp:dateTimeOriginal=&quot;2002:04:20 16:00:00.00-07:00&quot; *.jpg
-</code></pre>
+<span style="color: #3366ff;"></span>
+</pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../blueparrot/" class="btn btn-neutral float-left" title="Blue Parrot"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../ffmpeg/" class="btn btn-neutral float-right" title="FFMEG">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../mysql/" class="btn btn-neutral float-left" title="MariaDB/MySQL"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../pgp/" class="btn btn-neutral float-right" title="PGP">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -287,10 +215,10 @@ exiftool -exif:dateTimeOriginal=&quot;2002:04:20 16:00:00.00-07:00&quot; *.jpg
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../blueparrot/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../mysql/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../ffmpeg/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../pgp/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

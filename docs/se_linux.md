@@ -37,3 +37,14 @@ Allow apache to receive files to an uploads folder/directory:
 sudo chown apache:apache -R /uploads
 sudo chcon -Rv --type=httpd_sys_rw_content_t uploads/
 ```
+
+```
+With /srv/ as the base directory you must adjust the SELinux labels.
+htdocs is where the index.php/html file goes.
+
+[…]# /usr/sbin/semanage fcontext -a -t httpd_sys_content_t  -s system_u  "/srv/SITENAME/htdocs(/.*)?"
+[…]# /sbin/restorecon -R -vF /srv/SITENAME/htdocs
+Relabeled /srv/SITENAME/htdocs from unconfined_u:object_r:var_t:s0 to system_u:object_r:httpd_sys_content_t:s0
+Source: https://docs.fedoraproject.org/en-US/fedora-server/services/httpd-basic-setup/#_installation
+```
+

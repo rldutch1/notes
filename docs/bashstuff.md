@@ -248,7 +248,7 @@ done
  Processing line1<br />
  Processing line2
  ...
-</span> 
+</span>
 
 In this example, we’ve read a CSV file line by line into an array using the cat command. We then iterate over the array and process each line.
 
@@ -269,7 +269,7 @@ In this example, we’ve read a CSV file line by line into an array using the ca
     <span style="color: #3366ff;">fi</span><br />
     }<br />
 	</span>
-    
+
   <span style="color: #000000;">
     A function using if/case:<br >
     <span style="color: #3366ff;">anotherfunction()</span> {<br />
@@ -296,11 +296,31 @@ In this example, we’ve read a CSV file line by line into an array using the ca
 #STAT command:
    <span style="color: #3366ff;">stat -c "%a %n %C" filename.txt </span><br />
 
-#The following examples prints numbers from 1 to 10 using the for and while loops
-   <span style="color: #3366ff;">echo "for(i=1;i<=10;i++) {i;}" | bc </span><br />
-   <span style="color: #3366ff;">echo "i=1; while(i<=10) {i; i+=1}" | bc </span><br />
- 
 #Multiple search using grep:
    <span style="color: #3366ff;">grep 'word1.&#42;word2' logs </span><br />
    <span style="color: #3366ff;">ls -al |grep 'rob.&#42;Nov.&#42;mp3' |grep -v ".sh" </span><br />
    <span style="color: #3366ff;">ip addr |grep -i 'inet.&#42;global' </span><br />
+
+#The following examples prints numbers from 1 to 10 using the for and while loops
+   <span style="color: #3366ff;">echo "for(i=1;i<=10;i++) {i;}" | bc </span><br />
+   <span style="color: #3366ff;">echo "i=1; while(i<=10) {i; i+=1}" | bc </span><br />
+
+#For loop (count):
+<span style="color: #3366ff;">
+  y=1<br />
+  for x in *.jpg<br />
+  do<br />
+  echo $y<br />
+  	mv $x 20241215_sequentially_numbered_file_$y.jpg<br />
+  	((y++))<br />
+  done<br />
+ </span>
+
+#While loop (count):
+<span style="color: #3366ff;">
+  counter=0<br />
+  while [ $counter -lt 5 ]; do<br />
+    echo "Counter: $counter"<br />
+    ((counter++))<br />
+  done<br />
+ </span>

@@ -64,6 +64,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="" href="../fedora_keyring.md">Fedora Keyring</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../ffmpeg/">FFMEG</a>
                 </li>
               </ul>
@@ -109,6 +113,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../mysql/">MariaDB/MySQL</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../openvpn/">OpenVPN</a>
                 </li>
               </ul>
               <ul>
@@ -188,6 +196,14 @@
 <p>Allow apache to receive files to an uploads folder/directory:</p>
 <pre><code>sudo chown apache:apache -R /uploads
 sudo chcon -Rv --type=httpd_sys_rw_content_t uploads/
+</code></pre>
+<pre><code>With /srv/ as the base directory you must adjust the SELinux labels.
+htdocs is where the index.php/html file goes.
+
+[…]# /usr/sbin/semanage fcontext -a -t httpd_sys_content_t  -s system_u  &quot;/srv/SITENAME/htdocs(/.*)?&quot;
+[…]# /sbin/restorecon -R -vF /srv/SITENAME/htdocs
+Relabeled /srv/SITENAME/htdocs from unconfined_u:object_r:var_t:s0 to system_u:object_r:httpd_sys_content_t:s0
+Source: https://docs.fedoraproject.org/en-US/fedora-server/services/httpd-basic-setup/#_installation
 </code></pre>
               
             </div>
