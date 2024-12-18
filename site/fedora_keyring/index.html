@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>OpenVPN - My Notes</title>
+    <title>Fedora Keyring - My Notes</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "OpenVPN";
-        var mkdocs_page_input_path = "openvpn.md";
+        var mkdocs_page_name = "Fedora Keyring";
+        var mkdocs_page_input_path = "fedora_keyring.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -63,8 +63,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../exiftool/">Exiftool</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../fedora_keyring/">Fedora Keyring</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Fedora Keyring</a>
+    <ul class="current">
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -115,10 +117,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../mysql/">MariaDB/MySQL</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">OpenVPN</a>
-    <ul class="current">
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../openvpn/">OpenVPN</a>
                 </li>
               </ul>
               <ul>
@@ -167,7 +167,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">OpenVPN</li>
+      <li class="breadcrumb-item active">Fedora Keyring</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -176,23 +176,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="openvpn">OPENVPN</h1>
-<pre>
-<span style="color: #3366ff;">
-    Settings->Network->VPN->Add+
-    Import from file...
-    Browse to RLH_OpenVPN_Server.ovpn
-</span>
-<span style="color: #3366ff;"></span>
+                <h1 id="keyring-file-location">KeyRing File Location</h1>
+<pre><code>Important points:
 
-<span style="color: #3366ff;"></span>
-</pre>
+    Location of keyring files:
+    The keyring files are usually located in the &quot;~/.local/share/keyrings&quot; directory. 
+
+Alternative method (command line):
+If you prefer using the command line, you can navigate to the keyring directory and delete the relevant keyring files, but be cautious as this can cause data loss if not done correctly.
+</code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../mysql/" class="btn btn-neutral float-left" title="MariaDB/MySQL"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../pgp/" class="btn btn-neutral float-right" title="PGP">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../exiftool/" class="btn btn-neutral float-left" title="Exiftool"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ffmpeg/" class="btn btn-neutral float-right" title="FFMEG">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -215,10 +213,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../mysql/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../exiftool/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../pgp/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../ffmpeg/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
