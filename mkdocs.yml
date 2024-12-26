@@ -29,4 +29,5 @@ nav:
     - VI Editor: vi_editor.md
     - Windows: windows.md
     - X11 Forwarding: x11_forwarding.md
+    - Youtube-dl: youtube_dl.md
 theme: readthedocs

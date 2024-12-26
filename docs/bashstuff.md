@@ -1,4 +1,5 @@
-#Bash ALIASES
+#Bash Stuff
+####Bash ALIASES
 <pre>
   <span style="color: #3366ff;">#alias ports='ss -lt'</span>
   <span style="color: #3366ff;">#alias ports1='netstat -pantu'</span>
@@ -18,7 +19,7 @@
   <span style="color: #3366ff;">alias ssh='ssh -XC'</span>
 </pre>
 
-#Bash ARRAYS:
+####Bash ARRAYS:
 Are you finding it challenging to determine the length of an array in Bash? You’re not alone. Many developers find themselves puzzled when it comes to handling arrays in Bash, but we’re here to help.
 
 Think of Bash’s array length command as a measuring tape – allowing us to quickly and accurately gauge the size of our arrays, providing a versatile and handy tool for various tasks.
@@ -36,7 +37,7 @@ array=("apple" "banana" "cherry")<br />
 echo "${#array[@]}"<br />
 </span>
 
-# Output:
+#### Output the number of elements in the array:
 <span style="color: #3366ff;">
  3
 </span>
@@ -53,7 +54,7 @@ fruits=("apple" "banana" "orange" "grape" "pineapple")<br />
 echo "${#fruits[@]}"
 </span>
 
-# Output:
+#### Output the length of an array:
 <span style="color: #3366ff;">
 5
 </span>
@@ -68,7 +69,7 @@ As you gain more experience with Bash, you’ll likely encounter more complex sc
 Multi-Dimensional Arrays
 
 In Bash, multi-dimensional arrays aren’t supported directly. However, you can simulate them using one-dimensional arrays. Here’s an example:
-<span style="color: #3366ff;">
+<span style="color: #3366ff;"><br />
 matrix=("1 2 3" "4 5 6" "7 8 9")<br />
 for row in "${matrix[@]}"; do<br />
     set -- $row<br />
@@ -76,23 +77,23 @@ for row in "${matrix[@]}"; do<br />
 done
 </span>
 
-# Output:
-<span style="color: #3366ff;">
+#### Output the number of elements in each row of the array:
+<span style="color: #3366ff;"><br />
  3<br />
  3<br />
  3
 </span>
 
 In this example, we’ve created a simulated 3×3 matrix. Each element of the ‘matrix’ array is a string representing a row of the matrix. The set -- $row command splits the string into separate elements, and ${#*[@]} gives the number of elements in each row, effectively giving us the ‘length’ of each dimension.
-Handling Empty Elements
 
+####Handling Empty Elements
 Bash considers an empty string as a valid array element. Therefore, it contributes to the length of the array. Let’s see this in action:
 <span style="color: #3366ff;"><br />
 array=("apple" "" "cherry")<br />
 echo "${#array[@]}"<br />
 </span>
 
-# Output:
+#### Output:
 <span style="color: #3366ff;">3</span>
 
 In this example, ‘apple’, an empty string, and ‘cherry’ are the elements of the array. Even though the second element is an empty string, Bash counts it as a valid element, so the length of the array is 3.
@@ -113,7 +114,7 @@ done<br />
 echo $length
 </span>
 
-# Output:
+#### Output:
 <span style="color: #3366ff;">5</span>
 
 In this example, we initialize a counter (length) to zero. Then, for each element in the array, we increment the counter by one. After the loop, length holds the number of elements in the array.
@@ -128,7 +129,7 @@ length=$(printf '%s\n' "${fruits[@]}" | wc -l)<br />
 echo $length
 </span>
 
-# Output:
+#### Output:
 <span style="color: #3366ff;">5</span>
 
 In this example, we use printf to print each element on a new line, then pipe the output to wc -l to count the number of lines. This gives us the number of elements in the array.
@@ -147,7 +148,7 @@ array=("apple" "banana \n cherry")<br />
 echo "${#array[@]}"
 </span>
 
-# Output:
+#### Output:
 <span style="color: #3366ff;">2</span>
 
 In this example, the array has two elements: ‘apple’ and ‘banana \n cherry’. Despite the newline character (\n) in the second element, Bash still counts it as a single element, so the length of the array is 2.
@@ -165,7 +166,7 @@ length=$(printf '%s\n' "${large_array[@]}" | wc -l)<br />
 echo $length<br />
 </span>
 
-# Output:
+#### Output:
 <span style="color: #3366ff;">10000</span>
 
 In this example, we’ve created a large array with 10,000 elements using the seq command. We then use printf and wc to find the length of the array.
@@ -188,7 +189,7 @@ Here’s a simple example of an array in Bash:
 fruits=("apple" "banana" "cherry")<br />
 <span style="color: #3366ff;">echo "${fruits[0]}"</span>
 
-# Output:
+#### Output:
 <span style="color: #3366ff;">apple</span>
 
 In this example, ‘apple’, ‘banana’, and ‘cherry’ are the elements of the array. The command <span style="color: #3366ff;">echo "${fruits[0]}"</span> prints the first element of the array, which is ‘apple’.
@@ -203,7 +204,7 @@ fruits+=("orange")<br />
 echo "${fruits[@]}"<br />
 </span> <br />
 
-# Output:
+#### Output:
 <span style="color: #3366ff;">apple banana cherry orange</span>
 
 In this example, we’ve added ‘orange’ to the ‘fruits’ array. The += operator is used to append elements to an array in Bash.
@@ -225,7 +226,7 @@ for file in "${files[@]}"; do<br />
 done
 </span> <br />
 
-# Output:
+#### Output:
 <span style="color: #3366ff;"><br />
  Processing /path/to/directory/file1<br />
  Processing /path/to/directory/file2
@@ -243,7 +244,7 @@ for line in "${lines[@]}"; do<br />
     echo "Processing $line"<br />
 done
 </span> <br />
-# Output:
+#### Output:
 <span style="color: #3366ff;"><br />
  Processing line1<br />
  Processing line2
@@ -255,7 +256,7 @@ In this example, we’ve read a CSV file line by line into an array using the ca
 [Source1:](https://ioflood.com/blog/bash-length-of-array/)<br />
 [Source2:](https://www.geeksforgeeks.org/bash-scripting-array/)
 
-#Bash FUNCTIONS:
+####Bash FUNCTIONS:
   <span style="color: #000000;">
     <span style="color: #3366ff;">thefunctionname()</span> {<br />
     <span style="color: #3366ff;">if</span> [ $# -eq 0 ]<br />
@@ -293,19 +294,19 @@ In this example, we’ve read a CSV file line by line into an array using the ca
     }<br />
 	</span>
 
-#STAT command:
+####STAT command:
    <span style="color: #3366ff;">stat -c "%a %n %C" filename.txt </span><br />
 
-#Multiple search using grep:
+####Multiple search using grep:
    <span style="color: #3366ff;">grep 'word1.&#42;word2' logs </span><br />
    <span style="color: #3366ff;">ls -al |grep 'rob.&#42;Nov.&#42;mp3' |grep -v ".sh" </span><br />
    <span style="color: #3366ff;">ip addr |grep -i 'inet.&#42;global' </span><br />
 
-#The following examples prints numbers from 1 to 10 using the for and while loops
+####The following examples prints numbers from 1 to 10 using the for and while loops
    <span style="color: #3366ff;">echo "for(i=1;i<=10;i++) {i;}" | bc </span><br />
    <span style="color: #3366ff;">echo "i=1; while(i<=10) {i; i+=1}" | bc </span><br />
 
-#For loop (count):
+####For loop (count):
 <span style="color: #3366ff;">
   y=1<br />
   for x in *.jpg<br />
@@ -316,7 +317,7 @@ In this example, we’ve read a CSV file line by line into an array using the ca
   done<br />
  </span>
 
-#While loop (count):
+####While loop (count):
 <span style="color: #3366ff;">
   counter=0<br />
   while [ $counter -lt 5 ]; do<br />
@@ -324,3 +325,53 @@ In this example, we’ve read a CSV file line by line into an array using the ca
     ((counter++))<br />
   done<br />
  </span>
+
+####Increment a variable inside a bash loop:
+<span style="color: #3366ff;">
+FILE=$1<br />
+<br />
+tail -n40 mylog > $FILE #Send the contents of mylog to $FILE<br />
+<br />
+while read country _; do<br />
+  if [ "US" = "$country" ]; then #Search for US in the $country variable.<br />
+        USCOUNTER=$(expr $USCOUNTER + 1) #Increment by one for each US found.<br />
+        echo "Found $USCOUNTER US" #Display the incremented count.<br />
+  fi<br />
+done < "$FILE"<br />
+  echo "Found a total of $USCOUNTER US." #Display the final count of US.<br />
+ </span>
+[Source:](https://stackoverflow.com/questions/20681210/incrementing-a-variable-inside-a-bash-loop)<br />
+
+####Other options for counting "US" from above:
+<span style="color: #3366ff;">
+        grep -cE "^([^ ]&#42; ){0}US" mylog<br />
+ </span>
+    #      -c count<br />
+    #      ([^ ]* ) To detect a column<br />
+    #      {0} the column number<br />
+    #      US your pattern<br />
+
+####Increment with array example to convert png files to jpg using ImageMagick:
+<span style="color: #3366ff;">
+		#files=(/home/rob/Pictures/Screenshots/{*.png,*.jpg})<br />
+		files=(/home/rob/Pictures/Screenshots/*.png)<br />
+		#TIMESTAMP=&#96;date +"%Y%m%d%H%M%S%Z"&#96;<br />
+		TIMESTAMP=&#96;date +"%Y%m%d%H%M"&#96;<br />
+		y=$TIMESTAMP"0000000" #Adjust the number of zeros according to the number of digits in the date (19 digits max on 64bit systems).<br />
+		echo "" > $TIMESTAMP"_log.txt"<br />
+for file in "${files[@]}"; do<br />
+    #echo "cp \"$file\" /home/rob/Pictures/Screenshots/xyz/$y.png"<br />
+    echo "magick '$file[800x600]' /home/rob/Pictures/Screenshots/xyz/$y.jpg"<br />
+    echo "\"$file\" = $y.jpg" >> $TIMESTAMP"_log.txt"<br />
+    ((y++))<br />
+done<br />
+ </span>
+
+####Using the following 1 line command for renaming files in linux using a specific phrase:
+<span style="color: #3366ff;">
+find -type f -name '*.jpg' | rename 's/holiday/honeymoon/'
+ </span><br />
+For all files with the extension ".jpg", if they contain the string "holiday", replace it with "honeymoon". For instance, this command would rename the file "ourholiday001.jpg" to "ourhoneymoon001.jpg".<br />
+<br />
+This example also illustrates how to use the find command to send a list of files (-type f) with the extension .jpg (-name '*.jpg') to rename via a pipe (|). rename then reads its file list from standard input.<br />
+[Source:](https://stackoverflow.com/questions/20681210/incrementing-a-variable-inside-a-bash-loop)<br />
