@@ -52,7 +52,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Bash Stuff</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Bash Stuff</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#bash-aliases">Bash ALIASES</a>
     </li>
@@ -103,6 +103,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#increment-with-array-example-to-convert-png-files-to-jpg-using-imagemagick">Increment with array example to convert png files to jpg using ImageMagick:</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#using-the-following-1-line-command-for-renaming-files-in-linux-using-a-specific-phrase">Using the following 1 line command for renaming files in linux using a specific phrase:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#grep-for-multiple-things-at-once">Grep for multiple things at once:</a>
     </li>
     </ul>
                 </li>
@@ -531,6 +533,9 @@ For all files with the extension ".jpg", if they contain the string "holiday", r
 <br />
 This example also illustrates how to use the find command to send a list of files (-type f) with the extension .jpg (-name '</em>.jpg') to rename via a pipe (|). rename then reads its file list from standard input.<br />
 <a href="https://stackoverflow.com/questions/20681210/incrementing-a-variable-inside-a-bash-loop">Source:</a><br /></p>
+<h4 id="grep-for-multiple-things-at-once">Grep for multiple things at once:</h4>
+<p>The '-e' option allows you to search for multiple things. It is kind of like an 'or' statement. Example below, find postfix or mailx.<br />
+<span style="color: #3366ff;">rpm -qa |grep -e postfix -e mailx</span><br /></p>
               
             </div>
           </div><footer>

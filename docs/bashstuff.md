@@ -375,3 +375,8 @@ For all files with the extension ".jpg", if they contain the string "holiday", r
 <br />
 This example also illustrates how to use the find command to send a list of files (-type f) with the extension .jpg (-name '*.jpg') to rename via a pipe (|). rename then reads its file list from standard input.<br />
 [Source:](https://stackoverflow.com/questions/20681210/incrementing-a-variable-inside-a-bash-loop)<br />
+
+#### Grep for multiple things at once:
+The '-e' option allows you to search for multiple things. It is kind of like an 'or' statement. Example below, find postfix or mailx.<br />
+<span style="color: #3366ff;">rpm -qa |grep -e postfix -e mailx</span><br />
+

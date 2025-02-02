@@ -35,6 +35,10 @@ echo "secret" | keybase encrypt max
 echo "secret" | keybase encrypt maxtaco@twitter
 keybase encrypt max -i ~/movie.avi -o ~/movie.avi.encrypted
 ```
+#### Encrypting for Keybase teams
+```
+keybase encrypt --team The_Team_Name -m "This is an encryption test from the commandline to the The_Team_Name team" | keybase chat send The_Team_Name
+```
 
 #### Decrypting
 ```

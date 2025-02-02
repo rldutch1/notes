@@ -84,7 +84,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Keybase</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Keybase</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#error-message-keybase-transport-endpoint-is-not-connected">Error message: /keybase: Transport endpoint is not connected.</a>
     </li>
@@ -95,6 +95,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#given-keybase-user-max">given keybase user "max"</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#encrypting-for-keybase-users">Encrypting for Keybase users</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#encrypting-for-keybase-teams">Encrypting for Keybase teams</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#decrypting">Decrypting</a>
     </li>
@@ -237,6 +239,9 @@ keybase encrypt max -i secret.mp3 -b -o secret.mp3.encrypted
 echo &quot;secret&quot; | keybase encrypt max
 echo &quot;secret&quot; | keybase encrypt maxtaco@twitter
 keybase encrypt max -i ~/movie.avi -o ~/movie.avi.encrypted
+</code></pre>
+<h4 id="encrypting-for-keybase-teams">Encrypting for Keybase teams</h4>
+<pre><code>keybase encrypt --team The_Team_Name -m &quot;This is an encryption test from the commandline to the The_Team_Name team&quot; | keybase chat send The_Team_Name
 </code></pre>
 <h4 id="decrypting">Decrypting</h4>
 <pre><code>keybase decrypt -i movie.avi.encrypted -o movie.avi
