@@ -10,6 +10,7 @@ nav:
     - Fedora Keyring: fedora_keyring.md
     - FFMEG: ffmpeg.md
     - GiT: git.md
+    - Google: google.md
     - ImageMagick: imagemagick.md
     - JS Notes: js_notes.md
     - Keybase: keybase.md
