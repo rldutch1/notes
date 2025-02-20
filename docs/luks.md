@@ -1,6 +1,7 @@
-# Mounting and Unmounting a LUKS Encrypted USB Volume
-#### This process also works for hard drives.
-### Basic commands to view the disks/USB devices:
+#Mounting and Unmounting a LUKS Encrypted USB Volume
+### Mounting and Unmounting a LUKS Encrypted USB Volume
+This process also works for hard drives.
+#### Basic commands to view the disks/USB devices:
 
 - blkid
 - duf
@@ -125,15 +126,16 @@ lsblk
 ![ USB drive unmounted and unplugged from system.](img/mount13.png "USB drive unmounted and unplugged from system.")
 
 ### Mount a USB volume and use umask to allow "other" full access.
-
+####
 ```
-sudo mount /dev/sdi1 /mnt/i -o umask=000,utf8
+	sudo mount /dev/sdi1 /mnt/i -o umask=000,utf8
 ```
 
-### You can automatically mount by UUID if you want the mount points to consistently mount to the same device. Each partition on a drive will have its own UUID.
+### Automatically mount using fstab.
+##### You can automatically mount by UUID if you want the mount points to consistently mount to the same device. Each partition on a drive will have its own UUID.
 Use this to find the UUID:
 ```
-lsblk -o +UUID,PARTUUID
+	lsblk -o +UUID,PARTUUID
 ```
 
 ```
@@ -144,3 +146,44 @@ In fstab;
 
 	After editing the fstab file, run 'systemctl daemon-reload' to update systemd
 ```
+
+### Luks Header Backup and Restore
+#### https://www.cyberciti.biz/security/how-to-backup-and-restore-luks-header-on-linux/
+
+####Creating LUKS Header Backup:<br />
+  Syntax: sudo cryptsetup luksHeaderBackup /dev/XXX --header-backup-file myfile.bin
+  <br />
+  Example:<br />
+  ```
+  	sudo cryptsetup luksHeaderBackup /dev/sda3 --header-backup-file my_luks_header.bin
+  	sudo cryptsetup luksHeaderBackup /dev/sdb --header-backup-file my_luks_header.bin
+  ```
+  <br />
+  Side note:<br />
+  The permission on the bin files that are created are 400 and the owner is root.
+  <br />
+
+  Check the file type:<br />
+  ```
+  	sudo file my_luks_header.bin
+  	my_luks_header.bin: LUKS encrypted file, ver 2 [, , sha256] UUID: 9e5f5c4b-a4bb-464a-80c6-118c22e35e8f
+  ```
+
+  Use luksDump to view information about the file:<br />
+  ```
+  	sudo cryptsetup luksDump my_luks_header.bin
+  ```
+
+####Restoring LUKS header when needed:<br />
+  ```
+  	cryptsetup luksHeaderRestore /dev/XXX --header-backup-file /path/to/my_luks_header.bin
+  	Assuming that your header file is on /dev/external/volume
+  	cryptsetup luksHeaderRestore /dev/md1 --header-backup-file /dev/external/volume/my_luks_header.bin
+  ```
+
+  WARNING!<br />
+  ========<br />
+  Device /dev/XXX already contains LUKS2 header. Replacing header will destroy existing keyslots.
+<br />
+  Are you sure? (Type uppercase yes): YES
+<br />

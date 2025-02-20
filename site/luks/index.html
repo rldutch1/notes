@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Mount LUKS Encrypted Media - My Notes</title>
+    <title>LUKS - My Notes</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Mount LUKS Encrypted Media";
-        var mkdocs_page_input_path = "luksmount.md";
+        var mkdocs_page_name = "LUKS";
+        var mkdocs_page_input_path = "luks.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -103,21 +103,13 @@
                 <li class="toctree-l1"><a class="reference internal" href="../lvm/">LVM - Linux Volume Manager</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../mac_apple/">MAC - Apple</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../markdown/">Markdown</a>
-                </li>
-              </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Mount LUKS Encrypted Media</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">LUKS</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#this-process-also-works-for-hard-drives">This process also works for hard drives.</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#basic-commands-to-view-the-disksusb-devices">Basic commands to view the disks/USB devices:</a>
+    <li class="toctree-l2"><a class="reference internal" href="#mounting-and-unmounting-a-luks-encrypted-usb-volume_1">Mounting and Unmounting a LUKS Encrypted USB Volume</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#basic-commands-to-view-the-disksusb-devices">Basic commands to view the disks/USB devices:</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#01-usb-drive-has-not-been-inserted-plugged-in-yet">01. USB drive has not been inserted (plugged in) yet.</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#02-gui-password-prompt-when-encrypted-drive-is-plugged-in-i-clicked-cancel-to-demonstrate-mounting-from-commandline">02. GUI password prompt when encrypted drive is plugged in (I clicked cancel to demonstrate mounting from commandline).</a>
@@ -147,10 +139,36 @@
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#mount-a-usb-volume-and-use-umask-to-allow-other-full-access">Mount a USB volume and use umask to allow "other" full access.</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_1"></a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#you-can-automatically-mount-by-uuid-if-you-want-the-mount-points-to-consistently-mount-to-the-same-device-each-partition-on-a-drive-will-have-its-own-uuid">You can automatically mount by UUID if you want the mount points to consistently mount to the same device. Each partition on a drive will have its own UUID.</a>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#automatically-mount-using-fstab">Automatically mount using fstab.</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#you-can-automatically-mount-by-uuid-if-you-want-the-mount-points-to-consistently-mount-to-the-same-device-each-partition-on-a-drive-will-have-its-own-uuid">You can automatically mount by UUID if you want the mount points to consistently mount to the same device. Each partition on a drive will have its own UUID.</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#luks-header-backup-and-restore">Luks Header Backup and Restore</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#httpswwwcybercitibizsecurityhow-to-backup-and-restore-luks-header-on-linux">https://www.cyberciti.biz/security/how-to-backup-and-restore-luks-header-on-linux/</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#creating-luks-header-backup">Creating LUKS Header Backup:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#restoring-luks-header-when-needed">Restoring LUKS header when needed:</a>
+    </li>
+        </ul>
     </li>
     </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mac_apple/">MAC - Apple</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../markdown/">Markdown</a>
                 </li>
               </ul>
               <ul>
@@ -211,7 +229,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Mount LUKS Encrypted Media</li>
+      <li class="breadcrumb-item active">LUKS</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -221,8 +239,9 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="mounting-and-unmounting-a-luks-encrypted-usb-volume">Mounting and Unmounting a LUKS Encrypted USB Volume</h1>
-<h4 id="this-process-also-works-for-hard-drives">This process also works for hard drives.</h4>
-<h3 id="basic-commands-to-view-the-disksusb-devices">Basic commands to view the disks/USB devices:</h3>
+<h3 id="mounting-and-unmounting-a-luks-encrypted-usb-volume_1">Mounting and Unmounting a LUKS Encrypted USB Volume</h3>
+<p>This process also works for hard drives.</p>
+<h4 id="basic-commands-to-view-the-disksusb-devices">Basic commands to view the disks/USB devices:</h4>
 <ul>
 <li>blkid</li>
 <li>duf</li>
@@ -296,11 +315,13 @@ sudo cryptsetup isLuks -v /dev/sdm1
 </code></pre>
 <p><img alt=" USB drive unmounted and unplugged from system." src="../img/mount13.png" title="USB drive unmounted and unplugged from system." /></p>
 <h3 id="mount-a-usb-volume-and-use-umask-to-allow-other-full-access">Mount a USB volume and use umask to allow "other" full access.</h3>
-<pre><code>sudo mount /dev/sdi1 /mnt/i -o umask=000,utf8
+<h4 id="_1"></h4>
+<pre><code>    sudo mount /dev/sdi1 /mnt/i -o umask=000,utf8
 </code></pre>
-<h3 id="you-can-automatically-mount-by-uuid-if-you-want-the-mount-points-to-consistently-mount-to-the-same-device-each-partition-on-a-drive-will-have-its-own-uuid">You can automatically mount by UUID if you want the mount points to consistently mount to the same device. Each partition on a drive will have its own UUID.</h3>
+<h3 id="automatically-mount-using-fstab">Automatically mount using fstab.</h3>
+<h5 id="you-can-automatically-mount-by-uuid-if-you-want-the-mount-points-to-consistently-mount-to-the-same-device-each-partition-on-a-drive-will-have-its-own-uuid">You can automatically mount by UUID if you want the mount points to consistently mount to the same device. Each partition on a drive will have its own UUID.</h5>
 <p>Use this to find the UUID:</p>
-<pre><code>lsblk -o +UUID,PARTUUID
+<pre><code>    lsblk -o +UUID,PARTUUID
 </code></pre>
 <pre><code>In fstab;
     UUID=FC3E-233D /mnt/i auto   user,umask=000,utf8  0   0
@@ -309,12 +330,39 @@ sudo cryptsetup isLuks -v /dev/sdm1
 
     After editing the fstab file, run 'systemctl daemon-reload' to update systemd
 </code></pre>
+<h3 id="luks-header-backup-and-restore">Luks Header Backup and Restore</h3>
+<h4 id="httpswwwcybercitibizsecurityhow-to-backup-and-restore-luks-header-on-linux">https://www.cyberciti.biz/security/how-to-backup-and-restore-luks-header-on-linux/</h4>
+<h4 id="creating-luks-header-backup">Creating LUKS Header Backup:<br /></h4>
+<p>Syntax: sudo cryptsetup luksHeaderBackup /dev/XXX --header-backup-file myfile.bin
+  <br />
+  Example:<br />
+  <code>sudo cryptsetup luksHeaderBackup /dev/sda3 --header-backup-file my_luks_header.bin
+    sudo cryptsetup luksHeaderBackup /dev/sdb --header-backup-file my_luks_header.bin</code>
+  <br />
+  Side note:<br />
+  The permission on the bin files that are created are 400 and the owner is root.
+  <br /></p>
+<p>Check the file type:<br />
+  <code>sudo file my_luks_header.bin
+    my_luks_header.bin: LUKS encrypted file, ver 2 [, , sha256] UUID: 9e5f5c4b-a4bb-464a-80c6-118c22e35e8f</code></p>
+<p>Use luksDump to view information about the file:<br />
+  <code>sudo cryptsetup luksDump my_luks_header.bin</code></p>
+<h4 id="restoring-luks-header-when-needed">Restoring LUKS header when needed:<br /></h4>
+<p><code>cryptsetup luksHeaderRestore /dev/XXX --header-backup-file /path/to/my_luks_header.bin
+    Assuming that your header file is on /dev/external/volume
+    cryptsetup luksHeaderRestore /dev/md1 --header-backup-file /dev/external/volume/my_luks_header.bin</code></p>
+<p>WARNING!<br />
+  ========<br />
+  Device /dev/XXX already contains LUKS2 header. Replacing header will destroy existing keyslots.
+<br />
+  Are you sure? (Type uppercase yes): YES
+<br /></p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../markdown/" class="btn btn-neutral float-left" title="Markdown"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../mysql/" class="btn btn-neutral float-right" title="MariaDB/MySQL">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../lvm/" class="btn btn-neutral float-left" title="LVM - Linux Volume Manager"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../mac_apple/" class="btn btn-neutral float-right" title="MAC - Apple">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -337,10 +385,10 @@ sudo cryptsetup isLuks -v /dev/sdm1
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../markdown/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../lvm/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../mysql/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../mac_apple/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

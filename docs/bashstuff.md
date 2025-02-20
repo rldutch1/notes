@@ -19,7 +19,7 @@
   <span style="color: #3366ff;">alias ssh='ssh -XC'</span>
 </pre>
 
-####Bash ARRAYS:
+#### Bash ARRAYS:
 Are you finding it challenging to determine the length of an array in Bash? You’re not alone. Many developers find themselves puzzled when it comes to handling arrays in Bash, but we’re here to help.
 
 Think of Bash’s array length command as a measuring tape – allowing us to quickly and accurately gauge the size of our arrays, providing a versatile and handy tool for various tasks.
@@ -27,7 +27,7 @@ Think of Bash’s array length command as a measuring tape – allowing us to qu
 In this guide, we’ll walk you through the process of determining the length of an array in Bash, from the basics to more advanced techniques. We’ll cover everything from the simple use of the <span style="color: #3366ff;">${#array[@]}</span> syntax to more complex scenarios, as well as alternative approaches.
 
 Let’s get started!
-How Do I Find the Length of an Array in Bash?
+##### How Do I Find the Length of an Array in Bash?
 
 To find the length of an array in Bash, you can use the <span style="color: #3366ff;">${#array[@]}</span> syntax. This command will return the number of elements in the array.
 
@@ -37,14 +37,14 @@ array=("apple" "banana" "cherry")<br />
 echo "${#array[@]}"<br />
 </span>
 
-#### Output the number of elements in the array:
+###### Output the number of elements in the array:
 <span style="color: #3366ff;">
  3
 </span>
 
 In this example, we’ve created an array with three elements: ‘apple’, ‘banana’, and ‘cherry’. The <span style="color: #3366ff;">${#array[@]}</span> syntax is used to find the length of the array, which in this case is 3.
 
-Bash Array Length: The Basics
+##### Bash Array Length: The Basics
 
 Before we dive into complex scenarios, let’s start with the basics of finding the length of an array in Bash. The syntax for finding the length of an array is <span style="color: #3366ff;">${#array[@]}</span>.
 
@@ -54,7 +54,7 @@ fruits=("apple" "banana" "orange" "grape" "pineapple")<br />
 echo "${#fruits[@]}"
 </span>
 
-#### Output the length of an array:
+###### Output the length of an array:
 <span style="color: #3366ff;">
 5
 </span>
@@ -66,18 +66,18 @@ This basic usage of the <span style="color: #3366ff;">${#array[@]}</span> syntax
 Intermediate Bash: Length of Multi-Dimensional Arrays and Empty Elements
 
 As you gain more experience with Bash, you’ll likely encounter more complex scenarios. For example, you may need to determine the length of a multi-dimensional array or handle arrays with empty elements. Let’s take a closer look at these situations.
-Multi-Dimensional Arrays
 
+##### Multi-Dimensional Arrays
 In Bash, multi-dimensional arrays aren’t supported directly. However, you can simulate them using one-dimensional arrays. Here’s an example:
 <span style="color: #3366ff;"><br />
-matrix=("1 2 3" "4 5 6" "7 8 9")<br />
+matrix=("1 2 3" "4 5 6" "7 8 9 0")<br />
 for row in "${matrix[@]}"; do<br />
     set -- $row<br />
     echo "${#*[@]}"<br />
 done
 </span>
 
-#### Output the number of elements in each row of the array:
+###### Output the number of elements in each row of the array:
 <span style="color: #3366ff;"><br />
  3<br />
  3<br />
@@ -86,14 +86,14 @@ done
 
 In this example, we’ve created a simulated 3×3 matrix. Each element of the ‘matrix’ array is a string representing a row of the matrix. The set -- $row command splits the string into separate elements, and ${#*[@]} gives the number of elements in each row, effectively giving us the ‘length’ of each dimension.
 
-####Handling Empty Elements
+##### Handling Empty Elements in an array:
 Bash considers an empty string as a valid array element. Therefore, it contributes to the length of the array. Let’s see this in action:
 <span style="color: #3366ff;"><br />
 array=("apple" "" "cherry")<br />
 echo "${#array[@]}"<br />
 </span>
 
-#### Output:
+###### Array with empty string output:
 <span style="color: #3366ff;">3</span>
 
 In this example, ‘apple’, an empty string, and ‘cherry’ are the elements of the array. Even though the second element is an empty string, Bash counts it as a valid element, so the length of the array is 3.
@@ -104,6 +104,7 @@ Alternative Methods: Bash Array Length
 While the <span style="color: #3366ff;">${#array[@]}</span> syntax is the most straightforward way to determine the length of an array in Bash, there are alternative approaches you can use. Let’s explore some of these methods, their benefits, drawbacks, and when to use them.
 Using a Loop
 
+##### Find the length of an array:
 One way to find the length of an array is by using a loop to iterate over the array elements. Here’s an example:
 <span style="color: #3366ff;"><br />
 fruits=("apple" "banana" "orange" "grape" "pineapple")<br />
@@ -114,7 +115,7 @@ done<br />
 echo $length
 </span>
 
-#### Output:
+###### Length of an array output:
 <span style="color: #3366ff;">5</span>
 
 In this example, we initialize a counter (length) to zero. Then, for each element in the array, we increment the counter by one. After the loop, length holds the number of elements in the array.
@@ -122,6 +123,7 @@ In this example, we initialize a counter (length) to zero. Then, for each elemen
 This method provides more control and can be useful in scenarios where you want to perform additional operations on each element. However, it’s more verbose and less efficient than the <span style="color: #3366ff;">${#array[@]}</span> syntax.
 Using External Commands
 
+##### Length of array using printf and wc:
 You can also use external commands like awk or wc to find the length of an array. Here’s an example using printf and wc:
 <span style="color: #3366ff;"><br />
 fruits=("apple" "banana" "orange" "grape" "pineapple")<br />
@@ -129,7 +131,7 @@ length=$(printf '%s\n' "${fruits[@]}" | wc -l)<br />
 echo $length
 </span>
 
-#### Output:
+###### Length of array using printf and wc output:
 <span style="color: #3366ff;">5</span>
 
 In this example, we use printf to print each element on a new line, then pipe the output to wc -l to count the number of lines. This gives us the number of elements in the array.
@@ -140,15 +142,15 @@ In conclusion, while the <span style="color: #3366ff;">${#array[@]}</span> synta
 Troubleshooting Bash Array Length
 
 While finding the length of an array in Bash is generally straightforward, there are some common issues that you might encounter. In this section, we’ll discuss these potential problems and provide solutions to overcome them.
-Special Characters in Array Elements
 
+##### Special Characters in Array Elements
 Bash treats some characters as special, which can cause unexpected behavior when they’re included in array elements. Let’s look at an example:
 <span style="color: #3366ff;"><br />
 array=("apple" "banana \n cherry")<br />
 echo "${#array[@]}"
 </span>
 
-#### Output:
+###### Special chracters output:
 <span style="color: #3366ff;">2</span>
 
 In this example, the array has two elements: ‘apple’ and ‘banana \n cherry’. Despite the newline character (\n) in the second element, Bash still counts it as a single element, so the length of the array is 2.
@@ -166,7 +168,7 @@ length=$(printf '%s\n' "${large_array[@]}" | wc -l)<br />
 echo $length<br />
 </span>
 
-#### Output:
+##### Large array count output:
 <span style="color: #3366ff;">10000</span>
 
 In this example, we’ve created a large array with 10,000 elements using the seq command. We then use printf and wc to find the length of the array.
@@ -189,12 +191,13 @@ Here’s a simple example of an array in Bash:
 fruits=("apple" "banana" "cherry")<br />
 <span style="color: #3366ff;">echo "${fruits[0]}"</span>
 
-#### Output:
+###### Simple array output:
 <span style="color: #3366ff;">apple</span>
 
 In this example, ‘apple’, ‘banana’, and ‘cherry’ are the elements of the array. The command <span style="color: #3366ff;">echo "${fruits[0]}"</span> prints the first element of the array, which is ‘apple’.
 Manipulating Arrays in Bash
 
+##### Add element to an array:
 Bash provides various commands to manipulate arrays, such as adding elements, removing elements, and finding the length of an array.
 
 For instance, to add an element to an array, you can use the following syntax:
@@ -204,7 +207,7 @@ fruits+=("orange")<br />
 echo "${fruits[@]}"<br />
 </span> <br />
 
-#### Output:
+###### Add element to an array output:
 <span style="color: #3366ff;">apple banana cherry orange</span>
 
 In this example, we’ve added ‘orange’ to the ‘fruits’ array. The += operator is used to append elements to an array in Bash.
@@ -218,6 +221,7 @@ The Power of Arrays in Bash Scripting
 Arrays are incredibly versatile and powerful tools in Bash scripting. They are fundamental to a multitude of tasks and operations, making them an indispensable part of any Bash programmer’s toolkit.
 Arrays in File Handling
 
+##### List of files:
 Arrays can be used to handle files and directories in Bash. For instance, you can store the list of files in a directory in an array and perform operations on each file. Here’s an example:
 <span style="color: #3366ff;"><br />
 files=(/path/to/directory/*)<br />
@@ -226,7 +230,7 @@ for file in "${files[@]}"; do<br />
 done
 </span> <br />
 
-#### Output:
+###### List of files in array output:
 <span style="color: #3366ff;"><br />
  Processing /path/to/directory/file1<br />
  Processing /path/to/directory/file2
@@ -236,6 +240,7 @@ done
 In this example, we’ve stored all the files in a directory in an array. We then iterate over the array and print a message for each file.
 Arrays in Data Processing
 
+##### Processing lines in a .csv file:
 Arrays also play a crucial role in data processing tasks in Bash. They can be used to store and manipulate data, making it easier to perform complex operations. For instance, you can use an array to store the lines of a CSV file and process each line. Here’s an example:
 <span style="color: #3366ff;"><br />
 IFS=$'<br />
@@ -244,7 +249,7 @@ for line in "${lines[@]}"; do<br />
     echo "Processing $line"<br />
 done
 </span> <br />
-#### Output:
+###### Processing lines of a .csv file output:
 <span style="color: #3366ff;"><br />
  Processing line1<br />
  Processing line2
@@ -316,6 +321,15 @@ In this example, we’ve read a CSV file line by line into an array using the ca
   	((y++))<br />
   done<br />
  </span>
+
+####For loop on multiple file extensions:
+<span style="color: #3366ff;">for i in {*.gz,*.rar}<br />
+	do<br />
+		ls -al > "$i"<br />
+	done<br />
+<br />
+	rm -f *.gz *.rar<br />
+</span><br />
 
 ####While loop (count):
 <span style="color: #3366ff;">
