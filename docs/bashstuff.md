@@ -73,7 +73,7 @@ In Bash, multi-dimensional arrays aren’t supported directly. However, you can 
 matrix=("1 2 3" "4 5 6" "7 8 9 0")<br />
 for row in "${matrix[@]}"; do<br />
     set -- $row<br />
-    echo "${#*[@]}"<br />
+    echo "${#matrix[@]}"<br />
 done
 </span>
 
