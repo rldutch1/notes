@@ -25,7 +25,7 @@ For Messages via Auditd, it's possible to show summary reports with aureport com
 	aureport --avc --summary
 ```
 
-STAT command to show SE_Linux status: 
+STAT command to show SE_Linux status:
 
 ```
 stat -c "%a %n %C" *
@@ -48,3 +48,14 @@ Relabeled /srv/SITENAME/htdocs from unconfined_u:object_r:var_t:s0 to system_u:o
 Source: https://docs.fedoraproject.org/en-US/fedora-server/services/httpd-basic-setup/#_installation
 ```
 
+Change the SE Linux properties of a file: (Source: https://www.thegeekstuff.com/2017/07/chcon-command-examples/)
+Example: this Test2a.php file was displaying "Access Denied" error on my website.
+
+Check and change the SELinux properties:
+```
+	Check the current SELinux properties with: ls -Z
+		The properties were: unconfined_u:object_r:user_home_t:s0 Test2a.php
+
+	I changed the SELinux properties using:
+		sudo chcon unconfined_u:object_r:httpd_user_content_t:s0 Test2a.php
+```

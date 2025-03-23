@@ -198,7 +198,7 @@
 <p>For Messages via Auditd, it's possible to show summary reports with aureport command.</p>
 <pre><code>    aureport --avc --summary
 </code></pre>
-<p>STAT command to show SE_Linux status: </p>
+<p>STAT command to show SE_Linux status:</p>
 <pre><code>stat -c &quot;%a %n %C&quot; *
 </code></pre>
 <p>Allow apache to receive files to an uploads folder/directory:</p>
@@ -212,6 +212,15 @@ htdocs is where the index.php/html file goes.
 […]# /sbin/restorecon -R -vF /srv/SITENAME/htdocs
 Relabeled /srv/SITENAME/htdocs from unconfined_u:object_r:var_t:s0 to system_u:object_r:httpd_sys_content_t:s0
 Source: https://docs.fedoraproject.org/en-US/fedora-server/services/httpd-basic-setup/#_installation
+</code></pre>
+<p>Change the SE Linux properties of a file: (Source: https://www.thegeekstuff.com/2017/07/chcon-command-examples/)
+Example: this Test2a.php file was displaying "Access Denied" error on my website.</p>
+<p>Check and change the SELinux properties:</p>
+<pre><code>    Check the current SELinux properties with: ls -Z
+        The properties were: unconfined_u:object_r:user_home_t:s0 Test2a.php
+
+    I changed the SELinux properties using:
+        sudo chcon unconfined_u:object_r:httpd_user_content_t:s0 Test2a.php
 </code></pre>
               
             </div>
