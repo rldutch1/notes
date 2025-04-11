@@ -126,8 +126,8 @@
 
 	``` ALTER TABLE `tablename` CHANGE `columnname` `columname` INT(11) NOT NULL AFTER `someothercolumnname`; ```
 
-	- Example: Move the lastname column after the firstname column in the customers table. 
-	
+	- Example: Move the lastname column after the firstname column in the customers table.
+
 	``` ALTER TABLE `customers` CHANGE `lastname` `lastname` INT(11) NOT NULL AFTER `firstname`; ```
 
 ###### Create a unique index with a name and a comment (MySQL v8):
@@ -271,6 +271,11 @@ For scripting in a shell, you can use either of the following:
       ALTER USER 'root'@'localhost'
         IDENTIFIED WITH mysql_native_password
         BY "password";
+
+###### Show create user:
+```
+	show create user billybob@localhost;
+```
 
 #### Blob (text) data display using convert(FIELD using utf8mb4):
 ```
@@ -1206,6 +1211,11 @@ Example:
     iconv -f latin1 -t utf8 < mpages1.csv > mpages2.csv
     This worked: (Source: https://unix.stackexchange.com/questions/141539/iconv-illegal-input-sequence-why).
 
+#### Change database and table collation and char set to utf8mb4 and utf8mb4_unicode_ci.:
+
+    ALTER DATABASE <db_name> CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+    ALTER TABLE <table_name> CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+    (Source: https://stackoverflow.com/questions/48270374/invalid-datetime-format-1366-incorrect-string-value)
 
 #### Locate MySQL Database Files:
 Typically the MySQL database files are located in /usr/local/mysql/data/databasename/

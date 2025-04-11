@@ -158,6 +158,8 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#change-password-lock-and-unlock-accounts">Change Password / Lock and Unlock Accounts:</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#show-create-user">Show create user:</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#blob-text-data-display-using-convertfield-using-utf8mb4">Blob (text) data display using convert(FIELD using utf8mb4):</a>
@@ -329,6 +331,8 @@
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#load-input-local_infile">Load input (local_infile):</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#change-database-and-table-collation-and-char-set-to-utf8mb4-and-utf8mb4_unicode_ci">Change database and table collation and char set to utf8mb4 and utf8mb4_unicode_ci.:</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#locate-mysql-database-files">Locate MySQL Database Files:</a>
         <ul>
@@ -793,6 +797,9 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY "password
   ALTER USER 'root'@'localhost'
     IDENTIFIED WITH mysql_native_password
     BY "password";
+</code></pre>
+<h6 id="show-create-user">Show create user:</h6>
+<pre><code>    show create user billybob@localhost;
 </code></pre>
 <h4 id="blob-text-data-display-using-convertfield-using-utf8mb4">Blob (text) data display using convert(FIELD using utf8mb4):</h4>
 <pre><code>    -- I used this in my bacula database to find jobs that contained the file groupmems.
@@ -1644,6 +1651,11 @@ I found a website that suggested that the file might be latin so I used another 
 
 iconv -f latin1 -t utf8 &lt; mpages1.csv &gt; mpages2.csv
 This worked: (Source: https://unix.stackexchange.com/questions/141539/iconv-illegal-input-sequence-why).
+</code></pre>
+<h4 id="change-database-and-table-collation-and-char-set-to-utf8mb4-and-utf8mb4_unicode_ci">Change database and table collation and char set to utf8mb4 and utf8mb4_unicode_ci.:</h4>
+<pre><code>ALTER DATABASE &lt;db_name&gt; CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE &lt;table_name&gt; CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+(Source: https://stackoverflow.com/questions/48270374/invalid-datetime-format-1366-incorrect-string-value)
 </code></pre>
 <h4 id="locate-mysql-database-files">Locate MySQL Database Files:</h4>
 <p>Typically the MySQL database files are located in /usr/local/mysql/data/databasename/</p>
