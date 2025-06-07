@@ -409,14 +409,15 @@ For scripting in a shell, you can use either of the following:
     CREATE USER 'SomeUser'@'localhost';
     SET PASSWORD FOR 'SomeUser'@'%' = PASSWORD('SomePassword!');
     SET PASSWORD FOR 'SomeUser'@'localhost' = PASSWORD('SomePassword!');
-    GRANT USAGE ON SomeTable.* TO 'SomeUser'@'%'
+    GRANT USAGE ON SomeDatabase.* TO 'SomeUser'@'localhost'
+    GRANT USAGE ON SomeDatabase.* TO 'SomeUser'@'%'
     REQUIRE NONE
     WITH MAX_QUERIES_PER_HOUR 0
     MAX_CONNECTIONS_PER_HOUR 0
     MAX_UPDATES_PER_HOUR 0
     MAX_USER_CONNECTIONS 0;
-    GRANT ALL PRIVILEGES ON `SomeTable`.* TO 'SomeUser'@'localhost';
-    GRANT ALL PRIVILEGES ON `SomeTable\_%`.* TO 'SomeUser'@'%';
+    GRANT ALL PRIVILEGES ON `SomeDatabase`.* TO 'SomeUser'@'localhost';
+    GRANT ALL PRIVILEGES ON `SomeDatabase\_%`.* TO 'SomeUser'@'%';
     FLUSH PRIVILEGES;
 
     On MariaDB: I got an access denied error when I tried to run the following statement as root.
@@ -845,7 +846,11 @@ Columns are generated because the data in these columns are computed based on pr
 
     grant alter,create,delete,drop,index,insert,select,update,trigger,alter routine,
     create routine, execute, create temporary tables on hillc1.* to 'theusername';
-    
+
+    grant all privileges on thedatabasename.* to 'theusername'@'localhost' with grant option; flush privileges;
+    grant all privileges on thedatabasename.* to 'theusername'@'%' with grant option; flush privileges;
+    grant SELECT, INSERT, UPDATE, DELETE ON SomeDatabase TO 'theusername'@'localhost';
+
 #### Group By: (Uses "Having" instead of "Where" clause.)
 ###### Find duplicate data in a column.
 
@@ -972,7 +977,7 @@ Example:
 		SELECT columns
 		FROM firsttable
 		WHERE conditions;
-		
+
 #### INT vs BIGINT:
     -- http://stackoverflow.com/questions/3135804/types-in-mysql-bigint20-vs-int20-etcc
 
@@ -1548,6 +1553,13 @@ Change the default mysql> prompt to something functional and useful.
       mysql -e "RENAME TABLE \`test\`.\`$table\` to \`united_states\`.\`$table\`"
     done
     mysql -e "DROP DATABASE \`test\`;"
+
+#### Revoke:
+		https://mariadb.com/kb/en/revoke/
+		https://www.techonthenet.com/mariadb/grant_revoke.php
+		revoke all privileges, grant option from 'SomeUser'@'%';
+		revoke all privileges, grant option from 'SomeUser'@'localhost';
+		revoke SELECT, INSERT, UPDATE, DELETE ON SomeDatabase TO 'SomeUser'@'localhost';
 
 #### Select:
 ###### Select across databases;

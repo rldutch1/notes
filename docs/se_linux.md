@@ -59,3 +59,35 @@ Check and change the SELinux properties:
 	I changed the SELinux properties using:
 		sudo chcon unconfined_u:object_r:httpd_user_content_t:s0 Test2a.php
 ```
+
+If you want to copy the SE_Linux settings from one directory that is working to another:
+```
+	# semanage fcontext --add --equal /var/www/html /opt/www/html
+	# restorecon -rv /opt/www/html
+```
+
+If you are using a non-standard directory for web files, like /opt/www/html, then you may not be able to use restorecon to automatically fix the SELinux context. You will have to set the context using chcon and save the change using semanage to make the change permanent:
+```
+	# chcon -R system_u:object_r:httpd_sys_content_t:s0 /opt/www
+	# semanage fcontext -a -t httpd_sys_content_t "/opt/www(/.*)?"
+	# restorecon -rv /opt/www
+```
+
+If you get "SQLSTATE[HY000] [2002] Permission denied" message.
+You must check in the SELinux if port 80 is managed in. You can check it by typing # semanage port -l | grep http_port_t for a list and check:
+```
+		semanage port -l | grep http_port_t
+```
+
+If you need to add the required port, just type:
+```
+		# semanage port -a -t http_port_t -p tcp 80
+```
+
+Stop the httpd service set the SE_Linux permission and start the http service.
+```
+		Down the httpd service # service httpd stop
+		# setsebool -P httpd_can_network_connect 1
+		# setsebool -P httpd_can_network_connect_db 1
+		Up the httpd service # service httpd start
+```

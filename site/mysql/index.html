@@ -44,6 +44,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../alacarte/">Alacarte</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../bacula/">Bacula</a>
                 </li>
               </ul>
@@ -77,6 +81,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../google/">Google</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../grep_sed_awk_find/">Grep_sed_awk_find</a>
                 </li>
               </ul>
               <ul>
@@ -367,6 +375,8 @@
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#rename-a-database_1">Rename a Database</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#revoke">Revoke:</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#select">Select:</a>
         <ul>
@@ -925,14 +935,15 @@ WITH GRANT OPTION;
 CREATE USER 'SomeUser'@'localhost';
 SET PASSWORD FOR 'SomeUser'@'%' = PASSWORD('SomePassword!');
 SET PASSWORD FOR 'SomeUser'@'localhost' = PASSWORD('SomePassword!');
-GRANT USAGE ON SomeTable.* TO 'SomeUser'@'%'
+GRANT USAGE ON SomeDatabase.* TO 'SomeUser'@'localhost'
+GRANT USAGE ON SomeDatabase.* TO 'SomeUser'@'%'
 REQUIRE NONE
 WITH MAX_QUERIES_PER_HOUR 0
 MAX_CONNECTIONS_PER_HOUR 0
 MAX_UPDATES_PER_HOUR 0
 MAX_USER_CONNECTIONS 0;
-GRANT ALL PRIVILEGES ON `SomeTable`.* TO 'SomeUser'@'localhost';
-GRANT ALL PRIVILEGES ON `SomeTable\_%`.* TO 'SomeUser'@'%';
+GRANT ALL PRIVILEGES ON `SomeDatabase`.* TO 'SomeUser'@'localhost';
+GRANT ALL PRIVILEGES ON `SomeDatabase\_%`.* TO 'SomeUser'@'%';
 FLUSH PRIVILEGES;
 
 On MariaDB: I got an access denied error when I tried to run the following statement as root.
@@ -1326,6 +1337,10 @@ create routine, execute, create temporary tables on user1.* to 'user1';
 
 grant alter,create,delete,drop,index,insert,select,update,trigger,alter routine,
 create routine, execute, create temporary tables on hillc1.* to 'theusername';
+
+grant all privileges on thedatabasename.* to 'theusername'@'localhost' with grant option; flush privileges;
+grant all privileges on thedatabasename.* to 'theusername'@'%' with grant option; flush privileges;
+grant SELECT, INSERT, UPDATE, DELETE ON SomeDatabase TO 'theusername'@'localhost';
 </code></pre>
 <h4 id="group-by-uses-having-instead-of-where-clause">Group By: (Uses "Having" instead of "Where" clause.)</h4>
 <h6 id="find-duplicate-data-in-a-column_1">Find duplicate data in a column.</h6>
@@ -1944,6 +1959,13 @@ do
   mysql -e "RENAME TABLE \`test\`.\`$table\` to \`united_states\`.\`$table\`"
 done
 mysql -e "DROP DATABASE \`test\`;"
+</code></pre>
+<h4 id="revoke">Revoke:</h4>
+<pre><code>    https://mariadb.com/kb/en/revoke/
+    https://www.techonthenet.com/mariadb/grant_revoke.php
+    revoke all privileges, grant option from 'SomeUser'@'%';
+    revoke all privileges, grant option from 'SomeUser'@'localhost';
+    revoke SELECT, INSERT, UPDATE, DELETE ON SomeDatabase TO 'SomeUser'@'localhost';
 </code></pre>
 <h4 id="select">Select:</h4>
 <h6 id="select-across-databases">Select across databases;</h6>

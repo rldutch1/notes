@@ -44,6 +44,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../alacarte/">Alacarte</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../bacula/">Bacula</a>
                 </li>
               </ul>
@@ -77,6 +81,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../google/">Google</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../grep_sed_awk_find/">Grep_sed_awk_find</a>
                 </li>
               </ul>
               <ul>
@@ -221,6 +229,28 @@ Example: this Test2a.php file was displaying "Access Denied" error on my website
 
     I changed the SELinux properties using:
         sudo chcon unconfined_u:object_r:httpd_user_content_t:s0 Test2a.php
+</code></pre>
+<p>If you want to copy the SE_Linux settings from one directory that is working to another:</p>
+<pre><code>    # semanage fcontext --add --equal /var/www/html /opt/www/html
+    # restorecon -rv /opt/www/html
+</code></pre>
+<p>If you are using a non-standard directory for web files, like /opt/www/html, then you may not be able to use restorecon to automatically fix the SELinux context. You will have to set the context using chcon and save the change using semanage to make the change permanent:</p>
+<pre><code>    # chcon -R system_u:object_r:httpd_sys_content_t:s0 /opt/www
+    # semanage fcontext -a -t httpd_sys_content_t &quot;/opt/www(/.*)?&quot;
+    # restorecon -rv /opt/www
+</code></pre>
+<p>If you get "SQLSTATE[HY000] [2002] Permission denied" message.
+You must check in the SELinux if port 80 is managed in. You can check it by typing # semanage port -l | grep http_port_t for a list and check:</p>
+<pre><code>        semanage port -l | grep http_port_t
+</code></pre>
+<p>If you need to add the required port, just type:</p>
+<pre><code>        # semanage port -a -t http_port_t -p tcp 80
+</code></pre>
+<p>Stop the httpd service set the SE_Linux permission and start the http service.</p>
+<pre><code>        Down the httpd service # service httpd stop
+        # setsebool -P httpd_can_network_connect 1
+        # setsebool -P httpd_can_network_connect_db 1
+        Up the httpd service # service httpd start
 </code></pre>
               
             </div>

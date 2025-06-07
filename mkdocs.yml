@@ -2,6 +2,7 @@
 site_name: My Notes
 nav:
     - Home: index.md
+    - Alacarte: alacarte.md
     - Bacula: bacula.md
     - Base64: base64.md
     - Bash Stuff: bashstuff.md
@@ -11,6 +12,7 @@ nav:
     - FFMEG: ffmpeg.md
     - GiT: git.md
     - Google: google.md
+    - Grep_sed_awk_find: grep_sed_awk_find.md
     - ImageMagick: imagemagick.md
     - JS Notes: js_notes.md
     - Keybase: keybase.md

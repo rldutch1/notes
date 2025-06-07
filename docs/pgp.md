@@ -503,7 +503,7 @@ Import a key:
 
 	gpg --import filename
 
-You might get an error with the newer version of GPG (gpg: error building skey array: Permission denied)
+You might get an error with the newer version of GPG (gpg: error building skey array: Permission denied) or (gpg: error building skey array: No pinentry).
 
 	Try using (--batch):
 	gpg --batch --import your.secret.key.asc
