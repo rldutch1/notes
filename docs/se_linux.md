@@ -73,7 +73,7 @@ If you are using a non-standard directory for web files, like /opt/www/html, the
 	# restorecon -rv /opt/www
 ```
 
-If you get "SQLSTATE[HY000] [2002] Permission denied" message.
+If you get "SQLSTATE[HY000] [2002] Permission denied" message. You need to enable the httpd service to network connect.
 You must check in the SELinux if port 80 is managed in. You can check it by typing # semanage port -l | grep http_port_t for a list and check:
 ```
 		semanage port -l | grep http_port_t
@@ -84,10 +84,23 @@ If you need to add the required port, just type:
 		# semanage port -a -t http_port_t -p tcp 80
 ```
 
-Stop the httpd service set the SE_Linux permission and start the http service.
+		Stop the httpd service set the SE_Linux permission and start the http service.
+
+		Down the httpd service #
 ```
-		Down the httpd service # service httpd stop
+		service httpd stop
+```
+		Enable the httpd service to connect to the network:
+```
 		# setsebool -P httpd_can_network_connect 1
 		# setsebool -P httpd_can_network_connect_db 1
-		Up the httpd service # service httpd start
+```
+		Check if the service is enabled:
+```
+		getsebool httpd_can_network_connect
+		getsebool httpd_can_network_connect_db
+```
+		Up the httpd service # 
+```
+		service httpd start
 ```

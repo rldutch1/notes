@@ -239,18 +239,32 @@ Example: this Test2a.php file was displaying "Access Denied" error on my website
     # semanage fcontext -a -t httpd_sys_content_t &quot;/opt/www(/.*)?&quot;
     # restorecon -rv /opt/www
 </code></pre>
-<p>If you get "SQLSTATE[HY000] [2002] Permission denied" message.
+<p>If you get "SQLSTATE[HY000] [2002] Permission denied" message. You need to enable the httpd service to network connect.
 You must check in the SELinux if port 80 is managed in. You can check it by typing # semanage port -l | grep http_port_t for a list and check:</p>
 <pre><code>        semanage port -l | grep http_port_t
 </code></pre>
 <p>If you need to add the required port, just type:</p>
 <pre><code>        # semanage port -a -t http_port_t -p tcp 80
 </code></pre>
-<p>Stop the httpd service set the SE_Linux permission and start the http service.</p>
-<pre><code>        Down the httpd service # service httpd stop
-        # setsebool -P httpd_can_network_connect 1
+<pre><code>    Stop the httpd service set the SE_Linux permission and start the http service.
+
+    Down the httpd service #
+</code></pre>
+<pre><code>        service httpd stop
+</code></pre>
+<pre><code>    Enable the httpd service to connect to the network:
+</code></pre>
+<pre><code>        # setsebool -P httpd_can_network_connect 1
         # setsebool -P httpd_can_network_connect_db 1
-        Up the httpd service # service httpd start
+</code></pre>
+<pre><code>    Check if the service is enabled:
+</code></pre>
+<pre><code>        getsebool httpd_can_network_connect
+        getsebool httpd_can_network_connect_db
+</code></pre>
+<pre><code>    Up the httpd service #
+</code></pre>
+<pre><code>        service httpd start
 </code></pre>
               
             </div>
