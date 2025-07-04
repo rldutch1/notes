@@ -71,6 +71,7 @@ Create a new repository on the command line make a new directory then type:
 	git add README.md
 	git commit -m "first commit"
 	git remote add origin https://github.com/username/reponame.git
+	To add a local repository on Widows: git remote add origin c:/Users/Rob/Documents/Github/php.git 
 	git push -u origin master  //Only need to do this the first time you push to the server so that the upstream branch gets set.
 
 #### Push an existing repository from the command line:

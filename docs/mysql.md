@@ -1278,6 +1278,9 @@ To run test.sql type one of the following:
 -- If you want tab delimited output format (default):
 ```
 mysql databasename -u username -p < test.sql > output.tab
+
+Convert the tabs to comma delimited surrounded by quotes:
+mysql -u username -p -h computername.lan < test.sql |sed 's/\t/\",\"/g'|sed 's/^/\"/g'|sed 's/$/\"/g' > output.csv
 ```
 -- XML output format:
 ```
