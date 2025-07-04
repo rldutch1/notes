@@ -1718,6 +1718,9 @@ SELECT id,
 <p>To run test.sql type one of the following:</p>
 <p>-- If you want tab delimited output format (default):</p>
 <pre><code>mysql databasename -u username -p &lt; test.sql &gt; output.tab
+
+Convert the tabs to comma delimited surrounded by quotes:
+mysql -u username -p -h computername.lan &lt; test.sql |sed 's/\t/\&quot;,\&quot;/g'|sed 's/^/\&quot;/g'|sed 's/$/\&quot;/g' &gt; output.csv
 </code></pre>
 <p>-- XML output format:</p>
 <pre><code>mysql databasename -u username -p --xml &lt; test.sql &gt; output.xml
