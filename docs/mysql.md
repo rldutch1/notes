@@ -1249,7 +1249,7 @@ lines terminated by '\n'
 from yourtablename
 where columnname = 'whatever';
 
-If no path is specified, the file will be located in the default database folder. In my case (Fedora 12) it was located in /var/lib/mysql/play/filename.txt.
+If no path is specified, the file will be located in the default database folder. In my case (Fedora 12) it was located in /var/lib/mysql/thedatabasename/outputfilename.txt.
 ```
 ```
 -- You can specify where the output file will go:
@@ -1620,6 +1620,12 @@ If you want to run shell commands from within the MySQL command prompt use a bac
 			or (if you are already in the database)
 		show schemas;
 ```
+
+```
+	To show database file location:
+		show variables where Variable_name like '%datadir%';
+```
+
 #### Service (MySQL):
 ###### Linux and/or MAC:
 ```

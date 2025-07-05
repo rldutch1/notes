@@ -1696,7 +1696,7 @@ lines terminated by '\n'
 from yourtablename
 where columnname = 'whatever';
 
-If no path is specified, the file will be located in the default database folder. In my case (Fedora 12) it was located in /var/lib/mysql/play/filename.txt.
+If no path is specified, the file will be located in the default database folder. In my case (Fedora 12) it was located in /var/lib/mysql/thedatabasename/outputfilename.txt.
 </code></pre>
 <pre><code>-- You can specify where the output file will go:
 SELECT id,
@@ -2019,6 +2019,9 @@ http://stackoverflow.com/questions/5285448/mysql-select-only-not-null-values
         show databases;
             or (if you are already in the database)
         show schemas;
+</code></pre>
+<pre><code>    To show database file location:
+        show variables where Variable_name like '%datadir%';
 </code></pre>
 <h4 id="service-mysql">Service (MySQL):</h4>
 <h6 id="linux-andor-mac">Linux and/or MAC:</h6>
