@@ -66,4 +66,19 @@ Remember to Flush and Register the computer in DNS.<br />
 Tucson DNS 10.109.0.202 (TUSNS01) and 10.109.64.202 (TUSNS02) are the ones to use.<br />
 runas /noprofile /user:BHS\a-rlholland "ipconfig /flushdns"<br />
 runas /noprofile /user:BHS\a-rlholland "ipconfig /registerdns"<br />
+</span><br />
+<br />
+Map a drive letter to Microsoft OneDrive.<br />
+<span style="color: #3366ff;"><br />
+@echo off<br />
+REM ----------------------------------------------------------------------------<br />
+REM Author: Robert Holland<br />
+REM Name: MapH.cmd<br />
+REM Creation Date: Thu Oct 14 2021 08:53:25 GMT-0700 (US Mountain Standard Time)<br />
+REM Last Modified:<br />
+REM Copyright (c)2021<br />
+REM Purpose: Locally Map H: drive to OneDrive<br />
+REM ----------------------------------------------------------------------------<br />
+<br />
+subst H: "C:\Users\%username%\OneDrive\"<br />
 </span>
