@@ -4,6 +4,7 @@ nav:
     - Home: index.md
     - Alacarte: alacarte.md
     - Bacula: bacula.md
+    - Barcodes: barcodes.md
     - Base64: base64.md
     - Bash Stuff: bashstuff.md
     - Blue Parrot: blueparrot.md

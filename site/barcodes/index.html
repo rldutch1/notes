@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>RDesktop - My Notes</title>
+    <title>Barcodes - My Notes</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "RDesktop";
-        var mkdocs_page_input_path = "rdesktop.md";
+        var mkdocs_page_name = "Barcodes";
+        var mkdocs_page_input_path = "barcodes.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -51,8 +51,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../bacula/">Bacula</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../barcodes/">Barcodes</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Barcodes</a>
                 </li>
               </ul>
               <ul>
@@ -139,10 +139,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../pgp/">PGP</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">RDesktop</a>
-    <ul class="current">
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../rdesktop/">RDesktop</a>
                 </li>
               </ul>
               <ul>
@@ -187,7 +185,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">RDesktop</li>
+      <li class="breadcrumb-item active">Barcodes</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -196,18 +194,48 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="rdesktop">RDESKTOP</h1>
-<pre>
-Large files:
-    <span style="color: #3366ff;">rdesktop -v -k en-us -a 32 -u rob -4 backup.lan:3389</span>
-    <span style="color: #3366ff;">rdesktop -v -k en-us -a 32 -u administrator -4 -g 1600x800 backup.lan:3389</span>
-</pre>
+                <p>You will need to install the barcode application and ImageMagick.</p>
+<pre><code>    sudo dnf -y install barcode
+    sudo dnf -y install ImageMagick
+</code></pre>
+<p>Test create a postscript file that contains a barcode then convert it to .png:</p>
+<pre><code>    barcode -b &quot;1234567890&quot; -e &quot;code128&quot; -o aaa.ps
+
+    magick aaa.ps aaa.png
+</code></pre>
+<p>barcode -i out2.tab -o ouput.ps</p>
+<p>The following will read serial numbers from a file and print Code 128 barcodes in table format (5 columns x 20 rows) on an 8.5x11 inch sheet of paper.</p>
+<pre><code>    barcode -e &quot;code128&quot; -t 5x20 -p &quot;8.5x11in&quot; -i serials.txt -o serials.pdf
+</code></pre>
+<p>The following will read serial numbers from a file and print Code 39 barcodes in table format (5 columns x 20 rows) on an 8.5x11 inch sheet of paper. (Code 39 does not seem to recognize lowercase letters).</p>
+<pre><code>    barcode -e &quot;code39&quot; -t 5x20 -p &quot;8.5x11in&quot; -i serials.txt -o serials.pdf
+</code></pre>
+<p>The following will read serial numbers from a file and print Code 39 barcodes in table format (5 columns x 5 rows with a barcode margin of 20x and 50y) on an 8.5x11 inch sheet of paper. (Code 39 does not seem to recognize lowercase letters).</p>
+<pre><code>    barcode -e &quot;code39&quot; -t &quot;5x5 +96x+48+96+48&quot; -m &quot;20x50&quot; -p &quot;8.5x11in&quot; -i serials.txt -o serials.pdf
+</code></pre>
+<p>The following will create a single barcode 39 .ps file with geometry of 250x100 and generate a .png that is the same size as the barcode.</p>
+<pre><code>    barcode -b &quot;343110&quot; -e &quot;code39&quot; -g &quot;250x100&quot; -E -o aaa.ps;magick aaa.ps aaa.png
+</code></pre>
+<p>Other barcode software:
+https://github.com/larsschenk/ActiveBarcodeCLI.git
+https://www.activebarcode.com/commandline/</p>
+<pre><code>./ActiveBarcodeCLI --text=192837465012 --code=ean13 --width=400 --height=200 ean.wmf
+</code></pre>
+<p>Strockscribe:
+https://www.youtube.com/watch?v=Ur2hA-AaDG0
+https://strokescribe.com/en/barcode-libreoffice-calc.html?t=1752080693587
+Tools-&gt;Macros--&gt;Organize--&gt;Basic</p>
+<p>Google Sheets:
+Print Barcode Labels Using ONLY Google Sheets: https://www.youtube.com/watch?v=QZi2pQcxRsw</p>
+<p>QREncode:</p>
+<pre><code>dnf -y install qrencode
+</code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../pgp/" class="btn btn-neutral float-left" title="PGP"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../se_linux/" class="btn btn-neutral float-right" title="SE Linux">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../bacula/" class="btn btn-neutral float-left" title="Bacula"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../base64/" class="btn btn-neutral float-right" title="Base64">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -230,10 +258,10 @@ Large files:
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../pgp/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../bacula/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../se_linux/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../base64/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
