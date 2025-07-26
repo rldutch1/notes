@@ -394,3 +394,7 @@ This example also illustrates how to use the find command to send a list of file
 The '-e' option allows you to search for multiple things. It is kind of like an 'or' statement. Example below, find postfix or mailx.<br />
 <span style="color: #3366ff;">rpm -qa |grep -e postfix -e mailx</span><br />
 
+#### Find Graphics or Video Card Information:
+<span style="color: #3366ff;">lspci -k | grep -EA3 'VGA|3D|Display'</span><br />
+
+

@@ -158,6 +158,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#grep-for-multiple-things-at-once">Grep for multiple things at once:</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#find-graphics-or-video-card-information">Find Graphics or Video Card Information:</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -609,6 +611,8 @@ This example also illustrates how to use the find command to send a list of file
 <h4 id="grep-for-multiple-things-at-once">Grep for multiple things at once:</h4>
 <p>The '-e' option allows you to search for multiple things. It is kind of like an 'or' statement. Example below, find postfix or mailx.<br />
 <span style="color: #3366ff;">rpm -qa |grep -e postfix -e mailx</span><br /></p>
+<h4 id="find-graphics-or-video-card-information">Find Graphics or Video Card Information:</h4>
+<p><span style="color: #3366ff;">lspci -k | grep -EA3 'VGA|3D|Display'</span><br /></p>
               
             </div>
           </div><footer>

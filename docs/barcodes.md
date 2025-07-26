@@ -29,6 +29,7 @@ The following will read serial numbers from a file and print Code 39 barcodes in
 ```
 
 The following will create a single barcode 39 .ps file with geometry of 250x100 and generate a .png that is the same size as the barcode.
+<a href='https://stackoverflow.com/questions/38060091/how-do-i-force-gnu-barcode-to-honor-the-page-size-i-specify-on-the-command-lin' target='_blank'>source</a>
 ```
 	barcode -b "343110" -e "code39" -g "250x100" -E -o aaa.ps;magick aaa.ps aaa.png
 ```
