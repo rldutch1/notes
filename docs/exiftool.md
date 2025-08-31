@@ -11,7 +11,7 @@ exiftool -Copyright="New Notice" -CopyrightNotice="New Notice" -Rights="New Noti
 exiftool -Copyright="Copyright 2002, Robert Holland" -CopyrightNotice="© 2002, Robert Holland" -Rights="All rights reserved." *.jpg
 ```
 
-That will set the three major copyright tags to what you want.  If you want to batch recurse into subdirectories, use the -r (recurse) option.  This command will make backup files.  Use the Overwrite_Original option to suppress that.  
+That will set the three major copyright tags to what you want.  If you want to batch recurse into subdirectories, use the -r (recurse) option.  This command will make backup files.  Use the Overwrite_Original option to suppress that.
 Add the -P (preserve) option to keep the current file system modify date.
 
 `Source:` : <https://exiftool.org/forum/index.php?topic=4837.0>
@@ -96,4 +96,14 @@ exiftool -exif:dateTimeOriginal="2002:04:20 16:00:00.00-07:00" *.jpg
 Add date (only if dateTimeOriginal is not there, otherwise there will be a duplicate dateTimeOriginal).
 ```
  exiftool -xmp:dateTimeOriginal="2002:04:20 16:00:00.00-07:00" *.jpg
+```
+
+Display the UserComment and Filename of a file:
+```
+exiftool -UserComment -FileName *.jpg
+```
+
+Copy Exif data from sourcefile to destinationfile:
+```
+exiftool -TagsFromFile source.jpg destination.jpg
 ```

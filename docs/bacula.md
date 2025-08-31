@@ -5,14 +5,20 @@ Subheading/topic:
 	Topic text
 	</span>
 
-Subheading/topic:
+Bacula Services:
 	<span style="color: #3366ff;">
-	Topic text
+	service bacula-dir start
+	service bacula-fd start
+	service bacula-sd start
+
+	systemctl bacula-dir enable
+	systemctl bacula-fd enable
+	systemctl bacula-sd enable
 	</span>
 </pre>
 <pre>
 Bacula Cheat Sheet
-Bacula is a nifty backup software that is network-capable and stores data in the database for faster retrieval in case you need a certain file back. As a big fan of cheat sheets I created this cheat sheet.
+Bacula is a nifty backup software that is network-capable and stores data in <br />the database for faster retrieval in case you need a certain file back. <br />As a big fan of cheat sheets I created this cheat sheet.
 
 What’s up?
 Which files shall be backed up?	<span style="color: #3366ff;">show filesets	I=Included, E=Excluded</span>
@@ -284,4 +290,5 @@ Tape-0004 and mount from bconsole.
 <hr />
 Source for some of the data [here:](https://workaround.org/bacula-cheatsheet/)
 <hr />
+<br /> https://www.bacula-web.org/docs/install/selinux/
 

@@ -104,6 +104,8 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#error-message-keybase-transport-endpoint-is-not-connected">Error message: /keybase: Transport endpoint is not connected.</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#attachment-download">Attachment Download:</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#-keybase-commands-i-copied-from-httpsbookkeybaseioguidescommand-line">- Keybase commands I copied from https://book.keybase.io/guides/command-line</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#generally">Generally:</a>
@@ -236,6 +238,10 @@
 <h4 id="error-message-keybase-transport-endpoint-is-not-connected">Error message: /keybase: Transport endpoint is not connected.</h4>
 <p>I was able to get the keybase directory working after using this command from this link: - <a href="https://github.com/keybase/client/issues/20331/" title=""> cannot access 'keybase': Transport endpoint is not connected (linux) #20331 </a>:</p>
 <pre><code>sudo fusermount -u /keybase
+</code></pre>
+<h4 id="attachment-download">Attachment Download:</h4>
+<pre><code>keybase chat download &lt;team_name&gt; &lt;message_id&gt; -o output_filename
+Example: keybase chat download rld,sdd 123456 -o xyz.png
 </code></pre>
 <h4 id="-keybase-commands-i-copied-from-httpsbookkeybaseioguidescommand-line">- <a href="https://book.keybase.io/guides/command-line" title=""> Keybase commands I copied from https://book.keybase.io/guides/command-line </a></h4>
 <h4 id="generally">Generally:</h4>

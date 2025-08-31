@@ -11,6 +11,12 @@ I was able to get the keybase directory working after using this command from th
 sudo fusermount -u /keybase
 ```
 
+#### Attachment Download:
+```
+keybase chat download <team_name> <message_id> -o output_filename
+Example: keybase chat download rld,sdd 123456 -o xyz.png
+```
+
 #### - [ Keybase commands I copied from https://book.keybase.io/guides/command-line ](https://book.keybase.io/guides/command-line "")
 
 #### Generally:

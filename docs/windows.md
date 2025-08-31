@@ -82,3 +82,8 @@ REM ----------------------------------------------------------------------------
 <br />
 subst H: "C:\Users\%username%\OneDrive\"<br />
 </span>
+
+
+Run a command that causes all files and folders beginning with a period (to include period-underscore files) to become invisible, open Command Prompt, then run this:
+<span style="color: #3366ff;"><br />attrib +H J:\.* /S /D</span> (but be sure to change the drive from J: to the drive letter of your choice)<br />
+Note that this attrib option will run through every file and folder on your drive, so this could take quite a long time, depending on the size of your disk.<br />
