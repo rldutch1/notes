@@ -1672,6 +1672,12 @@ named "bigdata.sql" that contains valid MySQL statements that you want to run.
 
 		\. bigdata.sql
 
+####Flush Privileges Error:
+    ERROR 1227 (42000): Access denied; you need (at least one of) the RELOAD privilege(s) for this operation
+    Solution:  GRANT RELOAD ON *.* TO 'your_user'@'localhost';
+    GRANT RELOAD ON *.* TO 'rob'@'localhost';
+    GRANT RELOAD ON *.* TO 'rob'@'%';
+
 #### Statements and Clauses (MySQL):
 ###### MYSQL Statements and clauses
 

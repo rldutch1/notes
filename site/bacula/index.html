@@ -198,21 +198,27 @@
               
                 <h1 id="heading">Heading</h1>
 <pre>
-Subheading/topic:
+----------------:
     <span style="color: #3366ff;">
-    Topic text
+    -------------
     </span>
 
 Bacula Services:
-    <span style="color: #3366ff;">
+<span style="color: #3366ff;">
     service bacula-dir start
     service bacula-fd start
     service bacula-sd start
 
-    systemctl bacula-dir enable
-    systemctl bacula-fd enable
-    systemctl bacula-sd enable
-    </span>
+    systemctl enable bacula-dir
+    systemctl enable bacula-fd
+    systemctl enable bacula-sd
+
+    systemctl status bacula-dir
+    systemctl status bacula-fd
+    systemctl status bacula-sd
+
+    ss -lt <-(Should show all three services listening)
+</span>
 </pre>
 <pre>
 Bacula Cheat Sheet

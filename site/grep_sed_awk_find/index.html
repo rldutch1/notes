@@ -94,7 +94,7 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#remove-duplicate-lines-using-awk">Remove duplicate lines using awk.</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#print-all-lines-from-etcpasswd-that-has-the-same-uid-and-gid-if-column-3-column-4">Print all lines from /etc/passwd that has the same uid and gid (if column 3 = column 4).</a>
+    <li class="toctree-l3"><a class="reference internal" href="#print-all-lines-from-etcpasswd-that-have-the-same-uid-and-gid-if-column-3-column-4">Print all lines from /etc/passwd that have the same uid and gid (if column 3 = column 4).</a>
     </li>
         </ul>
     </li>
@@ -267,7 +267,7 @@
 <h6 id="remove-duplicate-lines-using-awk">Remove duplicate lines using awk.</h6>
 <pre><code>- awk '!($0 in array) { array[$0]; print }' somefile.txt
 </code></pre>
-<h6 id="print-all-lines-from-etcpasswd-that-has-the-same-uid-and-gid-if-column-3-column-4">Print all lines from /etc/passwd that has the same uid and gid (if column 3 = column 4).</h6>
+<h6 id="print-all-lines-from-etcpasswd-that-have-the-same-uid-and-gid-if-column-3-column-4">Print all lines from /etc/passwd that have the same uid and gid (if column 3 = column 4).</h6>
 <pre><code>- awk -F ':' '$3==$4' /etc/passwd
 </code></pre>
 <h4 id="grep">GREP:</h4>

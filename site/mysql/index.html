@@ -404,6 +404,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#source">Source:</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#flush-privileges-error">Flush Privileges Error:</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#statements-and-clauses-mysql">Statements and Clauses (MySQL):</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#mysql-statements-and-clauses">MYSQL Statements and clauses</a>
@@ -2069,6 +2071,12 @@ named "bigdata.sql" that contains valid MySQL statements that you want to run.</
     or
 
     \. bigdata.sql
+</code></pre>
+<h4 id="flush-privileges-error">Flush Privileges Error:</h4>
+<pre><code>ERROR 1227 (42000): Access denied; you need (at least one of) the RELOAD privilege(s) for this operation
+Solution:  GRANT RELOAD ON *.* TO 'your_user'@'localhost';
+GRANT RELOAD ON *.* TO 'rob'@'localhost';
+GRANT RELOAD ON *.* TO 'rob'@'%';
 </code></pre>
 <h4 id="statements-and-clauses-mysql">Statements and Clauses (MySQL):</h4>
 <h6 id="mysql-statements-and-clauses">MYSQL Statements and clauses</h6>

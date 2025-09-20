@@ -285,6 +285,23 @@ exiftool -exif:dateTimeOriginal=&quot;2002:04:20 16:00:00.00-07:00&quot; *.jpg
 <p>Copy Exif data from sourcefile to destinationfile:</p>
 <pre><code>exiftool -TagsFromFile source.jpg destination.jpg
 </code></pre>
+<p>Extract Exif data to a file:</p>
+<pre><code>exiftool -ee source.jpg &gt; somefilename.txt
+</code></pre>
+<p>Extract Exif data to a .GPX file:</p>
+<pre><code>First: git clone https://github.com/exiftool/exiftool.git
+Second: Find the correct file format that you want to use (gpx.fmt)
+located in the fmt_files folder.
+
+Syntax:
+    -p = means to use the .gpx format when creating the output filename.
+    -ext mp4 = means to only look at .mp4 files.
+    -ee = means to extract everything (metadata).
+    -w = means to write out the data.
+    %f = means to write the .gpx filename with the same name as the original filename.
+
+exiftool -p gpx.fmt -ee -ext mp4 -w %f.gpx .
+</code></pre>
               
             </div>
           </div><footer>

@@ -4,7 +4,7 @@
 ###### Remove duplicate lines using awk.
 	- awk '!($0 in array) { array[$0]; print }' somefile.txt
 
-###### Print all lines from /etc/passwd that has the same uid and gid (if column 3 = column 4).
+###### Print all lines from /etc/passwd that have the same uid and gid (if column 3 = column 4).
 	- awk -F ':' '$3==$4' /etc/passwd
 
 #### GREP:

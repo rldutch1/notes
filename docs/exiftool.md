@@ -107,3 +107,24 @@ Copy Exif data from sourcefile to destinationfile:
 ```
 exiftool -TagsFromFile source.jpg destination.jpg
 ```
+
+Extract Exif data to a file:
+```
+exiftool -ee source.jpg > somefilename.txt
+```
+
+Extract Exif data to a .GPX file:
+```
+First: git clone https://github.com/exiftool/exiftool.git
+Second: Find the correct file format that you want to use (gpx.fmt)
+located in the fmt_files folder.
+
+Syntax:
+	-p = means to use the .gpx format when creating the output filename.
+	-ext mp4 = means to only look at .mp4 files.
+	-ee = means to extract everything (metadata).
+	-w = means to write out the data.
+	%f = means to write the .gpx filename with the same name as the original filename.
+
+exiftool -p gpx.fmt -ee -ext mp4 -w %f.gpx .
+```
