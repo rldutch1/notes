@@ -128,3 +128,14 @@ Syntax:
 
 exiftool -p gpx.fmt -ee -ext mp4 -w %f.gpx .
 ```
+
+Remove or change the GPS information on a file:
+```
+	The following command will set the GPS coordinates to 0.
+	exiftool -GPSLatitude=00.0 -GPSLongitude=0.00 -GPSPosition=0.00 -GPSCoordinates=0.00,0.00 20250919144315_Tannus_P-Type_Tool.mp4
+
+	The following command will erase the GPS coordinates from a file.
+	exiftool -GPSLatitude= -GPSLongitude= -GPSPosition= -GPSCoordinates= test.mp4
+```
+
+
