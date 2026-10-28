@@ -372,3 +372,6 @@ Bacula was not able to mount the USB thumbdrive until I added it to the fstab fi
 
 #### Run commands as bacula to see if things are working:
 		su -m bacula -c "touch /mnt/xyz/testbacula.txt"
+
+#### Check/Verify mount points in fstab:
+		sudo findmnt --verify

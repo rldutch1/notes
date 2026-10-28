@@ -60,6 +60,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#run-commands-as-bacula-to-see-if-things-are-working">Run commands as bacula to see if things are working:</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#checkverify-mount-points-in-fstab">Check/Verify mount points in fstab:</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -575,6 +577,9 @@ I also changed the selinux context for bacula_backups to bacula_store_t.<br /></
         <span style="color: #3366ff;">UUID=1b301765-6947-414d-8c60-8b0bf5b214b5 /mnt/bacula_usb   ext4    defaults,nofail 0 2</span></p>
 <h4 id="run-commands-as-bacula-to-see-if-things-are-working">Run commands as bacula to see if things are working:</h4>
 <pre><code>    su -m bacula -c "touch /mnt/xyz/testbacula.txt"
+</code></pre>
+<h4 id="checkverify-mount-points-in-fstab">Check/Verify mount points in fstab:</h4>
+<pre><code>    sudo findmnt --verify
 </code></pre>
               
             </div>
